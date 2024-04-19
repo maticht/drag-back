@@ -4,6 +4,7 @@ const getUserData = require("./bot/serverRequests/getUserData")
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
+const router = require('./bot/routes/index');
 const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
 const webAppUrl = 'https://drag-front.vercel.app/';
 // 'https://drag-front.vercel.app/'
@@ -15,6 +16,7 @@ connection();
 
 app.use(express.json());
 app.use(cors());
+app.use('/api', router);
 app.use("/getUserData", getUserData);
 
 bot.on('message', async (msg) => {
