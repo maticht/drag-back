@@ -86,7 +86,7 @@ const userSchema = new mongoose.Schema({
         model: {type: String, required: false},
         name: {type: String, required: false},
         price: {type:Number, required:false},
-        purchaseStatus: {type: String, required: false},
+        purchaseStatus: {type: Boolean, default: false},
     }],
 }, {toJSON: {virtuals: true}});
 
