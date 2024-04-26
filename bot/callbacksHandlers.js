@@ -76,6 +76,7 @@ function handleCallbacks(bot) {
                         price: 15,
                         purchaseStatus: true,
                         stage: 1,
+                        score: 0,
                         isOpen: false,
                         isDone: false,
                     }],
