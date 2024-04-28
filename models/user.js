@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     language:{type:String, default:'en'},
     subscription: {type: Boolean, default: false},
     walletToken: {type: String, required: false},
+    firstEntry: {type: Boolean, default: false},
     token: {type: String, required: false},
     score: {type:Number, required:false},
     boosters: [{

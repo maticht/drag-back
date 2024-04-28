@@ -16,6 +16,7 @@ function handleCallbacks(bot) {
                     lastName: msg.from.last_name,
                     username: msg.from.username,
                     chatId: chatId,
+                    firstEntry: false,
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',
