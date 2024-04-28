@@ -6,6 +6,9 @@ class ScoreController {
             console.log(req.body);
             let user = await User.findOne({chatId: req.body.userId});
             user.score = req.body.score;
+            if (user.eggs.length > 0) {
+                user.eggs[0].score = req.body.score;
+            }
             const savedUser = await user.save();
             console.log(savedUser);
             return res.status(201).send({message: "Счет обновлен успешно"});
@@ -14,8 +17,6 @@ class ScoreController {
             res.status(500).send({message: "Внутренняя ошибка сервера"});
         }
     }
-
-
 }
 
 

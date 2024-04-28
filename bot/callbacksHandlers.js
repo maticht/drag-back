@@ -78,6 +78,7 @@ function handleCallbacks(bot) {
                         purchaseStatus: true,
                         stage: 1,
                         score: 0,
+                        stageScore: [100, 200, 300, 400, 500, 600, 700, 800],
                         isOpen: false,
                         isDone: false,
                     }],

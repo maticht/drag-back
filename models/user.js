@@ -78,6 +78,7 @@ const userSchema = new mongoose.Schema({
         purchaseStatus: {type: Boolean, default: false},
         stage: {type: Number, required: false},
         score: {type:Number, required:false},
+        stageScore: [{type:Number, required:false}],
         isOpen: {type: Boolean, default: false},
         isDone: {type: Boolean, default: false},
     }],
