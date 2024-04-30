@@ -38,6 +38,7 @@ const userSchema = new mongoose.Schema({
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
         currentLevel: {type:Number, required:false},
+        lastEntrance: {type: Date, default: Date.now}
     },
     hammer: {
         name: {type:String, required:false},
