@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     language:{type:String, default:'en'},
     subscription: {type: Boolean, default: false},
     walletToken: {type: String, required: false},
+    firstEntry: {type: Boolean, default: false},
     token: {type: String, required: false},
     score: {type:Number, required:false},
     boosters: [{
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema({
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
         currentLevel: {type:Number, required:false},
+        lastEntrance: {type: Date, default: Date.now}
     },
     hammer: {
         name: {type:String, required:false},
@@ -76,6 +78,8 @@ const userSchema = new mongoose.Schema({
         price: {type:Number, required:false},
         purchaseStatus: {type: Boolean, default: false},
         stage: {type: Number, required: false},
+        score: {type:Number, required:false},
+        stageScore: [{type:Number, required:false}],
         isOpen: {type: Boolean, default: false},
         isDone: {type: Boolean, default: false},
     }],

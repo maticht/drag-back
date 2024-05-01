@@ -16,6 +16,7 @@ function handleCallbacks(bot) {
                     lastName: msg.from.last_name,
                     username: msg.from.username,
                     chatId: chatId,
+                    firstEntry: false,
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',
@@ -25,7 +26,7 @@ function handleCallbacks(bot) {
                         chance: [1, 2, 3, 4, 5, 6, 7, 8],
                         levels: [1, 2, 3, 4, 5, 6, 7, 8],
                         currentLevel: 1,
-                        price: [10000, 15000, 22000, 30000, 40000, 55000, 70000, 100000],
+                        price: [100, 150, 220, 300, 400, 550, 700, 1000],
                     },
                     barrel: {
                         name: 'Barrel',
@@ -34,7 +35,8 @@ function handleCallbacks(bot) {
                         income: [250, 500, 1500, 2000, 3000, 4000, 5000, 6666],
                         levels: [1, 2, 3, 4, 5, 6, 7, 8],
                         currentLevel: 1,
-                        price: [10000, 15000, 22000, 30000, 40000, 55000, 70000, 100000],
+                        price: [100, 150, 220, 300, 400, 550, 700, 1000],
+                        lastEntrance: null,
                     },
                     hammer: {
                         name: 'Hammer',
@@ -44,7 +46,7 @@ function handleCallbacks(bot) {
                         income: [1, 2, 3, 4, 5, 6, 7, 8],
                         levels: [1, 2, 3, 4, 5, 6, 7, 8],
                         currentLevel: 1,
-                        price: [10000, 15000, 22000, 30000, 40000, 55000, 70000, 100000],
+                        price: [10, 15, 22, 30, 40, 55, 70, 100],
                     },
                     eggs:[{
                         profit: 1,
@@ -76,6 +78,8 @@ function handleCallbacks(bot) {
                         price: 15,
                         purchaseStatus: true,
                         stage: 1,
+                        score: 0,
+                        stageScore: [180, 280, 380, 480, 580, 680, 780, 880],
                         isOpen: false,
                         isDone: false,
                     }],

@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const getUserData = require("./bot/serverRequests/getUserData")
+const getUserData = require("./bot/serverRequests/getUserData");
+const updateHummer = require("./bot/serverRequests/updateHummer");
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/api', router);
 app.use("/getUserData", getUserData);
+app.use("/updateHummer", updateHummer);
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
