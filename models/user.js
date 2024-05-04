@@ -37,8 +37,10 @@ const userSchema = new mongoose.Schema({
         income: [{type:Number, required:false}],
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
+        waitingTime: [{type:Number, required:false}],
         currentLevel: {type:Number, required:false},
-        lastEntrance: {type: Date, default: Date.now}
+        lastEntrance: {type: Date, required:false},
+        collectionTime: {type: Date, required:false}
     },
     hammer: {
         name: {type:String, required:false},
