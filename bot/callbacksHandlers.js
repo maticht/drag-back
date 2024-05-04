@@ -83,7 +83,7 @@ function handleCallbacks(bot) {
                                     'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130718/dragonEggs/eggRarity1Stage5_tvfsqo.png',
                                     'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage6_tlpdhn.png',
                                     'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage7_xmqhnu.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714827758/eggRarity1Stage8_qugm9.png',
+                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714827758/dragonEggs/eggRarity1Stage8_qugm9.png',
                                 ],
                                 model2: [], 
                                 model3: [],
