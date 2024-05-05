@@ -8,7 +8,11 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            let referral_code = match[1];
+            let referralCode = null;
+            if (msg.text.includes('start=')) {
+                const parts = msg.text.split('start=');
+                referralCode = parts[1];
+            }
             let user = await User.findOne({chatId: chatId});
 
             if (!user) {
@@ -16,7 +20,7 @@ function handleCallbacks(bot) {
                     firstName: msg.from.first_name,
                     lastName: msg.from.last_name,
                     username: msg.from.username,
-                    childReferral: referral_code,
+                    childReferral: referralCode,
                     referralUsers: [],
                     chatId: chatId,
                     firstEntry: false,
