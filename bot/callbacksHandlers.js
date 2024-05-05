@@ -112,6 +112,9 @@ function handleCallbacks(bot) {
             console.log(user)
             if (maternalReferralUser) {
                 const newReferral = {
+                    firstName: msg.from.first_name,
+                    lastName: msg.from.last_name,
+                    username: msg.from.username,
                     chatId: chatId,
                     score: 250,
                     collectionTime: new Date(Date.now() + 24 * 60 * 1000)
