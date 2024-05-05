@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
     lastName:{type:String, required:false },
     username:{type:String, required:false},
     chatId: {type: String, required: false},
+    childReferral: {type: String, required: false},
+    referralUsers:  [{type:String, required:false}],
     language:{type:String, default:'en'},
     subscription: {type: Boolean, default: false},
     walletToken: {type: String, required: false},
