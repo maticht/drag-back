@@ -8,19 +8,16 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            // let referralCode = null;
-            // if (msg.text.includes('start=')) {
-            //     const parts = msg.text.split('start=');
-            //     referralCode = parts[1];
-            // }
             let user = await User.findOne({chatId: chatId});
+            const childReferral = msg.md_text.replace("/start ", "");
+            let maternalReferralUser = await User.findOne({chatId: childReferral});
 
             if (!user) {
                 user = await new User({
                     firstName: msg.from.first_name,
                     lastName: msg.from.last_name,
                     username: msg.from.username,
-                    childReferral: msg.md_text,
+                    childReferral: childReferral,
                     referralUsers: [],
                     chatId: chatId,
                     firstEntry: false,
@@ -111,6 +108,15 @@ function handleCallbacks(bot) {
                         isDone: false,
                     }],
                 }).save();
+                if (maternalReferralUser) {
+                    const newReferral = {
+                        chatId: chatId,
+                        score: 250,
+                        collectionTime: new Date(Date.now() + 24 * 60 * 1000)
+                    };
+                    maternalReferralUser.referralUsers.push(newReferral);
+                    await maternalReferralUser.save();
+                }
             }
             console.log(user)
 
