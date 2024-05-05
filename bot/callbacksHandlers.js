@@ -9,7 +9,7 @@ function handleCallbacks(bot) {
             const chatId = msg.chat.id;
             console.log(msg);
             let user = await User.findOne({chatId: chatId});
-            const childReferral = msg.text.replace("/start ", "");
+            const childReferral = msg.text?.replace("/start ", "");
             let maternalReferralUser = await User.findOne({chatId: childReferral});
 
             if (!user) {
@@ -108,17 +108,17 @@ function handleCallbacks(bot) {
                         isDone: false,
                     }],
                 }).save();
-                if (maternalReferralUser) {
-                    const newReferral = {
-                        chatId: chatId,
-                        score: 250,
-                        collectionTime: new Date(Date.now() + 24 * 60 * 1000)
-                    };
-                    maternalReferralUser.referralUsers.push(newReferral);
-                    await maternalReferralUser.save();
-                }
             }
             console.log(user)
+            if (maternalReferralUser) {
+                const newReferral = {
+                    chatId: chatId,
+                    score: 250,
+                    collectionTime: new Date(Date.now() + 24 * 60 * 1000)
+                };
+                maternalReferralUser.referralUsers.push(newReferral);
+                await maternalReferralUser.save();
+            }
 
         } catch (e) {
             console.log(e.message);
