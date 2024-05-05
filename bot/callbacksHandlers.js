@@ -9,7 +9,7 @@ function handleCallbacks(bot) {
             const chatId = msg.chat.id;
             console.log(msg);
             let user = await User.findOne({chatId: chatId});
-            const childReferral = msg.md_text.replace("/start ", "");
+            const childReferral = msg.text.replace("/start ", "");
             let maternalReferralUser = await User.findOne({chatId: childReferral});
 
             if (!user) {
