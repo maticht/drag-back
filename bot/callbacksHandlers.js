@@ -20,7 +20,7 @@ function handleCallbacks(bot) {
                     firstName: msg.from.first_name,
                     lastName: msg.from.last_name,
                     username: msg.from.username,
-                    childReferral: msg.text,
+                    childReferral: msg.md_text,
                     referralUsers: [],
                     chatId: chatId,
                     firstEntry: false,
