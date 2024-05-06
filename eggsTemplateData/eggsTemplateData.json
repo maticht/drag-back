@@ -1,0 +1,130 @@
+{
+  "eggs": [
+    {
+      "_id": 0,
+      "rarity": "Ordinary",
+      "name": "Mystic Shadowleaf",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage1_et105p.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130716/dragonEggs/eggRarity1Stage2_xgweun.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage3_xh5vk0.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage4_o9wczb.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130718/dragonEggs/eggRarity1Stage5_tvfsqo.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage6_tlpdhn.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage7_xmqhnu.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714827758/dragonEggs/eggRarity1Stage8_qugm9.png"
+      ],
+      "chance": 0.65
+    },
+    {
+      "_id": 1,
+      "rarity": "Ordinary",
+      "name": "Abyssal Onyx Heart",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001255/dragonEggs/eggRarity2Stage1_cqfcn6.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001255/dragonEggs/eggRarity2Stage2_ew3khi.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001255/dragonEggs/eggRarity2Stage3_akl0sq.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001256/dragonEggs/eggRarity2Stage4_xjwnsa.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001256/dragonEggs/eggRarity2Stage5_rshzhv.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001258/dragonEggs/eggRarity2Stage6_qray2b.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001259/dragonEggs/eggRarity2Stage7_pgpiln.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715001259/dragonEggs/eggRarity2Stage8_fayolf.png"
+      ],
+      "chance": 0.65
+    },
+    {
+      "_id": 2,
+      "rarity": "Ordinary",
+      "name": "Shadowed Viridian Nightshade",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002102/dragonEggs/eggRarity3Stage1_j9d3rt.png"
+      ],
+      "chance": 0.65
+    },
+    {
+      "_id": 3,
+      "rarity": "Uncommon",
+      "name": "Azure Crystal Shard",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002109/dragonEggs/eggRarity4Stage1_gnjiwm.png"
+      ],
+      "chance": 0.23
+    },
+    {
+      "_id": 4,
+      "rarity": "Uncommon",
+      "name": "Crimson Emberstone",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002116/dragonEggs/eggRarity5Stage1_fm6qx7.png"
+      ],
+      "chance": 0.23
+    },
+    {
+      "_id": 5,
+      "rarity": "Rare",
+      "name": "Infernal Blazeheart",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002125/dragonEggs/eggRarity6Stage1_hjedlx.png"
+      ],
+      "chance": 0.08
+    },
+    {
+      "_id": 6,
+      "rarity": "Rare",
+      "name": "Ethereal Amethyst Essence",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002132/dragonEggs/eggRarity7Stage1_ltjgdy.png"
+      ],
+      "chance": 0.08
+    },
+    {
+      "_id": 7,
+      "rarity": "Legendary",
+      "name": "Celestial Sovereign's Egg",
+      "images": [
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
+        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png"
+      ],
+      "chance": 0.04
+    }
+  ]}
