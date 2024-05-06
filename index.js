@@ -6,6 +6,8 @@ const updateHummer = require("./bot/serverRequests/updateHummer");
 const updateBarrel = require("./bot/serverRequests/barrel/updateBarrel");
 const barrelExpectation = require("./bot/serverRequests/barrel/barrelExpectation");
 const collectionBarrel = require("./bot/serverRequests/barrel/collectionBarrel");
+const collectFromInvitees = require("./bot/serverRequests/user/collectFromInvitees");
+const replenishmentFromInvitees = require("./bot/serverRequests/user/replenishmentFromInvitees");
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -29,6 +31,8 @@ index.use("/updateBarrel", updateBarrel);
 index.use("/barrelExpectation", barrelExpectation);
 index.use("/collectionBarrel", collectionBarrel);
 index.use("/getAllUsers", getAllUsers);
+index.use("/collectFromInvitees", collectFromInvitees);
+index.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;

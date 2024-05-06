@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
     username:{type:String, required:false},
     chatId: {type: String, required: false},
     childReferral: {type: String, required: false},
+    referralStartTime: {type: Date, required:false},
+    referralCollectionTime: {type: Date, required:false},
     referralUsers:  [{
         firstName: { type: String, required: false },
         lastName:{type:String, required:false },
