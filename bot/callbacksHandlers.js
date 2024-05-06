@@ -1,4 +1,5 @@
 const {User} = require("../models/user");
+const getRandomEgg = require("../utils/helpers");
 
 
 
@@ -11,6 +12,7 @@ function handleCallbacks(bot) {
             let user = await User.findOne({chatId: chatId});
             const childReferral = msg.text?.replace("/start ", "");
             let maternalReferralUser = await User.findOne({chatId: childReferral});
+            const egg = getRandomEgg();
 
             if (!user) {
                 user = await new User({
@@ -86,20 +88,11 @@ function handleCallbacks(bot) {
                     eggs:[{
                         profit: 1,
                         assessedValue: 20,
-                        rarity: "Ordinary",
+                        rarity: egg.rarity,
                         model: "Dragon Egg",
-                        name: "Ordinary Egg",
+                        name: egg.name,
                         images:  {
-                                model1: [
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage1_et105p.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130716/dragonEggs/eggRarity1Stage2_xgweun.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage3_xh5vk0.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage4_o9wczb.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130718/dragonEggs/eggRarity1Stage5_tvfsqo.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage6_tlpdhn.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage7_xmqhnu.png',
-                                    'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714827758/dragonEggs/eggRarity1Stage8_qugm9.png',
-                                ],
+                                model1: egg.images,
                                 model2: [], 
                                 model3: [],
                                 model4: [],
@@ -109,7 +102,7 @@ function handleCallbacks(bot) {
                                 model8: [],
                         },
                         protection: 1,
-                        chance: 10,
+                        chance: egg.chance,
                         price: 15,
                         purchaseStatus: true,
                         stage: 1,

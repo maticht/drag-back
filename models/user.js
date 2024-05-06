@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     walletToken: {type: String, required: false},
     firstEntry: {type: Boolean, default: false},
     token: {type: String, required: false},
-    score: {type:Number, required:false},
+    score: {type:Number, required:false, default:0},
     boosters: [{
         multiTap: {type:Number, required:false},
         strength: {type:Number, required:false},
