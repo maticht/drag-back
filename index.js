@@ -1,25 +1,38 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const getUserData = require("./bot/serverRequests/getUserData");
+const getUserData = require("./bot/serverRequests/user/getUserData");
+const getAllUsers = require("./bot/serverRequests/user/getAllUsers");
 const updateHummer = require("./bot/serverRequests/updateHummer");
+const updateBarrel = require("./bot/serverRequests/barrel/updateBarrel");
+const barrelExpectation = require("./bot/serverRequests/barrel/barrelExpectation");
+const collectionBarrel = require("./bot/serverRequests/barrel/collectionBarrel");
+const collectFromInvitees = require("./bot/serverRequests/user/collectFromInvitees");
+const replenishmentFromInvitees = require("./bot/serverRequests/user/replenishmentFromInvitees");
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
 const router = require('./bot/routes/index');
 const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
 const webAppUrl = 'https://drag-front.vercel.app/';
-// 'https://drag-front.vercel.app/'
+// http://tgbot.server195361.nazwa.pl/
+// https://drag-front.vercel.app/
 const bot = new TelegramBot(token, {polling: true});
-const app = express();
+const index = express();
 const connection = require("./db");
 
 connection();
 
-app.use(express.json());
-app.use(cors());
-app.use('/api', router);
-app.use("/getUserData", getUserData);
-app.use("/updateHummer", updateHummer);
+index.use(express.json());
+index.use(cors());
+index.use('/api', router);
+index.use("/getUserData", getUserData);
+index.use("/updateHummer", updateHummer);
+index.use("/updateBarrel", updateBarrel);
+index.use("/barrelExpectation", barrelExpectation);
+index.use("/collectionBarrel", collectionBarrel);
+index.use("/getAllUsers", getAllUsers);
+index.use("/collectFromInvitees", collectFromInvitees);
+index.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
@@ -29,7 +42,7 @@ bot.on('message', async (msg) => {
         await bot.sendMessage(chatId, 'Выседи яйцо и получи дениги', {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: 'Играть', web_app: {url: `https://drag-front.vercel.app`}}]
+                    [{text: 'Играть', web_app: {url: `https://drag-front.vercel.app/`}}]
                 ]
             }
         })
@@ -37,7 +50,7 @@ bot.on('message', async (msg) => {
     }
 });
 
-app.post('/web-data', async (req, res) => {
+index.post('/web-data', async (req, res) => {
     const {queryId, count} = req.body;
     try {
         await bot.answerWebAppQuery(queryId, {
@@ -57,4 +70,4 @@ app.post('/web-data', async (req, res) => {
 
 const PORT = 8000;
 
-app.listen(PORT, () => console.log('server started on PORT ' + PORT))
+index.listen(PORT, () => console.log('server started on PORT ' + PORT))

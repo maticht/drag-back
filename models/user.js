@@ -5,6 +5,17 @@ const userSchema = new mongoose.Schema({
     lastName:{type:String, required:false },
     username:{type:String, required:false},
     chatId: {type: String, required: false},
+    childReferral: {type: String, required: false},
+    referralStartTime: {type: Date, required:false},
+    referralCollectionTime: {type: Date, required:false},
+    referralUsers:  [{
+        firstName: { type: String, required: false },
+        lastName:{type:String, required:false },
+        username:{type:String, required:false},
+        chatId: {type: String, required: false},
+        score: {type:Number, required:false},
+        collectionTime: {type: Date, required:false}
+    }],
     language:{type:String, default:'en'},
     subscription: {type: Boolean, default: false},
     walletToken: {type: String, required: false},
@@ -37,8 +48,10 @@ const userSchema = new mongoose.Schema({
         income: [{type:Number, required:false}],
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
+        waitingTime: [{type:Number, required:false}],
         currentLevel: {type:Number, required:false},
-        lastEntrance: {type: Date, default: Date.now}
+        lastEntrance: {type: Date, required:false},
+        collectionTime: {type: Date, required:false}
     },
     hammer: {
         name: {type:String, required:false},

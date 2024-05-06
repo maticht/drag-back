@@ -7,7 +7,7 @@ class ScoreController {
             let user = await User.findOne({chatId: req.body.userId});
             user.score = req.body.score;
             if (user.eggs.length > 0) {
-                user.eggs[0].score = req.body.score;
+                user.eggs[0].score = req.body.eggScore;
             }
             const savedUser = await user.save();
             console.log(savedUser);

@@ -1,20 +1,19 @@
 const router = require("express").Router();
-const { User } = require("../../models/user");
+const { User } = require("../../../models/user");
 
 router.put("/:userid/", async (req, res) => {
     try {
         const user = await User.findOne({ chatId: req.params.userid });
         if (!user) return res.status(400).send({ message: "Invalid queryId" });
+        const barrel = user.barrel;
+        const currentLevel = barrel.currentLevel;
+        const waitingTime = barrel.waitingTime[currentLevel - 1];
 
-        const hammer = user.hammer;
-        const currentLevel = hammer.currentLevel;
-        const price = hammer.price[currentLevel - 1];
-        if (currentLevel < 8) {
-            hammer.currentLevel++;
-            user.score -= price;
-        } else {
-            return res.status(400).send({ message: "Maximum level reached" });
-        }
+        barrel.lastEntrance = new Date();
+        const collectionTime = new Date();
+        collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
+        barrel.collectionTime = collectionTime;
+
         await user.save();
         return res.json({user})
     } catch (error) {
