@@ -9,6 +9,7 @@ router.put("/:userid/", async (req, res) => {
         const hammer = user.hammer;
         const currentLevel = hammer.currentLevel;
         const price = hammer.price[currentLevel - 1];
+        if (user.score < price) return res.status(400).send({ message: "not enough money" });
         if (currentLevel < 8) {
             hammer.currentLevel++;
             user.score -= price;

@@ -14,6 +14,7 @@ router.put("/:userid/", async (req, res) => {
         collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
         barrel.collectionTime = collectionTime;
         const price = barrel.price[currentLevel - 1];
+        if (user.score < price) return res.status(400).send({ message: "not enough money" });
         if (currentLevel < 8) {
             barrel.currentLevel++;
             user.score -= price;

@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema({
         chance: [{type:Number, required:false}],
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
+        images: [{type: String, required: false}],
         currentLevel: {type:Number, required:false},
     },
     barrel: {
