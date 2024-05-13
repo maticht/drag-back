@@ -9,12 +9,15 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            let user = await User.findOne({chatId: chatId});
-            const childReferral = msg.text?.replace("/start ", "");
-            let maternalReferralUser = await User.findOne({chatId: childReferral});
-            const egg = getRandomEgg();
+            let user = await User.findOne({chatId: chatId}); // юзер нажавший старт
 
             if (!user) {
+
+                const egg = getRandomEgg();
+
+                const childReferral = msg.text?.replace("/start ", ""); //айди родителя
+                console.log("childReferral", childReferral)
+
                 user = await new User({
                     firstName: msg.from.first_name,
                     lastName: msg.from.last_name,
@@ -112,20 +115,42 @@ function handleCallbacks(bot) {
                         isDone: false,
                     }],
                 }).save();
+
+                if(childReferral){
+
+                    let maternalReferralUser = await User.findOne({chatId: childReferral}); // юзер родитель
+                    console.log("maternalReferralUser",maternalReferralUser.firstName, maternalReferralUser.chatId);
+
+                    if (maternalReferralUser) {
+                        const pretendentIds = maternalReferralUser.referralUsers.map(user => user.chatId);
+
+                        if (!pretendentIds.includes(chatId)) {
+                            const newReferral = {
+                                firstName: msg.from.first_name,
+                                lastName: msg.from.last_name,
+                                username: msg.from.username,
+                                chatId: chatId,
+                                score: 250,
+                                collectionTime: new Date(Date.now() + 24 * 60 * 1000)
+                            };
+                            maternalReferralUser.referralUsers.push(newReferral);
+                            await maternalReferralUser.save();
+                        }
+
+                    }
+                }
             }
-            console.log(user)
-            if (maternalReferralUser) {
-                const newReferral = {
-                    firstName: msg.from.first_name,
-                    lastName: msg.from.last_name,
-                    username: msg.from.username,
-                    chatId: chatId,
-                    score: 250,
-                    collectionTime: new Date(Date.now() + 24 * 60 * 1000)
-                };
-                maternalReferralUser.referralUsers.push(newReferral);
-                await maternalReferralUser.save();
-            }
+
+            await bot.sendMessage(chatId, 'Try your luck, break the egg and see what happens next!', {
+                reply_markup: {
+                    inline_keyboard: [
+                        [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/`}}]
+                    ]
+                }
+            })
+
+            console.log("user",user.firstName, user.chatId)
+
 
         } catch (e) {
             console.log(e.message);

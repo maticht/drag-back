@@ -13,6 +13,7 @@ const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
 const router = require('./bot/routes/index');
 const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
+//const token = '7040601221:AAGoLDdPDtWNFMi4CmQciAlWS3PNP9-KHOo'; //dev
 const webAppUrl = 'https://dragoneggs.net.pl/';
 // http://tgbot.server195361.nazwa.pl/
 // https://drag-front.vercel.app/
@@ -34,21 +35,9 @@ app.use("/getAllUsers", getAllUsers);
 app.use("/collectFromInvitees", collectFromInvitees);
 app.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 
-bot.on('message', async (msg) => {
-    const chatId = msg.chat.id;
-    const text = msg.text;
-    let user;
-    if(text === '/start') {
-        await bot.sendMessage(chatId, 'Начать игру', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: 'Играть', web_app: {url: `https://dragoneggs.net.pl/`}}]
-                ]
-            }
-        })
-        handleCallbacks(bot);
-    }
-});
+async function startBot() {
+    handleCallbacks(bot);
+}
 
 app.post('/web-data', async (req, res) => {
     const {queryId, count} = req.body;
@@ -71,3 +60,7 @@ app.post('/web-data', async (req, res) => {
 const PORT = 8000;
 
 app.listen(PORT, () => console.log('server started on PORT ' + PORT))
+
+startBot().catch(e => {
+    console.log(e.message);
+});
