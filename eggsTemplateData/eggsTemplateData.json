@@ -2,7 +2,7 @@
   "eggs": [
     {
       "_id": 0,
-      "rarity": "Ordinary",
+      "rarity": "Common",
       "name": "Mystic Shadowleaf",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage1_et105p.png",
@@ -18,7 +18,7 @@
     },
     {
       "_id": 1,
-      "rarity": "Ordinary",
+      "rarity": "Common",
       "name": "Abyssal Onyx Heart",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547988/eggRarity2Stage1_dmxre1.png",
@@ -34,7 +34,7 @@
     },
     {
       "_id": 2,
-      "rarity": "Ordinary",
+      "rarity": "Rare",
       "name": "Shadowed Viridian Nightshade",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548070/eggRarity3Stage1_leo0y9.png",
@@ -50,7 +50,7 @@
     },
     {
       "_id": 3,
-      "rarity": "Uncommon",
+      "rarity": "Epic",
       "name": "Azure Crystal Shard",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548177/eggRarity4Stage1_rawmup.png",
@@ -66,7 +66,7 @@
     },
     {
       "_id": 4,
-      "rarity": "Uncommon",
+      "rarity": "Epic",
       "name": "Crimson Emberstone",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548286/eggRarity5Stage1_s1zrxt.png",
@@ -82,7 +82,7 @@
     },
     {
       "_id": 5,
-      "rarity": "Rare",
+      "rarity": "Mythical",
       "name": "Infernal Blazeheart",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548449/eggRarity6Stage1_zyugwf.png",
@@ -98,7 +98,7 @@
     },
     {
       "_id": 6,
-      "rarity": "Rare",
+      "rarity": "Mythical",
       "name": "Ethereal Amethyst Essence",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548550/eggRarity7Stage1_kankzz.png",
