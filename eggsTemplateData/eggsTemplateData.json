@@ -3,7 +3,7 @@
     {
       "_id": 0,
       "rarity": "Common",
-      "name": "Mystic Shadowleaf",
+      "name": "Pearl",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage1_et105p.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130716/dragonEggs/eggRarity1Stage2_xgweun.png",
@@ -19,7 +19,7 @@
     {
       "_id": 1,
       "rarity": "Common",
-      "name": "Abyssal Onyx Heart",
+      "name": "Obsidian",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547988/eggRarity2Stage1_dmxre1.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage2_hsuaji.png",
@@ -35,7 +35,7 @@
     {
       "_id": 2,
       "rarity": "Rare",
-      "name": "Shadowed Viridian Nightshade",
+      "name": "Venom",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548070/eggRarity3Stage1_leo0y9.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548071/eggRarity3Stage2_qixhhg.png",
@@ -51,7 +51,7 @@
     {
       "_id": 3,
       "rarity": "Epic",
-      "name": "Azure Crystal Shard",
+      "name": "Diamond",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548177/eggRarity4Stage1_rawmup.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548177/eggRarity4Stage2_po7w3c.png",
@@ -67,7 +67,7 @@
     {
       "_id": 4,
       "rarity": "Epic",
-      "name": "Crimson Emberstone",
+      "name": "Ruby",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548286/eggRarity5Stage1_s1zrxt.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548287/eggRarity5Stage2_rru2wn.png",
@@ -83,7 +83,7 @@
     {
       "_id": 5,
       "rarity": "Mythical",
-      "name": "Infernal Blazeheart",
+      "name": "Meteorite",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548449/eggRarity6Stage1_zyugwf.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548450/eggRarity6Stage2_avt2et.png",
@@ -99,7 +99,7 @@
     {
       "_id": 6,
       "rarity": "Mythical",
-      "name": "Ethereal Amethyst Essence",
+      "name": "Emerald",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548550/eggRarity7Stage1_kankzz.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548551/eggRarity7Stage2_gjo6ax.png",
@@ -115,7 +115,7 @@
     {
       "_id": 7,
       "rarity": "Legendary",
-      "name": "Celestial Sovereign's Egg",
+      "name": "Gold",
       "images": [
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715002145/dragonEggs/eggRarity8Stage1_xqv9ft.png",
