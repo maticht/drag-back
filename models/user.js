@@ -8,6 +8,43 @@ const userSchema = new mongoose.Schema({
     childReferral: {type: String, required: false},
     referralStartTime: {type: Date, required:false},
     referralCollectionTime: {type: Date, required:false},
+    dailyReward:  {type:
+            {
+                day1: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day2: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day3: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day4: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day5: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day6: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+                day7: {
+                    isRewardTaken: {type: Boolean, default: false},
+                    dateOfAward: {type: Date, required:false}
+                },
+            }, required: false,},
+    topUserReward:  {type:
+            {
+                reward: {type: Boolean, default: false},
+                place: {type: Boolean, default: false},
+                isRewardTaken: {type: Boolean, default: false},
+            }, required: false,},
     referralUsers:  [{
         firstName: { type: String, required: false },
         lastName:{type:String, required:false },
