@@ -51,7 +51,8 @@ const userSchema = new mongoose.Schema({
         username:{type:String, required:false},
         chatId: {type: String, required: false},
         score: {type:Number, required:false},
-        collectionTime: {type: Date, required:false}
+        collectionTime: {type: Date, required:false},
+        lastRefScore: {type:Number, required:false, default:0},
     }],
     language:{type:String, default:'en'},
     subscription: {type: Boolean, default: false},
@@ -99,6 +100,9 @@ const userSchema = new mongoose.Schema({
         income: [{type:Number, required:false}],
         level: [{type:Number, required:false}],
         price: [{type:Number, required:false}],
+        currentLevel: {type:Number, required:false},
+    },
+    bottle: {
         currentLevel: {type:Number, required:false},
     },
     assistant: [{

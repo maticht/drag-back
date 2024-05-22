@@ -17,10 +17,11 @@ router.put("/:userid/", async (req, res) => {
                 if (user.referralUsers && user.referralUsers.length > 0) {
                     const referredUserIndex = user.referralUsers.findIndex(user => user.chatId === referredUser.chatId);
                     if (referredUserIndex !== -1) {
-                        user.referralUsers[referredUserIndex].score += Math.round(referredUser.score * 0.08);
+                        user.referralUsers[referredUserIndex].score += Math.round((referredUser.score - user.referralUsers[referredUserIndex].lastRefScore) * 0.08);
+                        user.referralUsers[referredUserIndex].lastRefScore = referredUser.score;
                     }
                 }
-                referredUser.score = Math.round(referredUser.score * 0.92);
+                referredUser.score = Math.round(referredUser.score);
                 await referredUser.save();
             }
         }

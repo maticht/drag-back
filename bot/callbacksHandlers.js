@@ -28,6 +28,7 @@ function handleCallbacks(bot) {
                     referralUsers: [],
                     chatId: chatId,
                     firstEntry: false,
+                    lastRefScore: 0,
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',
@@ -87,6 +88,9 @@ function handleCallbacks(bot) {
                         levels: [1, 2, 3, 4, 5, 6, 7, 8],
                         currentLevel: 1,
                         price: [10, 15, 22, 30, 40, 55, 70, 100],
+                    },
+                    bottle: {
+                        currentLevel: 1,
                     },
                     eggs:[{
                         profit: 1,
