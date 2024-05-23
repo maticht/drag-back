@@ -2,7 +2,6 @@ const {User} = require("../models/user");
 const getRandomEgg = require("../utils/helpers");
 
 
-
 function handleCallbacks(bot) {
 
     bot.onText(/\/start/, async (msg) => {
@@ -29,6 +28,36 @@ function handleCallbacks(bot) {
                     chatId: chatId,
                     firstEntry: false,
                     lastRefScore: 0,
+                    dailyReward: {
+                        day1: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day2: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day3: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day4: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day5: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day6: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                        day7: {
+                            isRewardTaken: false,
+                            dateOfAward: 0
+                        },
+                    },
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',
@@ -111,24 +140,21 @@ function handleCallbacks(bot) {
                         currentLevel: 1,
                         price: [100, 150, 220, 300, 400, 550, 700, 1000]
                     },
-                    bottle: {
-                        currentLevel: 1,
-                    },
-                    eggs:[{
+                    eggs: [{
                         profit: 1,
                         assessedValue: 20,
                         rarity: egg.rarity,
                         model: "Dragon Egg",
                         name: egg.name,
-                        images:  {
-                                model1: egg.images,
-                                model2: [], 
-                                model3: [],
-                                model4: [],
-                                model5: [], 
-                                model6: [], 
-                                model7: [],
-                                model8: [],
+                        images: {
+                            model1: egg.images,
+                            model2: [],
+                            model3: [],
+                            model4: [],
+                            model5: [],
+                            model6: [],
+                            model7: [],
+                            model8: [],
                         },
                         protection: 1,
                         chance: egg.chance,
@@ -142,7 +168,7 @@ function handleCallbacks(bot) {
                     }],
                 }).save();
 
-                if(childReferral){
+                if (childReferral) {
 
                     let maternalReferralUser = await User.findOne({chatId: childReferral}); // юзер родитель
                     // console.log("maternalReferralUser",maternalReferralUser.firstName, maternalReferralUser.chatId);
@@ -175,7 +201,7 @@ function handleCallbacks(bot) {
                 }
             })
 
-            console.log("user",user.firstName, user.chatId)
+            console.log("user", user.firstName, user.chatId)
 
 
         } catch (e) {

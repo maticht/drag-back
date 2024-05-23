@@ -4,11 +4,13 @@ const getUserData = require("./bot/serverRequests/user/getUserData");
 const getAllUsers = require("./bot/serverRequests/user/getAllUsers");
 const alchemistUpgrade = require("./bot/serverRequests/user/alchemistUpgrade");
 const updateHummer = require("./bot/serverRequests/updateHummer");
+const updateAxe = require("./bot/serverRequests/updateAxe");
 const updateBarrel = require("./bot/serverRequests/barrel/updateBarrel");
 const barrelExpectation = require("./bot/serverRequests/barrel/barrelExpectation");
 const collectionBarrel = require("./bot/serverRequests/barrel/collectionBarrel");
 const collectFromInvitees = require("./bot/serverRequests/user/collectFromInvitees");
 const replenishmentFromInvitees = require("./bot/serverRequests/user/replenishmentFromInvitees");
+const collectDailyReward = require("./bot/serverRequests/user/collectDailyReward")
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -30,10 +32,12 @@ app.use('/api', router);
 app.use("/getUserData", getUserData);
 app.use("/updateHummer", updateHummer);
 app.use("/updateBarrel", updateBarrel);
+app.use("/updateAxe", updateAxe);
 app.use("/alchemistUpgrade", alchemistUpgrade)
 app.use("/barrelExpectation", barrelExpectation);
 app.use("/collectionBarrel", collectionBarrel);
 app.use("/getAllUsers", getAllUsers);
+app.use("/collectDailyReward", collectDailyReward);
 app.use("/collectFromInvitees", collectFromInvitees);
 app.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 
