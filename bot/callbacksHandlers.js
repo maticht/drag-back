@@ -19,8 +19,8 @@ function handleCallbacks(bot) {
                 console.log("childReferral", childReferral)
 
                 user = await new User({
-                    firstName: msg.from.first_name,
-                    lastName: msg.from.last_name,
+                    firstName: msg.from?.first_name ? msg.from.first_name : "",
+                    lastName: msg.from?.last_name ? msg.from.last_name : "",
                     username: msg.from.username,
                     childReferral: childReferral,
                     referralStartTime: 0,
@@ -89,6 +89,28 @@ function handleCallbacks(bot) {
                         currentLevel: 1,
                         price: [10, 15, 22, 30, 40, 55, 70, 100],
                     },
+                    energy: {
+                        name: "Bottle",
+                        description: "The energy bottle is responsible for the total amount and speed of energy recovery",
+                        images: [
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-1-lvl_xe60ur.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-2-lvl_gh8qbm.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-3-lvl_dfnhgz.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-4-lvl_oynhnu.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-5-lvl_hun0ii.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397067/bottle-6-lvl_u9vun8.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-7-lvl_geyhit.png",
+                            "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397067/bottle-8-lvl_f6uecl.png"
+                        ],
+                        value: 500,
+                        energyFullRecoveryDate: new Date(),
+                        energyCapacity: [500, 1000, 1500, 2000, 2500, 3000, 4000, 4500],
+                        energyRecovery: [1, 2, 3, 4, 5, 6, 7, 8],
+                        lastEntrance: 0,
+                        levels: [1, 2, 3, 4, 5, 6, 7, 8],
+                        currentLevel: 1,
+                        price: [100, 150, 220, 300, 400, 550, 700, 1000]
+                    },
                     bottle: {
                         currentLevel: 1,
                     },
@@ -123,7 +145,7 @@ function handleCallbacks(bot) {
                 if(childReferral){
 
                     let maternalReferralUser = await User.findOne({chatId: childReferral}); // юзер родитель
-                    console.log("maternalReferralUser",maternalReferralUser.firstName, maternalReferralUser.chatId);
+                    // console.log("maternalReferralUser",maternalReferralUser.firstName, maternalReferralUser.chatId);
 
                     if (maternalReferralUser) {
                         const pretendentIds = maternalReferralUser.referralUsers.map(user => user.chatId);
