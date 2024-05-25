@@ -33,6 +33,7 @@ router.put("/:userid/", async (req, res) => {
         user.dailyReward[rewardIndex].isRewardTaken = true;
         user.dailyReward[rewardIndex].dateOfAward = now.getTime();
         user.score = (user.score || 0) + dailyRewardsArr[rewardIndex];
+        user.overallScore = (user.score || 0) + dailyRewardsArr[rewardIndex];
 
         if (rewardIndex === user.dailyReward.length - 1) {
             let nextRewardTime = now.getTime() + (2 * 60 * 1000);
