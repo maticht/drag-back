@@ -4,58 +4,47 @@ const { User } = require("../../../models/user");
 router.put("/:userid/", async (req, res) => {
     try {
         const user = await User.findOne({ chatId: req.params.userid });
-        if (!user) return res.status(400).send({ message: "Invalid queryId" });
+        if (!user) return res.status(400).send({ message: "Invalid userId" });
 
         let dailyRewardsArr = [500, 1000, 1500, 2000, 2500, 3000, 3500];
         let now = new Date();
-        let rewardDay = null;
-        let resetRewards = false;
+        let rewardIndex = user.dailyReward.findIndex(reward => !reward.isRewardTaken);
 
-        for (let i = 2; i <= 7; i++) {
-            let dayKey = `day${i}`;
-            if (now >= new Date(user.dailyReward[dayKey].dateOfAward) && !user.dailyReward[dayKey].isRewardTaken) {
-                resetRewards = true;
-                break;
-            }
-        }
-
-        if (resetRewards) {
-            for (let i = 1; i <= 7; i++) {
-                let dayKey = `day${i}`;
-                user.dailyReward[dayKey].isRewardTaken = false;
-                user.dailyReward[dayKey].dateOfAward = 0;
-            }
-        }
-
-        for (let i = 1; i <= 7; i++) {
-            let dayKey = `day${i}`;
-            if (!user.dailyReward[dayKey].isRewardTaken) {
-                let dateOfAward = new Date(user.dailyReward[dayKey].dateOfAward);
-                if (i === 1 || now >= dateOfAward) {
-                    rewardDay = dayKey;
-                    break;
+        if (rewardIndex === 0) {
+            let nextRewardTime = now.getTime() + (2 * 60 * 1000);
+            user.dailyReward.forEach((reward, index) => {
+                reward.isRewardTaken = false;
+                reward.dateOfAward = nextRewardTime;
+                if (index !== 0) {
+                    nextRewardTime += (2 * 60 * 1000);
                 }
+            });
+            rewardIndex = 0;
+        }
+
+        if (rewardIndex > 0) {
+            let nextRewardDate = new Date(user.dailyReward[rewardIndex].dateOfAward);
+            let unlockTime = new Date(nextRewardDate.getTime());
+            if (now < unlockTime) {
+                return res.status(400).send({ message: "Reward is not yet available" });
             }
         }
 
-        if (rewardDay) {
-            user.dailyReward[rewardDay].isRewardTaken = true;
-            user.dailyReward[rewardDay].dateOfAward = now;
-            user.score += dailyRewardsArr[parseInt(rewardDay.slice(3)) - 1];
+        user.dailyReward[rewardIndex].isRewardTaken = true;
+        user.dailyReward[rewardIndex].dateOfAward = now.getTime();
+        user.score = (user.score || 0) + dailyRewardsArr[rewardIndex];
 
-            for (let i = parseInt(rewardDay.slice(3)) + 1; i <= 7; i++) {
-                let nextDay = new Date(now);
-                nextDay.setDate(now.getDate() + (i - parseInt(rewardDay.slice(3))));
-                nextDay.setHours(0, 5, 0, 0);
-                user.dailyReward[`day${i}`].dateOfAward = nextDay;
-            }
-
-            await user.save();
-            return res.json({ user });
-        } else {
-            return res.status(400).send({ message: "No rewards available or already collected all rewards" });
+        if (rewardIndex === user.dailyReward.length - 1) {
+            let nextRewardTime = now.getTime() + (2 * 60 * 1000);
+            user.dailyReward.forEach((reward, index) => {
+                reward.isRewardTaken = false;
+                reward.dateOfAward = nextRewardTime;
+                nextRewardTime += (2 * 60 * 1000);
+            });
         }
 
+        await user.save();
+        return res.json({ user });
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "Internal Server Error" });

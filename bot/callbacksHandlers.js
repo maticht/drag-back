@@ -28,36 +28,36 @@ function handleCallbacks(bot) {
                     chatId: chatId,
                     firstEntry: false,
                     lastRefScore: 0,
-                    dailyReward: {
-                        day1: {
+                    dailyReward: [
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day2: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day3: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day4: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day5: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day6: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                        day7: {
+                        {
                             isRewardTaken: false,
                             dateOfAward: 0
                         },
-                    },
+                    ],
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',

@@ -10,7 +10,8 @@ const barrelExpectation = require("./bot/serverRequests/barrel/barrelExpectation
 const collectionBarrel = require("./bot/serverRequests/barrel/collectionBarrel");
 const collectFromInvitees = require("./bot/serverRequests/user/collectFromInvitees");
 const replenishmentFromInvitees = require("./bot/serverRequests/user/replenishmentFromInvitees");
-const collectDailyReward = require("./bot/serverRequests/user/collectDailyReward")
+const collectDailyReward = require("./bot/serverRequests/user/collectDailyReward");
+const checkDailyRewards = require("./bot/serverRequests/user/checkDailyRewards");
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -38,6 +39,7 @@ app.use("/barrelExpectation", barrelExpectation);
 app.use("/collectionBarrel", collectionBarrel);
 app.use("/getAllUsers", getAllUsers);
 app.use("/collectDailyReward", collectDailyReward);
+app.use("/checkDailyRewards", checkDailyRewards);
 app.use("/collectFromInvitees", collectFromInvitees);
 app.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 
@@ -63,7 +65,7 @@ app.post('/web-data', async (req, res) => {
     }
 })
 
-const PORT = 8000;
+const PORT = 8001;
 
 app.listen(PORT, () => console.log('server started on PORT ' + PORT))
 
