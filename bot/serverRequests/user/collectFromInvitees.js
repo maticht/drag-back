@@ -15,6 +15,7 @@ router.put("/:userid/", async (req, res) => {
             referralUser.score = 0;
         });
         user.score += totalScore;
+        user.overallScore += totalScore;
         user.referralStartTime = Date.now();
         user.referralCollectionTime = Date.now() + (2 * 60 * 1000);
 

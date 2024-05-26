@@ -6,6 +6,7 @@ class ScoreController {
             console.log(req.body);
             let user = await User.findOne({chatId: req.body.userId});
             user.score = req.body.score;
+            user.overallScore = req.body.overallScore;
             if (user.eggs.length > 0) {
                 if (user.eggs[0].score === 88 && user.eggs[0].isOpen === false) {
                     user.eggs[0].isOpen = true;

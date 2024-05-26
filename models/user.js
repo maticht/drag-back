@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
     firstEntry: {type: Boolean, default: false},
     token: {type: String, required: false},
     score: {type:Number, required:false, default:0},
+    overallScore: {type:Number, required:false, default:0},
     energy: {
         name: {type: String, require: false},
         description: {type: String, require: false},
@@ -150,6 +151,7 @@ const userSchema = new mongoose.Schema({
         stageScore: [{type:Number, required:false}],
         isOpen: {type: Boolean, default: false},
         isDone: {type: Boolean, default: false},
+        isModalShown: {type: Boolean, default: false},
     }],
     dragons:[{
         profit: {type:Number, required:false},
@@ -159,6 +161,14 @@ const userSchema = new mongoose.Schema({
         name: {type: String, required: false},
         price: {type:Number, required:false},
         purchaseStatus: {type: Boolean, default: false},
+    }],
+    weeklyRewards:[{
+        league: {type:String, required:false},
+        placeInTop: {type:Number, required:false},
+        rewardValue: {type:Number, required:false},
+        rewardIssuedDate: {type: Date, default: Date.now},
+        rewardClaimedDate: {type: Date},
+        isTaken: {type: Boolean, default: false},
     }],
 }, {toJSON: {virtuals: true}});
 

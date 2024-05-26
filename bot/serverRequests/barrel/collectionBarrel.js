@@ -14,6 +14,7 @@ router.put("/:userid/", async (req, res) => {
         collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
         barrel.collectionTime = collectionTime;
         user.score += barrel.income[currentLevel - 1];
+        user.overallScore += barrel.income[currentLevel - 1];
         await user.save();
         return res.json({user})
     } catch (error) {
