@@ -58,6 +58,11 @@ function handleCallbacks(bot) {
                             dateOfAward: 0
                         },
                     ],
+                    narrativeScenes:  {
+                        faultAppearance: false,
+                        gettingEgg: false,
+                        dragonHatching: false,
+                    },
                     axe: {
                         name: 'Axe',
                         description: 'By clicking on the egg you charge the ax; after filling, you are given a chance to strike, the strength of which depends on your dexterity',

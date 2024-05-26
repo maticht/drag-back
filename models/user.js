@@ -38,6 +38,11 @@ const userSchema = new mongoose.Schema({
             dateOfAward: {type: Date, required:false}
         },
     ],
+    narrativeScenes:  {
+        faultAppearance: {type: Boolean, default: false},
+        gettingEgg: {type: Boolean, default: false},
+        dragonHatching: {type: Boolean, default: false},
+    },
     topUserReward:  {
         reward: {type: Boolean, default: false},
         place: {type: Boolean, default: false},
