@@ -165,7 +165,9 @@ function handleCallbacks(bot) {
                         stageScore: [180, 280, 380, 480, 580, 680, 780, 880],
                         isOpen: false,
                         isDone: false,
+                        isModalShown: false,
                     }],
+                    weeklyRewards: [],
                 }).save();
 
                 if (childReferral) {
