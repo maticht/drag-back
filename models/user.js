@@ -169,6 +169,7 @@ const userSchema = new mongoose.Schema({
         rewardIssuedDate: {type: Date, default: Date.now},
         rewardClaimedDate: {type: Date},
         isTaken: {type: Boolean, default: false},
+        isCanceled: {type: Boolean, default: false},
     }],
 }, {toJSON: {virtuals: true}});
 

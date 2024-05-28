@@ -64,11 +64,19 @@ async function performWeeklyTask() {
             { placeInTop: [51, 100], rewardValue: 3000, league: 'Stone' },
         ];
 
-        const updatePromises = allUsers.map((user, index) => {
+        const updatePromises = allUsers.map(async (user, index) => {
             const placeInTop = index + 1;
             const reward = rewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
 
             if (reward) {
+
+                // Обновляем старые незабранные награды, устанавливая isCanceled: true
+                user.weeklyRewards.forEach(reward => {
+                    if (!reward.isTaken) {
+                        reward.isCanceled = true;
+                    }
+                });
+
                 user.weeklyRewards.push({
                     league: reward.league,
                     placeInTop: placeInTop,
@@ -76,6 +84,7 @@ async function performWeeklyTask() {
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
+                    isCanceled: false,
                 });
                 return user.save();
             } else {

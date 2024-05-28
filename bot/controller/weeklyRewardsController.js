@@ -34,10 +34,10 @@ class WeeklyRewardsController {
 
             const savedUser = await user.save();
             //console.log(savedUser);
-            return res.status(201).send({message: "Счет обновлен успешно"});
+            return res.status(201).send({message: "Счет обновлен успешно", success: true});
         } catch (error) {
             console.log(error);
-            res.status(500).send({message: "Внутренняя ошибка сервера"});
+            res.status(500).send({message: "Внутренняя ошибка сервера", success: false});
         }
     }
     async checkRewards(req, res, next) {
