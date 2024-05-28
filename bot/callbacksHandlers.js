@@ -203,13 +203,74 @@ function handleCallbacks(bot) {
             await bot.sendMessage(chatId, 'Try your luck, break the egg and see what happens next!', {
                 reply_markup: {
                     inline_keyboard: [
-                        [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/`}}]
+                        [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
                     ]
                 }
             })
 
             console.log("user", user.firstName, user.chatId)
 
+
+        } catch (e) {
+            console.log(e.message);
+        }
+
+    });
+
+    bot.onText(/\/info/, async (msg) => {
+        try {
+            const chatId = msg.chat.id;
+            console.log(msg);
+            let user = await User.findOne({chatId: chatId});
+
+            await bot.sendMessage(chatId, 'Welcome to our exciting game where you can interact with a magical egg and gain money. Here’s what you can do:\n' +
+                '\n' +
+                '👆 Tap the Egg:\n' +
+                '\n' +
+                '- Tap on the egg to gain points.\n' +
+                '- Each tap brings you closer to discovering what\'s inside!\n' +
+                '\n' +
+                '✨ Egg Rarity:\n' +
+                '\n' +
+                '- The egg has different rarity levels.\n' +
+                '- Improve its rarity in the Alchemy Room to get better rewards.\n' +
+                '\n' +
+                '🔨 Hammer:\n' +
+                '\n' +
+                '- Upgrade your axe to increase the power of each tap.\n' +
+                '- Boost your income with every upgrade.\n' +
+                '\n' +
+                '🪓 Axe:\n' +
+                '\n' +
+                '- Activate the axe by tapping the egg multiple times in a row.\n' +
+                '- Your damage multiplies based on the level of your axe.\n' +
+                '\n' +
+                '⚡️ Energy Bottle:\n' +
+                '\n' +
+                '- Upgrading this bottle increases the energy available for tapping.\n' +
+                '- It also speeds up energy recovery over time.\n' +
+                '\n' +
+                '💰 Barrel:\n' +
+                '\n' +
+                '- Collect income that accumulates over time.\n' +
+                '- Gather your earnings at regular intervals.\n' +
+                '\n' +
+                '🏆 Leaderboards:\n' +
+                '\n' +
+                '- Compete with other players and climb the ranks.\n' +
+                '- Higher ranks place you in better leagues with greater rewards.\n' +
+                '\n' +
+                '🎁 Daily Rewards:\n' +
+                '\n' +
+                'Receive daily rewards just for logging in.\n' +
+                '\n' +
+                '👥 Invite Friends:\n' +
+                '\n' +
+                '- Invite your friends to join the game and earn rewards for each new player.\n' +
+                '- Get 8% of their daily income as a bonus!\n' +
+                '\n' +
+                'This is just the beginning! Many more exciting features are currently in development. Stay tuned for updates and new adventures!')
+            console.log("user", user.firstName, user.chatId)
 
         } catch (e) {
             console.log(e.message);

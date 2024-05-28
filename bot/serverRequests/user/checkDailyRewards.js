@@ -10,7 +10,7 @@ router.get("/:userid/", async (req, res) => {
         const nextRewardIndex = user.dailyReward.findIndex(reward => !reward.isRewardTaken);
 
         if (nextRewardIndex > 0) {
-            const nextRewardDate = new Date(user.dailyReward[nextRewardIndex].dateOfAward);
+            const nextRewardDate = new Date(user.dailyReward[nextRewardIndex + 1].dateOfAward);
             if (now >= nextRewardDate) {
                 // If the next reward was missed, reset all rewards
                 user.dailyReward.forEach(reward => {
