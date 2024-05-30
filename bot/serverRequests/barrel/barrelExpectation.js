@@ -15,7 +15,7 @@ router.put("/:userid/", async (req, res) => {
         barrel.collectionTime = collectionTime;
 
         await user.save();
-        return res.json({user})
+        return res.json({user, collectionTime: barrel.collectionTime})
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "Internal Server Error" });

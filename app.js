@@ -13,6 +13,8 @@ const replenishmentFromInvitees = require("./bot/serverRequests/user/replenishme
 const collectDailyReward = require("./bot/serverRequests/user/collectDailyReward");
 const checkDailyRewards = require("./bot/serverRequests/user/checkDailyRewards");
 const faultAppearanceScene = require("./bot/serverRequests/user/faultAppearanceScene");
+const gettingEggScene = require("./bot/serverRequests/user/gettingEggScene");
+const getUserTopPlace = require("./bot/serverRequests/user/getUserTopPlace");
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -44,7 +46,10 @@ app.use("/collectDailyReward", collectDailyReward);
 app.use("/checkDailyRewards", checkDailyRewards);
 app.use("/collectFromInvitees", collectFromInvitees);
 app.use("/replenishmentFromInvitees", replenishmentFromInvitees);
-app.use("/faultAppearanceScene", faultAppearanceScene)
+app.use("/faultAppearanceScene", faultAppearanceScene);
+app.use("/gettingEggScene", gettingEggScene);
+app.use("/getUserTopPlace", getUserTopPlace);
+
 
 async function startBot() {
     handleCallbacks(bot);

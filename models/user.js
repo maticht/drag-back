@@ -58,6 +58,7 @@ const userSchema = new mongoose.Schema({
         lastRefScore: {type:Number, required:false, default:0},
     }],
     language:{type:String, default:'en'},
+    userTopPlace: {type:Number, required:false, default:0},
     subscription: {type: Boolean, default: false},
     walletToken: {type: String, required: false},
     firstEntry: {type: Boolean, default: false},

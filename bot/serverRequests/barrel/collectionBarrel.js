@@ -16,7 +16,7 @@ router.put("/:userid/", async (req, res) => {
         user.score += barrel.income[currentLevel - 1];
         user.overallScore += barrel.income[currentLevel - 1];
         await user.save();
-        return res.json({user})
+        return res.json({lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, success:true})
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "Internal Server Error" });

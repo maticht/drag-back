@@ -27,6 +27,7 @@ function handleCallbacks(bot) {
                     referralUsers: [],
                     chatId: chatId,
                     firstEntry: false,
+                    userTopPlace:0,
                     lastRefScore: 0,
                     dailyReward: [
                         {
@@ -221,8 +222,6 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            let user = await User.findOne({chatId: chatId});
-
             await bot.sendMessage(chatId, 'Welcome to our exciting game where you can interact with a magical egg and gain money. Here’s what you can do:\n' +
                 '\n' +
                 '👆 Tap the Egg:\n' +
@@ -270,8 +269,6 @@ function handleCallbacks(bot) {
                 '- Get 8% of their daily income as a bonus!\n' +
                 '\n' +
                 'This is just the beginning! Many more exciting features are currently in development. Stay tuned for updates and new adventures!')
-            console.log("user", user.firstName, user.chatId)
-
         } catch (e) {
             console.log(e.message);
         }
