@@ -15,6 +15,8 @@ const checkDailyRewards = require("./bot/serverRequests/user/checkDailyRewards")
 const faultAppearanceScene = require("./bot/serverRequests/user/faultAppearanceScene");
 const gettingEggScene = require("./bot/serverRequests/user/gettingEggScene");
 const getUserTopPlace = require("./bot/serverRequests/user/getUserTopPlace");
+const updateWalletHash = require("./bot/serverRequests/user/updateWalletHash");
+
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
@@ -49,6 +51,7 @@ app.use("/replenishmentFromInvitees", replenishmentFromInvitees);
 app.use("/faultAppearanceScene", faultAppearanceScene);
 app.use("/gettingEggScene", gettingEggScene);
 app.use("/getUserTopPlace", getUserTopPlace);
+app.use("/updateWalletHash", updateWalletHash);
 
 
 async function startBot() {
@@ -134,7 +137,7 @@ app.post('/web-data', async (req, res) => {
     }
 })
 
-const PORT = 8002;
+const PORT = 8000;
 
 app.listen(PORT, () => console.log('server started on PORT ' + PORT))
 

@@ -25,6 +25,7 @@ function handleCallbacks(bot) {
                     referralStartTime: 0,
                     referralCollectionTime: 0,
                     referralUsers: [],
+                    auroraWalletHash: "",
                     chatId: chatId,
                     firstEntry: false,
                     userTopPlace:0,

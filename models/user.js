@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     chatId: {type: String, required: false},
     childReferral: {type: String, required: false},
     referralStartTime: {type: Date, required:false},
+    auroraWalletHash: {type: String, required: false},
     referralCollectionTime: {type: Date, required:false},
     dailyReward:  [
         {
