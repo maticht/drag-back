@@ -1,3 +1,7 @@
 const Router = require("express");
 const router = new Router();
-const barrelController = require("../controller/barrelController")
+const hammerController = require("../controller/hammerController")
+
+router.put('/upgrade/:userId', hammerController.upgrade);
+
+module.exports = router;

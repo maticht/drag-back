@@ -4,18 +4,22 @@ const scoreRouter = require("./scoreRouter");
 const energyRouter = require("./energyRouter");
 const weeklyRewardsRouter = require('./weeklyRewardsRouter');
 const eggsRouter = require('./eggsRouter')
+const userRouter = require('./userRouter')
+const axeRouter = require('./axeRouter')
+const dailyRewardsRouter = require('./dailyRewardsRouter')
 
 router.use('/score', scoreRouter);
-router.use('/axe', scoreRouter);
+router.use('/axe', axeRouter);
 router.use('/barrel', scoreRouter);
 router.use('/hammer', scoreRouter);
 router.use('/eggs', eggsRouter);
 router.use('/boosters', scoreRouter);
 router.use('/assistant', scoreRouter);
 router.use('/dragons', scoreRouter);
-router.use('/users', scoreRouter);
+router.use('/users', userRouter);
 router.use('/energy', energyRouter)
-router.use('/weeklyRewards', weeklyRewardsRouter)
+router.use('/weeklyRewards', weeklyRewardsRouter);
+router.use('/dailyRewards', dailyRewardsRouter);
 
 
 module.exports = router
