@@ -7,6 +7,7 @@ const eggsRouter = require('./eggsRouter')
 const userRouter = require('./userRouter')
 const axeRouter = require('./axeRouter')
 const dailyRewardsRouter = require('./dailyRewardsRouter')
+const referralsRouter = require('./referralsRouter')
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
@@ -20,6 +21,7 @@ router.use('/users', userRouter);
 router.use('/energy', energyRouter)
 router.use('/weeklyRewards', weeklyRewardsRouter);
 router.use('/dailyRewards', dailyRewardsRouter);
+router.use('/referrals', referralsRouter);
 
 
 module.exports = router
