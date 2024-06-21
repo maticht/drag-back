@@ -64,9 +64,8 @@ const userSchema = new mongoose.Schema({
     overallScore: {type:Number, required:false, default:0},
     energy: {
         energyFullRecoveryDate: {type: Date,  default: new Date()},
-        energyCapacity: [{type:Number, required:false}],
-        energyRecovery: [{type:Number, required:false}],
         currentLevel: {type:Number, required:false},
+        value: {type:Number, required:false, default:0},
         lastEntrance: {type: Date, required:false},
     },
     axe: {
@@ -74,6 +73,8 @@ const userSchema = new mongoose.Schema({
     },
     barrel: {
         currentLevel: {type:Number, required:false},
+        collectionTime: {type: Date, required:false},
+        lastEntrance: {type: Date, required:false},
     },
     hammer: {
         currentLevel: {type:Number, required:false},

@@ -21,15 +21,16 @@ function handleCallbacks(bot) {
                     firstName: msg.from?.first_name ? msg.from.first_name : "",
                     lastName: msg.from?.last_name ? msg.from.last_name : "",
                     username: msg.from.username,
-                    childReferral: childReferral,
-                    referralStartTime: 0,
-                    referralCollectionTime: 0,
-                    referralUsers: [],
-                    auroraWalletHash: "",
                     chatId: chatId,
+                    childReferral: childReferral,
+                    referrals:{
+                        referralStartTime: 0,
+                        referralCollectionTime: 0,
+                        referralUsers: [],
+                    },
+                    auroraWalletHash: "",
                     firstEntry: false,
                     userTopPlace:0,
-                    lastRefScore: 0,
                     dailyReward: [
                         {
                             isRewardTaken: false,
@@ -70,14 +71,15 @@ function handleCallbacks(bot) {
                     },
                     barrel: {
                         currentLevel: 1,
+                        collectionTime: 0,
+                        lastEntrance: 0,
                     },
                     hammer: {
                         currentLevel: 1,
                     },
                     energy: {
                         energyFullRecoveryDate: new Date(),
-                        energyCapacity: [500, 1000, 1500, 2000, 2500, 3000, 4000, 4500],
-                        energyRecovery: [1, 2, 3, 4, 5, 6, 7, 8],
+                        value:0,
                         lastEntrance: 0,
                         currentLevel: 1,
                     },
@@ -109,6 +111,7 @@ function handleCallbacks(bot) {
                                 username: msg.from.username,
                                 chatId: chatId,
                                 score: 250,
+                                lastRefScore:0,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 1000)
                             };
                             maternalReferralUser.referralUsers.push(newReferral);

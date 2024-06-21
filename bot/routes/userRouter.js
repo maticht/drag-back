@@ -4,7 +4,7 @@ const userController = require("../controller/userController");
 
 router.get('/data/:userId', userController.getUserData);
 router.get('/all', userController.getAllUsers);
-router.get('/topPlace/:userId', userController.getUserTopPlace);
+router.put('/topPlace/:userId', userController.getUserTopPlace);
 router.put('/updateWalletHash/:userId', userController.updateWalletHash)
 
 

@@ -8,11 +8,13 @@ const userRouter = require('./userRouter')
 const axeRouter = require('./axeRouter')
 const dailyRewardsRouter = require('./dailyRewardsRouter')
 const referralsRouter = require('./referralsRouter')
+const barrelRouter = require('./barrelRouter')
+const hammerRouter = require('./hammerRouter')
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
-router.use('/barrel', scoreRouter);
-router.use('/hammer', scoreRouter);
+router.use('/barrel', barrelRouter);
+router.use('/hammer', hammerRouter);
 router.use('/eggs', eggsRouter);
 router.use('/boosters', scoreRouter);
 router.use('/assistant', scoreRouter);
