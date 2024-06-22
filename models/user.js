@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     lastName:{type:String, required:false },
     username:{type:String, required:false},
     chatId: {type: String, required: false, unique: true, index: true},
+    profileLevel: {type:Number, required:false},
     childReferral: {type: String, required: false},
     auroraWalletHash: {type: String, required: false},
     dailyReward:  [
@@ -89,6 +90,8 @@ const userSchema = new mongoose.Schema({
         isDone: {type: Boolean, default: false},
         isModalShown: {type: Boolean, default: false},
     }],
+    completedTasks: [{type: String, required: false}],
+    completedAchievements: [{type: String, required: false}],
     weeklyRewards:[{
         league: {type:String, required:false},
         placeInTop: {type:Number, required:false},
