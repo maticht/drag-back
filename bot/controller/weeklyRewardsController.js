@@ -31,9 +31,7 @@ class WeeklyRewardsController {
             console.log(user.overallScore);
             console.log(user.score)
 
-
             const savedUser = await user.save();
-            //console.log(savedUser);
             return res.status(201).send({message: "Счет обновлен успешно", success: true});
         } catch (error) {
             console.log(error);
@@ -58,7 +56,6 @@ class WeeklyRewardsController {
 
             return res.status(200).json({ unclaimedReward });
         } catch (error) {
-            // Обработка ошибок
             console.log(error);
             return res.status(500).send({ message: "Internal server error" });
         }

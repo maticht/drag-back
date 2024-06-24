@@ -9,43 +9,55 @@ class EggsController {
     async modalFlag(req, res, next) {
         try {
             const userId = req.params.userId;
-            const user = await User.findOne({ chatId: userId });
 
-            if (!user) {
-                return res.status(404).send({ message: "User not found" });
+            const updatedUser = await User.findOneAndUpdate(
+                { chatId: userId, 'eggs.0': { $exists: true } },
+                { $set: { 'eggs.0.isModalShown': true } },
+                {
+                    new: true, // возвращаем обновленный документ
+                    projection: { 'eggs.0.isModalShown': 1, _id: 0 }
+                }
+            );
+
+            if (!updatedUser) {
+                return res.status(404).send({ message: "User not found or no eggs available" });
             }
 
-           user.eggs[0].isModalShown = true;
-
-            const savedUser = await user.save();
-            return res.status(200).json({ savedUser });
+            return res.status(200).json({ isModalShown: updatedUser.eggs[0].isModalShown });
         } catch (error) {
-            // Обработка ошибок
-            console.log(error);
+            console.error(error);
             return res.status(500).send({ message: "Internal server error" });
         }
     }
 
-    async scene(req, res){
+    async scene(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
-            if (!user) return res.status(400).send({ message: "Invalid queryId" });
-            if (!user.narrativeScenes.gettingEgg) {
-                user.narrativeScenes.gettingEgg = true;
-            }
-            await user.save();
+            const userId = req.params.userId;
 
-            return res.json({ user });
+            const updatedUser = await User.findOneAndUpdate(
+                { chatId: userId },
+                { $set: { 'narrativeScenes.gettingEgg': true } },
+                {
+                    new: true, // возвращаем обновленный документ
+                    projection: { 'narrativeScenes': 1, _id: 0 } // возвращаем только gettingEgg
+                }
+            );
+
+            if (!updatedUser) {
+                return res.status(404).send({ message: "User not found" });
+            }
+
+            return res.status(200).json({ narrativeScenes: updatedUser.narrativeScenes });
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "Internal Server Error" });
+            return res.status(500).send({ message: "Internal Server Error" });
         }
     }
 
 
     async alchemistUpgrade(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
+            const user = await User.findOne({ chatId: req.params.userId }, 'eggs score');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             let egg = getRandomEgg();
@@ -57,7 +69,7 @@ class EggsController {
             user.eggs[0].rarity = egg.rarity;
             user.score -= 2000;
             await user.save();
-            return res.json({ user });
+            return res.json({ eggRarity: egg.rarity, score: user.score });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });

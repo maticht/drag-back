@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 class TaskController {
     async getTasks(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks');
             const allTasks = await Task.find();
 
             const tasksWithStatus = allTasks.map(task => {
@@ -36,7 +36,7 @@ class TaskController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({ chatId: req.params.userId }).session(session);
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore').session(session);
             if (!user) {
                 throw new Error("User not found");
             }
@@ -50,15 +50,8 @@ class TaskController {
                 throw new Error("Task already completed");
             }
 
-            let userScores = await User.findOneAndUpdate(
-                { chatId: req.params.userId },
-                { $inc: { score: task.reward, overallScore: task.reward } },
-                { new: true, session }
-            );
-
-            if (!userScores) {
-                throw new Error("User scores not found");
-            }
+            user.score += task.reward;
+            user.overallScore += task.reward;
 
             user.completedTasks.push(req.body.taskId);
             await user.save({ session });
@@ -68,8 +61,8 @@ class TaskController {
 
             return res.json({
                 message: `Task completed successfully`,
-                score: userScores.score,
-                overallScore: userScores.overallScore,
+                score: user.score,
+                overallScore: user.overallScore,
                 completedTaskId: req.body.taskId
             });
         } catch (error) {

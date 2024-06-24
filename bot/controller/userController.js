@@ -1,4 +1,5 @@
 const {User} = require("../../models/user");
+const mongoose = require('mongoose');
 
 class UserController {
     async getUserData(req, res){
@@ -14,7 +15,7 @@ class UserController {
 
     async getAllUsers(req, res){
         try {
-            const users = await User.find().sort({ overallScore: -1 });
+            const users = await User.find({}, 'overallScore username').sort({ overallScore: -1 });
             res.send(users);
         } catch (error) {
             console.error(error);
@@ -22,39 +23,116 @@ class UserController {
         }
     }
 
-    async getUserTopPlace(req, res){
+    // async getUserTopPlace(req, res) {
+    //     try {
+    //         const userId = req.params.userId;
+    //
+    //         const result = await User.aggregate([
+    //             {
+    //                 $match: { chatId: userId }
+    //             },
+    //             {
+    //                 $lookup: {
+    //                     from: 'users',
+    //                     let: { score: "$overallScore" },
+    //                     pipeline: [
+    //                         {
+    //                             $match: {
+    //                                 $expr: {
+    //                                     $gt: ["$overallScore", "$$score"]
+    //                                 }
+    //                             }
+    //                         },
+    //                         {
+    //                             $count: "rank"
+    //                         }
+    //                     ],
+    //                     as: 'rank'
+    //                 }
+    //             },
+    //             {
+    //                 $addFields: {
+    //                     userTopPlace: {
+    //                         $add: [{ $arrayElemAt: ["$rank.rank", 0] }, 1]
+    //                     }
+    //                 }
+    //             },
+    //             {
+    //                 $project: {
+    //                     chatId: 1,
+    //                     overallScore: 1,
+    //                     userTopPlace: 1
+    //                 }
+    //             }
+    //         ]);
+    //
+    //         if (result.length === 0) {
+    //             return res.status(404).send({ message: "User not found" });
+    //         }
+    //
+    //         const user = result[0];
+    //
+    //         // Обновляем поле userTopPlace в документе пользователя
+    //         await User.updateOne({ chatId: userId }, { userTopPlace: user.userTopPlace });
+    //
+    //         return res.json({ user });
+    //     } catch (error) {
+    //         console.error(error);
+    //         res.status(500).send({ message: "Internal Server Error" });
+    //     }
+    // }
+
+    async getUserTopPlace(req, res) {
+        const session = await mongoose.startSession();
+        session.startTransaction();
         try {
-            const allUsers = await User.find().sort({ overallScore: -1 });
-            const userTopPlace = allUsers.findIndex((user) => user.chatId === req.params.userId);
-            if (userTopPlace === -1) {
+            const user = await User.findOne({ chatId: req.params.userId }, 'username userTopPlace score overallScore eggs').session(session);
+
+            if (!user) {
+                await session.abortTransaction();
+                session.endSession();
                 return res.status(404).send({ message: "User not found" });
             }
-            const user = allUsers[userTopPlace];
-            user.userTopPlace = userTopPlace + 1;
-            await user.save();
+
+            const higherScoreCount = await User.countDocuments({ overallScore: { $gt: user.overallScore } }).session(session);
+
+            const userTopPlace = higherScoreCount + 1;
+
+            user.userTopPlace = userTopPlace;
+            await user.save({ session });
+
+            await session.commitTransaction();
+            session.endSession();
 
             return res.json({ user });
         } catch (error) {
-            console.error(error);
+            await session.abortTransaction();
+            session.endSession();
+            console.error('Error fetching user top place:', error);
             res.status(500).send({ message: "Internal Server Error" });
         }
     }
 
     async updateWalletHash(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
-            if (!user) return res.status(400).send({ message: "Invalid queryId" });
+            const { userId } = req.params;
+            const { auroraWalletHash } = req.body;
 
-            if ('auroraWalletHash' in req.body) {
-                if (req.body.auroraWalletHash === "") {
-                    user.auroraWalletHash = "";
-                } else {
-                    user.auroraWalletHash = req.body.auroraWalletHash;
-                }
+            if (!auroraWalletHash && auroraWalletHash !== "") {
+                return res.status(400).send({ message: "Invalid wallet hash" });
             }
 
-            await user.save();
-            return res.json({ user });
+            const user = await User.findOneAndUpdate(
+                { chatId: userId },
+                { auroraWalletHash: auroraWalletHash || "" },
+                { new: true, select: 'auroraWalletHash' }
+            );
+
+            if (!user) {
+                return res.status(404).send({ message: "User not found" });
+            }
+
+            return res.json({ auroraWalletHash: user.auroraWalletHash });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });

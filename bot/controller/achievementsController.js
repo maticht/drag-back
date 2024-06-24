@@ -31,7 +31,7 @@ class AchievementsController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({ chatId: req.params.userId }).session(session);
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedAchievements').session(session);
             if (!user) {
                 throw new Error("User not found");
             }
@@ -45,15 +45,8 @@ class AchievementsController {
                 throw new Error("Achievement already completed");
             }
 
-            let userScores = await User.findOneAndUpdate(
-                { chatId: req.params.userId },
-                { $inc: { score: achievement.reward, overallScore: achievement.reward } },
-                { new: true, session }
-            );
-
-            if (!userScores) {
-                throw new Error("User scores not found");
-            }
+            user.score += achievement.reward;
+            user.overallScore += achievement.reward;
 
             user.completedAchievements.push(req.body.achievementId);
             await user.save({ session });
@@ -63,8 +56,8 @@ class AchievementsController {
 
             return res.json({
                 message: `Achievement completed successfully`,
-                score: userScores.score,
-                overallScore: userScores.overallScore,
+                score: user.score,
+                overallScore: user.overallScore,
                 completedAchievementId: req.body.achievementId,
                 achievement: {
                     title: achievement.title,

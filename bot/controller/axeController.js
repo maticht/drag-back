@@ -2,31 +2,39 @@ const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json')
 
 class AxeController {
-
-    async upgrade(req, res){
+    async upgrade(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
-            if (!user) return res.status(400).send({ message: "Invalid queryId" });
+            const user = await User.findOne({ chatId: req.params.userId }, 'axe score');
 
-            const axe = user.axe;
-            const storeAxeData = storeData.axe
-            const currentLevel = axe.currentLevel;
-            const price = storeAxeData.price[currentLevel - 1];
-            if (user.score < (price * 10)) return res.status(400).send({ message: "not enough money" });
-            if (currentLevel < 8) {
-                axe.currentLevel++;
-                user.score -= (price * 10);
-            } else {
+            if (!user) {
+                return res.status(400).send({ message: "Invalid queryId" });
+            }
+
+            const { axe, score } = user;
+            const { currentLevel } = axe;
+            const storeAxeData = storeData.axe;
+
+            if (currentLevel >= 8) {
                 return res.status(400).send({ message: "Maximum level reached" });
             }
+
+            const price = storeAxeData.price[currentLevel - 1] * 10;
+
+            if (score < price) {
+                return res.status(400).send({ message: "Not enough money" });
+            }
+
+            axe.currentLevel++;
+            user.score -= price;
+
             await user.save();
-            return res.json({user})
+
+            return res.json({ axe, score: user.score });
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "Internal Server Error" });
+            return res.status(500).send({ message: "Internal Server Error" });
         }
     }
-
 }
 
 module.exports = new AxeController();

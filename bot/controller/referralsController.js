@@ -4,7 +4,7 @@ class ReferralsController {
 
     async collect(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
+            const user = await User.findOne({ chatId: req.params.userId },'referrals score overallScore');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
             const referralUsers = user.referrals.referralUsers;
             if (!referralUsers || referralUsers.length === 0) {
@@ -22,7 +22,7 @@ class ReferralsController {
 
             await user.save();
 
-            return res.json({ user });
+            return res.json({ score: user.score, overallScore: user.overallScore, referrals: user.referrals });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
@@ -31,7 +31,7 @@ class ReferralsController {
 
     async replenishment(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
+            const user = await User.findOne({ chatId: req.params.userId },'referrals');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const referralUsers = user.referrals.userReferrals;
@@ -55,7 +55,7 @@ class ReferralsController {
             }
             await user.save();
 
-            return res.json({ user });
+            return res.json({ referrals: user.referrals });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });

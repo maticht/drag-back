@@ -5,7 +5,7 @@ class HammerController {
 
     async upgrade(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId });
+            const user = await User.findOne({ chatId: req.params.userId }, 'hammer score');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const hammer = user.hammer;
@@ -20,7 +20,7 @@ class HammerController {
                 return res.status(400).send({ message: "Maximum level reached" });
             }
             await user.save();
-            return res.json({user})
+            return res.json({hammer: user.hammer, score: user.score});
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });

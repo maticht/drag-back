@@ -4,7 +4,7 @@ class ScoreController {
     async update(req, res, next) {
         try {
             console.log(req.body);
-            let user = await User.findOne({chatId: req.body.userId});
+            let user = await User.findOne({chatId: req.body.userId}, 'score overallScore eggs');
             user.score = req.body.score;
             user.overallScore = req.body.overallScore;
             if (user.eggs.length > 0) {

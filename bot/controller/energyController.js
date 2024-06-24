@@ -3,23 +3,32 @@ const storeData = require('../../eggsTemplateData/storeTemplateData.json');
 
 
 class EnergyController {
-    async update(req, res, next) {
+
+    async update(req, res, next){
         try {
-            console.log(req.body);
-            let user = await User.findOne({chatId: req.body.userId});
-            user.energy.energyFullRecoveryDate = req.body.energyRestoreTime;
-            user.energy.value = req.body.value;
-            await user.save();
-            return res.status(201).send({message: "Дата восстановления энергии обновлена успешно"});
+            const { userId, energyRestoreTime, value } = req.body;
+
+            const updatedUser = await User.findOneAndUpdate(
+                { chatId: userId },
+                { $set: { 'energy.energyFullRecoveryDate': energyRestoreTime, 'energy.value': value } },
+                { new: true, projection: { _id: 0, energy: 1 } }
+            );
+
+            if (!updatedUser) {
+                return res.status(404).send({ message: "User not found" });
+            }
+
+            const { energy } = updatedUser;
+            return res.status(201).send({ message: "Дата восстановления энергии обновлена успешно", energy });
         } catch (error) {
-            console.log(error);
-            res.status(500).send({message: "Внутренняя ошибка сервера"});
+            console.error(error);
+            return res.status(500).send({ message: "Внутренняя ошибка сервера" });
         }
-    }
+    };
 
     async updateBottle(req, res, next) {
         try {
-            const user = await User.findOne({chatId: req.params.userId});
+            const user = await User.findOne({chatId: req.params.userId}, 'energy score');
             if (!user) return res.status(400).send({message: "Invalid queryId"});
 
             const energy = user.energy;
@@ -66,7 +75,7 @@ class EnergyController {
             user.energy = energy;
 
             await user.save();
-            return res.json({user})
+            return res.json({energy: user.energy, score: user.score})
 
         } catch (error) {
             console.log(error);

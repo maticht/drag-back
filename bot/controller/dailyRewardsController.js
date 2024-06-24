@@ -3,7 +3,7 @@ const {User} = require("../../models/user");
 class DailyRewardsController {
    async collect(req, res){
        try {
-           const user = await User.findOne({ chatId: req.params.userId });
+           const user = await User.findOne({ chatId: req.params.userId }, 'score overallScore dailyReward');
            if (!user) return res.status(400).send({ message: "Invalid userId" });
 
            let dailyRewardsArr = [500, 1000, 1500, 2000, 2500, 3000, 3500];
@@ -45,7 +45,7 @@ class DailyRewardsController {
            }
 
            await user.save();
-           return res.json({ user });
+           return res.json({ score: user.score, overallScore: user.overallScore, dailyReward: user.dailyReward});
        } catch (error) {
            console.error(error);
            res.status(500).send({ message: "Internal Server Error" });
@@ -54,7 +54,7 @@ class DailyRewardsController {
 
    async checkRewards(req, res){
        try {
-           const user = await User.findOne({ chatId: req.params.userId });
+           const user = await User.findOne({ chatId: req.params.userId }, 'dailyReward');
            if (!user) return res.status(400).send({ message: "Invalid userId" });
 
            const now = new Date();
@@ -69,11 +69,11 @@ class DailyRewardsController {
                        reward.dateOfAward = 0;
                    });
                    await user.save();
-                   return res.status(200).send({ message: "Rewards reset due to missed reward" });
+                   return res.json({dailyReward: user.dailyReward, message: "Rewards reset due to missed reward"});
                }
            }
 
-           return res.status(200).send({ message: "No missed rewards" });
+           return res.json({ dailyReward: user.dailyReward, message: "No missed rewards" });
        } catch (error) {
            console.error(error);
            res.status(500).send({ message: "Internal Server Error" });
