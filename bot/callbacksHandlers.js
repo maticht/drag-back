@@ -19,7 +19,6 @@ function handleCallbacks(bot) {
 
                 user = await new User({
                     firstName: msg.from?.first_name ? msg.from.first_name : "",
-                    lastName: msg.from?.last_name ? msg.from.last_name : "",
                     username: msg.from.username,
                     chatId: chatId,
                     profileLevel: 1,
@@ -94,7 +93,8 @@ function handleCallbacks(bot) {
                         isDone: false,
                         isModalShown: false,
                     }],
-                    weeklyRewards: [],
+                    weeklyScoreRewards: [],
+                    weeklyReferralRewards: [],
                 }).save();
 
                 if (childReferral) {
@@ -103,7 +103,7 @@ function handleCallbacks(bot) {
                     // console.log("maternalReferralUser",maternalReferralUser.firstName, maternalReferralUser.chatId);
 
                     if (maternalReferralUser) {
-                        const pretendentIds = maternalReferralUser.referralUsers.map(user => user.chatId);
+                        const pretendentIds = maternalReferralUser.referrals.referralUsers.map(user => user.chatId);
 
                         if (!pretendentIds.includes(chatId)) {
                             const newReferral = {
@@ -115,7 +115,7 @@ function handleCallbacks(bot) {
                                 lastRefScore:0,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 1000)
                             };
-                            maternalReferralUser.referralUsers.push(newReferral);
+                            maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
                         }
 

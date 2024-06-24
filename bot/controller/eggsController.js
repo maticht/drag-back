@@ -15,9 +15,11 @@ class EggsController {
                 { $set: { 'eggs.0.isModalShown': true } },
                 {
                     new: true, // возвращаем обновленный документ
-                    projection: { 'eggs.0.isModalShown': 1, _id: 0 }
+                    projection: { 'eggs': 1, _id: 0 }
                 }
             );
+
+            console.log(updatedUser)
 
             if (!updatedUser) {
                 return res.status(404).send({ message: "User not found or no eggs available" });
@@ -36,10 +38,15 @@ class EggsController {
 
             const updatedUser = await User.findOneAndUpdate(
                 { chatId: userId },
-                { $set: { 'narrativeScenes.gettingEgg': true } },
+                {
+                    $set: {
+                        'narrativeScenes.gettingEgg': true,
+                        'eggs.0.isOpen': true
+                    }
+                },
                 {
                     new: true, // возвращаем обновленный документ
-                    projection: { 'narrativeScenes': 1, _id: 0 } // возвращаем только gettingEgg
+                    projection: { 'narrativeScenes': 1, 'eggs': 1, _id: 0 } // исправленная проекция
                 }
             );
 
@@ -47,7 +54,7 @@ class EggsController {
                 return res.status(404).send({ message: "User not found" });
             }
 
-            return res.status(200).json({ narrativeScenes: updatedUser.narrativeScenes });
+            return res.status(200).json({ narrativeScenes: updatedUser.narrativeScenes, isEggOpen: updatedUser.eggs[0].isOpen });
         } catch (error) {
             console.error(error);
             return res.status(500).send({ message: "Internal Server Error" });

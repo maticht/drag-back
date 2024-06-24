@@ -1,13 +1,13 @@
 const {User} = require("../../models/user");
 
-class WeeklyRewardsController {
+class WeeklyScoreRewardsController {
     async claim(req, res, next) {
         try {
             console.log(req.body);
             const user = await User.findOne({chatId: req.body.userId});
             console.log(user)
             const rewardId = req.body.rewardId;
-            const currentWeeklyReward = user.weeklyRewards.find(reward => reward._id.toString() === rewardId);
+            const currentWeeklyReward = user.weeklyScoreRewards.find(reward => reward._id.toString() === rewardId);
             console.log(currentWeeklyReward)
             if (!currentWeeklyReward) {
                 return res.status(404).send({ message: "Reward not found" });
@@ -48,7 +48,7 @@ class WeeklyRewardsController {
             }
 
             // Получение неполученной награды пользователя
-            const unclaimedReward = user.weeklyRewards.find(reward => !reward.isTaken);
+            const unclaimedReward = user.weeklyScoreRewards.find(reward => !reward.isTaken);
 
             if (!unclaimedReward) {
                 return res.status(404).send({ message: "No unclaimed rewards found" });
@@ -63,4 +63,4 @@ class WeeklyRewardsController {
 }
 
 
-module.exports = new WeeklyRewardsController()
+module.exports = new WeeklyScoreRewardsController()

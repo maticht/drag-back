@@ -18,7 +18,7 @@ class AxeController {
                 return res.status(400).send({ message: "Maximum level reached" });
             }
 
-            const price = storeAxeData.price[currentLevel - 1] * 10;
+            const price = storeAxeData.price[currentLevel - 1];
 
             if (score < price) {
                 return res.status(400).send({ message: "Not enough money" });

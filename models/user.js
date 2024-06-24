@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     firstName: { type: String, required: false },
-    lastName:{type:String, required:false },
     username:{type:String, required:false},
     chatId: {type: String, required: false, unique: true, index: true},
     profileLevel: {type:Number, required:false},
@@ -43,7 +42,7 @@ const userSchema = new mongoose.Schema({
         gettingEgg: {type: Boolean, default: false},
         dragonHatching: {type: Boolean, default: false},
     },
-    referrals:  [{
+    referrals:  {
         referralStartTime: {type: Date, required:false},
         referralCollectionTime: {type: Date, required:false},
         referralUsers :[{
@@ -55,9 +54,10 @@ const userSchema = new mongoose.Schema({
             collectionTime: {type: Date, required:false},
             lastRefScore: {type:Number, required:false, default:0},
         }],
-    }],
+    },
     language:{type:String, default:'en'},
     userTopPlace: {type:Number, required:false, default:0},
+    userReferralTopPlace: {type:Number, required:false, default:0},
     walletToken: {type: String, required: false},
     firstEntry: {type: Boolean, default: false},
     token: {type: String, required: false},
@@ -92,7 +92,16 @@ const userSchema = new mongoose.Schema({
     }],
     completedTasks: [{type: String, required: false}],
     completedAchievements: [{type: String, required: false}],
-    weeklyRewards:[{
+    weeklyScoreRewards:[{
+        league: {type:String, required:false},
+        placeInTop: {type:Number, required:false},
+        rewardValue: {type:Number, required:false},
+        rewardIssuedDate: {type: Date, default: Date.now},
+        rewardClaimedDate: {type: Date},
+        isTaken: {type: Boolean, default: false},
+        isCanceled: {type: Boolean, default: false},
+    }],
+    weeklyReferralRewards:[{
         league: {type:String, required:false},
         placeInTop: {type:Number, required:false},
         rewardValue: {type:Number, required:false},
