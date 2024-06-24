@@ -57,7 +57,9 @@ async function performWeeklyTask() {
                     }
                 });
 
-                newRewardsArray.push(user.weeklyScoreRewards[user.weeklyScoreRewards.length - 1]);
+                if(user.weeklyScoreRewards[user.weeklyScoreRewards.length - 1]){
+                    newRewardsArray.push(user.weeklyScoreRewards[user.weeklyScoreRewards.length - 1]);
+                }
 
                 newRewardsArray.push({
                     league: reward.league,
@@ -110,7 +112,10 @@ async function performWeeklyTask() {
                         reward.isCanceled = true;
                     }
                 });
-                newRewardsArray.push(user.weeklyReferralRewards[user.weeklyReferralRewards.length - 1])
+
+                if(user.weeklyReferralRewards[user.weeklyReferralRewards.length - 1]) {
+                    newRewardsArray.push(user.weeklyReferralRewards[user.weeklyReferralRewards.length - 1])
+                }
 
                 newRewardsArray.push({
                     league: reward.league,
