@@ -7,8 +7,8 @@ const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
 const router = require('./bot/routes/index');
 const cron = require('node-cron');
-//const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
-const token = '7040601221:AAGoLDdPDtWNFMi4CmQciAlWS3PNP9-KHOo'; //dev
+const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
+//const token = '7040601221:AAGoLDdPDtWNFMi4CmQciAlWS3PNP9-KHOo'; //dev
 const webAppUrl = 'https://dragoneggs.net.pl/loadingScreen';
 // http://tgbot.server195361.nazwa.pl/
 // https://drag-front.vercel.app/

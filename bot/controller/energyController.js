@@ -85,13 +85,33 @@ class EnergyController {
 
     async addPole(req, res, next) {
         try {
-            const energyField = {
-                energyFullRecoveryDate: new Date(),
-                energyCapacity: [500, 1000, 1500, 2000, 2500, 3000, 4000, 4500],
-                energyRecovery: [1, 2, 3, 4, 5, 6, 7, 8],
-                lastEntrance: 0,
-                currentLevel: 1,
+            const nameMapping = {
+                "Mystic Shadowleaf": "Pearl",
+                "Abyssal Onyx Heart": "Obsidian",
+                "Shadowed Viridian Nightshade": "Venom",
+                "Azure Crystal Shard": "Diamond",
+                "Crimson Emberstone": "Ruby",
+                "Infernal Blazeheart": "Meteorite",
+                "Ethereal Amethyst Essence": "Emerald",
+                "Celestial Sovereign's Egg": "Gold"
             };
+
+           const users = await User.find();
+
+            const updatePromises = users.map(async user => {
+                if (user.eggs && user.eggs.length > 0) {
+                    const oldName = user.eggs[0].name;
+                    const newName = nameMapping[oldName];
+
+                    if (newName) {
+                        user.eggs[0].name = newName;
+                        return user.save();
+                    }
+                }
+                return Promise.resolve();
+            });
+
+            await Promise.all(updatePromises);
 
             return res.json({ message: 'Energy field added to users'});
         } catch (error) {
