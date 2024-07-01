@@ -4,7 +4,7 @@ class WeeklyScoreRewardsController {
     async claim(req, res, next) {
         try {
             console.log(req.body);
-            const user = await User.findOne({chatId: req.body.userId});
+            const user = await User.findOne({chatId: req.body.userId}, 'weeklyScoreRewards score overallScore');
             console.log(user)
             const rewardId = req.body.rewardId;
             const currentWeeklyReward = user.weeklyScoreRewards.find(reward => reward._id.toString() === rewardId);
@@ -32,7 +32,7 @@ class WeeklyScoreRewardsController {
             console.log(user.score)
 
             const savedUser = await user.save();
-            return res.status(201).send({message: "Счет обновлен успешно", success: true});
+            return res.status(201).send({message: "Счет обновлен успешно", success: true, reward: currentWeeklyReward});
         } catch (error) {
             console.log(error);
             res.status(500).send({message: "Внутренняя ошибка сервера", success: false});
@@ -41,7 +41,7 @@ class WeeklyScoreRewardsController {
     async checkRewards(req, res, next) {
         try {
             const userId = req.params.userId;
-            const user = await User.findOne({ chatId: userId });
+            const user = await User.findOne({ chatId: userId }, 'weeklyScoreRewards');
 
             if (!user) {
                 return res.status(404).send({ message: "User not found" });

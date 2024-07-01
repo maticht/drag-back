@@ -76,6 +76,7 @@ const userSchema = new mongoose.Schema({
         currentLevel: {type:Number, required:false},
         collectionTime: {type: Date, required:false},
         lastEntrance: {type: Date, required:false},
+        workTime: {type: Number, deafult: 0},
     },
     hammer: {
         currentLevel: {type:Number, required:false},

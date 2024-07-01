@@ -56,11 +56,12 @@ class BarrelController {
             collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
 
             barrel.collectionTime = collectionTime;
+            barrel.workTime += storeBarrelData.waitingTime[currentLevel - 1]
             user.score += storeBarrelData.income[currentLevel - 1];
             user.overallScore += storeBarrelData.income[currentLevel - 1];
 
             await user.save();
-            return res.json({lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, success:true})
+            return res.json({workTime: barrel.workTime, lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, success:true})
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
