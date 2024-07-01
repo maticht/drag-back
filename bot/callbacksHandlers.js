@@ -28,6 +28,17 @@ function handleCallbacks(bot) {
                         referralCollectionTime: 0,
                         referralUsers: [],
                     },
+                    miniGameKeys: 0,
+                    miniGame:  {
+                        bestScore: 0,
+                        completedGamesNumber: 0,
+                        placeInTop: 0,
+                        rewardValue: 0,
+                        rewardIssuedDate: new Date(),
+                        rewardClaimedDate: new Date(),
+                        isTaken: false,
+                        isCanceled: false,
+                    },
                     auroraWalletHash: "",
                     firstEntry: false,
                     userTopPlace:0,
@@ -113,6 +124,7 @@ function handleCallbacks(bot) {
                                 chatId: chatId,
                                 score: 250,
                                 lastRefScore:0,
+                                miniGameKeys: 10,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
