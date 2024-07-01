@@ -7,7 +7,7 @@ class DailyRewardsController {
             if (!user) return res.status(400).send({message: "Invalid userId"});
 
             let dailyRewardsArr = [500, 1000, 1500, 2000, 2500, 3000, 3500];
-            let dailyGameKeysArr = [3, 4, 6, 8, 10, 12, 15];
+            let dailyGameKeysArr = [3, 4, 5, 6, 7, 8, 10];
             let now = new Date();
             let rewardIndex = user.dailyReward.findIndex(reward => !reward.isRewardTaken);
 
