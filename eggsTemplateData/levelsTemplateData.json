@@ -1,0 +1,221 @@
+{
+  "SecondLevel": {
+    "level": 2,
+    "requirements": {
+      "overallScore": 10000,
+      "spending": 10000,
+      "miniGameCompletedPlays": 3,
+      "referrals": null,
+      "barrelWorkTime": null,
+      "achievements": [
+        {
+          "title": "Get the egg",
+          "id": "6676e126d56db1a75b267ab7",
+          "name": "EggAdventurer"
+        }
+      ]
+    },
+    "rewards": [
+      "Mini game",
+      "Blacksmith items to level 1-3"
+    ]
+  },
+  "ThirdLevel": {
+    "level": 3,
+    "requirements": {
+      "overallScore": 52500,
+      "spending": 36000,
+      "miniGameCompletedPlays": 8,
+      "referrals": null,
+      "barrelWorkTime": 10,
+      "achievements": []
+    },
+    "rewards": [
+      "Offer Wall",
+      "Joining a clan"
+    ]
+  },
+  "FourthLevel": {
+    "level": 4,
+    "requirements": {
+      "overallScore": 215000,
+      "spending": 136000,
+      "miniGameCompletedPlays": 15,
+      "referrals": 1,
+      "barrelWorkTime": 24,
+      "achievements": [
+        {
+          "title": "Upgrade all blacksmith items to level 3",
+          "id": "6676f43a96684e8113b11f5f",
+          "name": "BlacksmithsApprentice"
+        }
+      ]
+    },
+    "rewards": [
+      "Create your own clan",
+      "Blacksmith items to level 3-5"
+    ]
+  },
+  "FifthLevel": {
+    "level": 5,
+    "requirements": {
+      "overallScore": 665000,
+      "spending": 401000,
+      "miniGameCompletedPlays": 25,
+      "referrals": null,
+      "barrelWorkTime": 60,
+      "achievements": []
+    },
+    "rewards": [
+      "Alchemist"
+    ]
+  },
+  "SixthLevel": {
+    "level": 6,
+    "requirements": {
+      "overallScore": 1380000,
+      "spending": 896000,
+      "miniGameCompletedPlays": 40,
+      "referrals": 2,
+      "barrelWorkTime": null,
+      "achievements": [
+        {
+          "title": "Upgrade all blacksmith items to level 5",
+          "id": "6676f4a196684e8113b11f61",
+          "name": "Blacksmith"
+        }
+      ]
+    },
+    "rewards": [
+      "Blacksmith items to level 5-7"
+    ]
+  },
+  "SeventhLevel": {
+    "level": 7,
+    "requirements": {
+      "overallScore": 2880000,
+      "spending": 1836000,
+      "miniGameCompletedPlays": 60,
+      "referrals": null,
+      "barrelWorkTime": 120,
+      "achievements": [
+        {
+          "title": "Complete a streak of seven days in the game",
+          "id": "6676e59cd56db1a75b267abb",
+          "name": "SevenDaysOfFire"
+        }
+      ]
+    },
+    "rewards": [
+      "Connecting a wallet"
+    ]
+  },
+  "EighthLevel": {
+    "level": 8,
+    "requirements": {
+      "overallScore": 6315000,
+      "spending": 4156000,
+      "miniGameCompletedPlays": 80,
+      "referrals": 3,
+      "barrelWorkTime": 250,
+      "achievements": [
+        {
+          "title": "Upgrade all blacksmith items to level 7",
+          "id": "6676f4fa96684e8113b11f63",
+          "name": "MasterBlacksmith"
+        }
+      ]
+    },
+    "rewards": [
+      "Blacksmith items to level 8"
+    ]
+  },
+  "NinthLevel": {
+    "level": 9,
+    "requirements": {
+      "overallScore": 12080000,
+      "spending": 8296000,
+      "miniGameCompletedPlays": 100,
+      "referrals": null,
+      "barrelWorkTime": null,
+      "achievements": [
+        {
+          "title": "Break the egg and find out what to do next",
+          "id": "15",
+          "name": "EggBreaker"
+        }
+      ]
+    },
+    "rewards": [
+      "Dragon Upgrades 1"
+    ]
+  },
+  "TenthLevel": {
+    "level": 10,
+    "requirements": {
+      "overallScore": 4000000,
+      "spending": 3000000,
+      "miniGameCompletedPlays": null,
+      "referrals": null,
+      "barrelWorkTime": "Your barrel should last more than 250 hours",
+      "achievements": [
+        {
+          "title": "Create your own clan",
+          "id": "16",
+          "name": ""
+        },
+        {
+          "title": "Your barrel should last more than 250 hours",
+          "id": "17",
+          "name": "HourglassMaster"
+        },
+        {
+          "title": "Play 2000 games against goblins",
+          "id": "667ca7aef7fe1725c4e625ff",
+          "name": "GoblinOverlord"
+        },
+        {
+          "title": "Upgrade your dragon...",
+          "id": "18",
+          "name": ""
+        }
+      ]
+    },
+    "rewards": [
+      "Dragon Upgrades 2"
+    ]
+  },
+  "EleventhLevel": {
+    "level": 11,
+    "requirements": {
+      "overallScore": 7000000,
+      "spending": 5000000,
+      "miniGameCompletedPlays": null,
+      "referrals": 5,
+      "barrelWorkTime": "Your barrel should last more than 500 hours",
+      "achievements": [
+        {
+          "title": "Your barrel should last more than 500 hours",
+          "id": "19",
+          "name": "HourglassLegend"
+        },
+        {
+          "title": "Invite 5 referrals to the game",
+          "id": "20",
+          "name": "ReferralMaster"
+        },
+        {
+          "title": "Play 4000 games against goblins",
+          "id": "667ca7d3f7fe1725c4e62601",
+          "name": "GoblinGod"
+        },
+        {
+          "title": "Upgrade your dragon...",
+          "id": "21",
+          "name": ""
+        }
+      ]
+    },
+    "rewards": []
+  }
+}

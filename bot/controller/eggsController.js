@@ -1,5 +1,5 @@
 const {User} = require("../../models/user");
-const getRandomEgg = require("../../utils/helpers");
+const {getRandomEgg} = require("../../utils/helpers");
 const compareRarities = (rarity1, rarity2) => {
     const rarityOrder = ['Common', 'Rare', 'Epic', 'Mythical', 'Legendary'];
     return rarityOrder.indexOf(rarity1) >= rarityOrder.indexOf(rarity2);

@@ -1,5 +1,5 @@
 const {User} = require("../models/user");
-const getRandomEgg = require("../utils/helpers");
+const {getRandomEgg} = require("../utils/helpers");
 
 
 function handleCallbacks(bot) {

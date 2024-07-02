@@ -1,4 +1,5 @@
 const eggs = require("../eggsTemplateData/eggsTemplateData.json");
+const levelsTemplateData = require("../eggsTemplateData/levelsTemplateData.json");
 
 function getRandomEgg() {
     let randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -39,4 +40,39 @@ function getRandomEgg() {
     }
 }
 
-module.exports = getRandomEgg;
+function checkLevel(user, levelToCheck) {
+
+    const levelMapping = {
+        1: levelsTemplateData.SecondLevel,
+        2: levelsTemplateData.ThirdLevel,
+        3: levelsTemplateData.FourthLevel,
+        4: levelsTemplateData.FifthLevel,
+        5: levelsTemplateData.SixthLevel,
+        6: levelsTemplateData.SeventhLevel,
+        7: levelsTemplateData.EighthLevel,
+    };
+
+    const nextLevelData = levelMapping[levelToCheck] || null;
+    const requirements = nextLevelData.requirements;
+
+    const {
+        spending,
+        miniGameCompletedPlays,
+        referrals,
+        barrelWorkTime,
+        achievements
+    } = requirements;
+
+    const overallScoreReq = requirements.overallScore;
+
+    return (
+        (overallScoreReq === null || overallScoreReq <= user.overallScore) &&
+        (spending === null || spending <= user.overallScore - user.score) &&
+        (miniGameCompletedPlays === null || miniGameCompletedPlays <= user.miniGame.completedGamesNumber) &&
+        (referrals === null || referrals <= user.referrals.referralUsers.length) &&
+        (barrelWorkTime === null || barrelWorkTime <= user.barrel.workTime) &&
+        achievements.every(achievement => user.completedAchievements.includes(achievement.id))
+    );
+}
+
+module.exports = {getRandomEgg, checkLevel};

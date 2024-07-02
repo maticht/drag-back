@@ -1,4 +1,5 @@
 const {User} = require("../../models/user");
+const {checkLevel} = require("../../utils/helpers");
 const mongoose = require('mongoose');
 
 class UserController {
@@ -220,6 +221,35 @@ class UserController {
             }
 
             return res.json({ auroraWalletHash: user.auroraWalletHash });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: "Internal Server Error" });
+        }
+    }
+    async updateProfileLevel(req, res){
+        try {
+            const { userId } = req.params;
+            const { profileLevel } = req.body;
+
+            if (!profileLevel && profileLevel !== "") {
+                return res.status(400).send({ message: "Invalid level" });
+            }
+
+            const user = await User.findOne({ chatId: userId }, 'score overallScore referrals completedAchievements miniGame barrel');
+
+            if (!user) {
+                return res.status(404).send({ message: "User not found" });
+            }
+
+            if(!checkLevel(user, profileLevel)){
+                return res.status(400).send({ message: "Level check failed" });
+            }
+
+            user.profileLevel = profileLevel + 1;
+
+            await user.save();
+
+            return res.json({ profileLevel: user.profileLevel });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
