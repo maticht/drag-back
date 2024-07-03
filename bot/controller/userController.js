@@ -232,24 +232,24 @@ class UserController {
             const { profileLevel } = req.body;
 
             if (!profileLevel && profileLevel !== "") {
-                return res.status(400).send({ message: "Invalid level" });
+                return res.status(400).send({ message: "Invalid level", success: false });
             }
 
             const user = await User.findOne({ chatId: userId }, 'score overallScore referrals completedAchievements miniGame barrel');
 
             if (!user) {
-                return res.status(404).send({ message: "User not found" });
+                return res.status(404).send({ message: "User not found", success: false });
             }
 
             if(!checkLevel(user, profileLevel)){
-                return res.status(400).send({ message: "Level check failed" });
+                return res.status(400).send({ message: "Level check failed", success: false });
             }
 
             user.profileLevel = profileLevel + 1;
 
             await user.save();
 
-            return res.json({ profileLevel: user.profileLevel });
+            return res.json({ success: true, profileLevel: user.profileLevel });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
