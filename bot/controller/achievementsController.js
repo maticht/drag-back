@@ -34,20 +34,9 @@ class AchievementsController {
                 return res.json({ message: `"User not found"` });
             }
 
-            console.log(req.body.achievementId)
-
-            // const achievement = await Achievement.findById(req.body.achievementId).session(session);
-            // if (!achievement) {
-            //     throw new Error("Achievement not found");
-            // }
-            console.log(user.completedAchievements)
-
             if (user.completedAchievements.includes(req.body.achievementId)) {
                 return res.json({success: false, message: `"Achievement already completed"` });
             }
-
-            // user.score += achievement.reward;
-            // user.overallScore += achievement.reward;
 
             user.completedAchievements.push(req.body.achievementId);
             await user.save();
@@ -55,15 +44,7 @@ class AchievementsController {
             return res.json({
                 message: `Achievement completed successfully`,
                 success: true,
-                // score: user.score,
-                // overallScore: user.overallScore,
                 completedAchievementId: req.body.achievementId,
-                // achievement: {
-                //     title: achievement.title,
-                //     description: achievement.description,
-                //     reward: achievement.reward,
-                //     image: achievement.image,
-                //}
             });
         } catch (error) {
             console.log(error);
