@@ -41,7 +41,7 @@ class BarrelController {
 
     async collect(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score overallScore');
+            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score overallScore isNotified');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const barrel = user.barrel;
@@ -59,6 +59,7 @@ class BarrelController {
             barrel.workTime += storeBarrelData.waitingTime[currentLevel - 1]
             user.score += storeBarrelData.income[currentLevel - 1];
             user.overallScore += storeBarrelData.income[currentLevel - 1];
+            user.isNotified = false;
 
             await user.save();
             return res.json({workTime: barrel.workTime, lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, success:true})

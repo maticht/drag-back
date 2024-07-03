@@ -125,6 +125,7 @@ const userSchema = new mongoose.Schema({
         isTaken: {type: Boolean, default: false},
         isCanceled: {type: Boolean, default: false},
     }],
+    isNotified: {type: Boolean, default: false},
 }, {toJSON: {virtuals: true}});
 
 const User = mongoose.model("User", userSchema);
