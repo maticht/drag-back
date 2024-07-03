@@ -34,7 +34,7 @@ class DailyRewardsController {
             user.dailyReward[rewardIndex].isRewardTaken = true;
             // user.dailyReward[rewardIndex].dateOfAward = now.getTime();
             user.score = (user.score || 0) + dailyRewardsArr[rewardIndex];
-            user.overallScore = (user.score || 0) + dailyRewardsArr[rewardIndex];
+            user.overallScore = (user.overallScore || 0) + dailyRewardsArr[rewardIndex];
             user.miniGameKeys = (user.miniGameKeys || 0) + dailyGameKeysArr[rewardIndex];
 
             if (rewardIndex === user.dailyReward.length - 1) {

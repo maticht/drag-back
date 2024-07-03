@@ -10,7 +10,7 @@ class miniGameController {
             if (user.miniGameKeys > 0) {
                 user.miniGameKeys -= 1;
                 await user.save();
-                return res.json({ message: "The game has begun!" });
+                return res.json({ message: "The game has begun!", miniGameKeys: user.miniGameKeys });
             } else {
                 return res.status(400).json({ message: "Not enough Game Keys" });
             }
