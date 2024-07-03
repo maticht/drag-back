@@ -92,10 +92,10 @@ const userSchema = new mongoose.Schema({
         isDone: {type: Boolean, default: false},
         isModalShown: {type: Boolean, default: false},
     }],
+    miniGameKeys: {type:Number, required:false, default: 0},
     miniGame:  {
         bestScore: {type:Number, required:false},
         completedGamesNumber: {type:Number, required:false},
-        keys: {type:Number, required:false, default: 0},
     },
     weeklyMiniGameRewards:[{
         placeInTop: {type:Number, required:false},
