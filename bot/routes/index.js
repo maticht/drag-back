@@ -13,6 +13,7 @@ const barrelRouter = require('./barrelRouter');
 const hammerRouter = require('./hammerRouter');
 const taskRouter = require("./taskRouter");
 const achievementRouter = require("./achievementRouter");
+const miniGameRouter = require("./miniGameRouter");
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
@@ -30,6 +31,7 @@ router.use('/dailyRewards', dailyRewardsRouter);
 router.use('/referrals', referralsRouter);
 router.use('/task', taskRouter);
 router.use('/achievement', achievementRouter);
+router.use('/miniGame', miniGameRouter);
 
 
 module.exports = router
