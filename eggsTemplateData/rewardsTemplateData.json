@@ -26,7 +26,7 @@
     { "placeInTop": [201, 400], "rewardValue": 7000, "league": "Bronze" },
     { "placeInTop": [401, 1000], "rewardValue": 5000, "league": "Stone" }
   ],
-  "weeklyGameRewards": [
+  "dailyGameRewards": [
     { "placeInTop": [1, 20], "rewardValue": 20000, "league": "Diamond" },
     { "placeInTop": [21, 100], "rewardValue": 15000, "league": "Golden" },
     { "placeInTop": [101, 200], "rewardValue": 10000, "league": "Silver" },

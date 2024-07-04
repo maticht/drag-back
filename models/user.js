@@ -95,12 +95,15 @@ const userSchema = new mongoose.Schema({
     }],
     miniGameKeys: {type:Number, required:false, default: 0},
     miniGame:  {
-        bestScore: {type:Number, required:false},
+        bestScore: {type:Number, required:false, default:0},
+        dailyBestScore: {type: Number, required: false, default:0},
         completedGamesNumber: {type:Number, required:false},
     },
-    weeklyMiniGameRewards:[{
+    dailyMiniGameRewards:[{
+        league: {type:String, required:false},
         placeInTop: {type:Number, required:false},
         rewardValue: {type:Number, required:false},
+        specialRewardValue: {type:Number, required:false},
         rewardIssuedDate: {type: Date, default: Date.now},
         rewardClaimedDate: {type: Date},
         isTaken: {type: Boolean, default: false},
@@ -112,6 +115,7 @@ const userSchema = new mongoose.Schema({
         league: {type:String, required:false},
         placeInTop: {type:Number, required:false},
         rewardValue: {type:Number, required:false},
+        specialRewardValue: {type:Number, required:false},
         rewardIssuedDate: {type: Date, default: Date.now},
         rewardClaimedDate: {type: Date},
         isTaken: {type: Boolean, default: false},
@@ -121,6 +125,7 @@ const userSchema = new mongoose.Schema({
         league: {type:String, required:false},
         placeInTop: {type:Number, required:false},
         rewardValue: {type:Number, required:false},
+        specialRewardValue: {type:Number, required:false},
         rewardIssuedDate: {type: Date, default: Date.now},
         rewardClaimedDate: {type: Date},
         isTaken: {type: Boolean, default: false},

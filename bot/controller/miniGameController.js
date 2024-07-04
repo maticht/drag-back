@@ -31,8 +31,11 @@ class miniGameController {
             user.score += gameScore;
             user.overallScore += gameScore;
 
-            if (gameScore > user.miniGame.bestScore) {
-                user.miniGame.bestScore = gameScore;
+            if(gameScore > user.miniGame.dailyBestScore){
+                user.miniGame.dailyBestScore = gameScore
+            }
+            if (user.miniGame.dailyBestScore > user.miniGame.bestScore) {
+                user.miniGame.bestScore = user.miniGame.dailyBestScore;
             }
 
             await user.save({ session });
@@ -45,6 +48,7 @@ class miniGameController {
                 overallScore: user.overallScore,
                 completedGamesNumber: user.miniGame.completedGamesNumber,
                 bestScore: user.miniGame.bestScore,
+                dailyBestScore: user.miniGame.dailyBestScore
             });
         } catch (error) {
             console.log(error);

@@ -4,6 +4,7 @@ const scoreRouter = require("./scoreRouter");
 const energyRouter = require("./energyRouter");
 const weeklyScoreRewardsRouter = require('./weeklyScoreRewardsRouter');
 const weeklyReferralRewardsRouter = require('./weeklyReferralRewardsRouter');
+const dailyMiniGameRewardsRouter = require('./dailyMiniGameRewardsRouter');
 const eggsRouter = require('./eggsRouter');
 const userRouter = require('./userRouter');
 const axeRouter = require('./axeRouter');
@@ -27,6 +28,7 @@ router.use('/users', userRouter);
 router.use('/energy', energyRouter)
 router.use('/weeklyScoreRewards', weeklyScoreRewardsRouter);
 router.use('/weeklyReferralRewards', weeklyReferralRewardsRouter);
+router.use('/dailyMiniGameRewards', dailyMiniGameRewardsRouter);
 router.use('/dailyRewards', dailyRewardsRouter);
 router.use('/referrals', referralsRouter);
 router.use('/task', taskRouter);
