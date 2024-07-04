@@ -33,5 +33,10 @@
     { "placeInTop": [201, 400], "rewardValue": 7000, "league": "Bronze" },
     { "placeInTop": [401, 1000], "rewardValue": 5000, "league": "Stone" }
   ],
+  "bestPlayersReward": [
+    { "placeInTop": 1, "rewardValue": 50000},
+    { "placeInTop": 2, "rewardValue": 25000},
+    { "placeInTop": 3, "rewardValue": 10000}
+  ],
   "RewardCoefficient": [1, 3, 5, 8, 11, 16, 22, 28, 34, 40, 47]
 }

@@ -13,7 +13,10 @@ class DailyMiniGameRewardsController {
                 return res.status(404).send({ message: "Reward not found" });
             }
 
-            const rewardValue = currentDailyReward.rewardValue;
+            let rewardValue = currentDailyReward.rewardValue;
+            if(currentDailyReward.specialRewardValue){
+                rewardValue += currentDailyReward.specialRewardValue
+            }
             console.log('Reward Value:', rewardValue);
             const rewardClaimedDate = Date.now();
 

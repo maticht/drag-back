@@ -13,7 +13,10 @@ class WeeklyScoreRewardsController {
                 return res.status(404).send({ message: "Reward not found" });
             }
 
-            const rewardValue = currentWeeklyReward.rewardValue;
+            let rewardValue = currentWeeklyReward.rewardValue;
+            if(currentWeeklyReward.specialRewardValue){
+                rewardValue += currentWeeklyReward.specialRewardValue
+            }
             console.log('Reward Value:', rewardValue);
             const rewardClaimedDate = Date.now();
 

@@ -35,10 +35,12 @@ async function performWeeklyTask() {
             .select('_id weeklyScoreRewards overallScore');
 
         const scoreRewards = rewardsTemplateData.weeklyScoreRewards;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
             const reward = scoreRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
+            const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
 
             const newRewardsArray = [...user.weeklyScoreRewards];
 
@@ -53,7 +55,7 @@ async function performWeeklyTask() {
                     league: reward.league,
                     placeInTop: placeInTop,
                     rewardValue: reward.rewardValue,
-                    specialReward: 0,
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -88,10 +90,12 @@ async function performWeeklyTask() {
 
 
         const referralRewards = rewardsTemplateData.weeklyReferralRewards;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
             const reward = referralRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
+            const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
 
             const newRewardsArray = [...user.weeklyReferralRewards];
 
@@ -106,7 +110,7 @@ async function performWeeklyTask() {
                     league: reward.league,
                     placeInTop: placeInTop,
                     rewardValue: reward.rewardValue,
-                    specialReward: 0,
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -143,6 +147,7 @@ async function performDailyTask() {
 
 
         const miniGameRewards = rewardsTemplateData.dailyGameRewards;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
 
         // const topUsers = allUsers.slice(0, 1000);
 
@@ -154,13 +159,15 @@ async function performDailyTask() {
 
             if (placeInTop <= 1000) {
                 const reward = miniGameRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
+                const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
+
                 if (reward) {
                     const newRewardsArray = [...user.dailyMiniGameRewards];
                     newRewardsArray.push({
                         league: reward.league,
                         placeInTop: placeInTop,
                         rewardValue: reward.rewardValue,
-                        specialReward: 0,
+                        specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
                         rewardIssuedDate: new Date(),
                         rewardClaimedDate: 0,
                         isTaken: false,
