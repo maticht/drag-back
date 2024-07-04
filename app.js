@@ -1,5 +1,5 @@
-const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const bot = require('./bot');
 const faultAppearanceScene = require("./bot/serverRequests/user/faultAppearanceScene");
 const gettingEggScene = require("./bot/serverRequests/user/gettingEggScene");
 const firstGoblinGameScene = require("./bot/serverRequests/user/firstGoblinGameScene");
@@ -9,12 +9,6 @@ const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
 const router = require('./bot/routes/index');
 const cron = require('node-cron');
-const token = '6895696224:AAFr_BxgvsWjv4ur_5_rgzv4P1vCrLnhQRQ';
-//const token = '7040601221:AAGoLDdPDtWNFMi4CmQciAlWS3PNP9-KHOo'; //dev
-const webAppUrl = 'https://dragoneggs.net.pl/loadingScreen';
-// http://tgbot.server195361.nazwa.pl/
-// https://drag-front.vercel.app/
-const bot = new TelegramBot(token, {polling: true});
 const app = express();
 const connection = require("./db");
 
@@ -147,13 +141,48 @@ async function performWeeklyTask() {
 
 }
 
+
+async function userNotification() {
+    const dateNow = new Date();
+
+    const usersToUpdate = await User.find({
+        $and: [
+            { "energy.energyFullRecoveryDate": { $lte: dateNow } },
+            { "barrel.collectionTime": { $lte: dateNow } },
+            { isNotified: false }
+        ]
+    }, "chatId isNotified");
+
+    if (usersToUpdate.length === 0) return;
+
+    const chatIds = usersToUpdate.map(user => user.chatId);
+
+    await Promise.all(chatIds.map(chatId =>
+        bot.sendMessage(chatId, 'The barrel is full and the energy is restored, come back, hero', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: 'Play', web_app: { url: `https://dragoneggs.net.pl/loadingScreen` } }]
+                ]
+            }
+        })
+    ));
+
+    await User.updateMany(
+        { _id: { $in: usersToUpdate.map(user => user._id) } },
+        { $set: { isNotified: true } }
+    );
+}
 // Планирование задачи на каждое воскресенье в 23:59:59
 // cron.schedule('5 4 * * 0', performWeeklyTask, {
 //     timezone: "Europe/Moscow" // Укажите нужный вам часовой пояс
 // });
 
 cron.schedule('0 */6 * * *', performWeeklyTask, {
-    timezone: "Europe/Moscow" // Установите свой часовой пояс здесь
+    timezone: "Europe/Moscow"
+});
+
+cron.schedule('0 */6 * * *', userNotification, {
+    timezone: "Europe/Moscow"
 });
 
 

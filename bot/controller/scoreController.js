@@ -5,6 +5,9 @@ class ScoreController {
         try {
             console.log(req.body);
             let user = await User.findOne({chatId: req.body.userId}, 'score overallScore eggs');
+            if(!user) {
+                return res.status(404).send({message: "User not found"});
+            }
             user.score = req.body.score;
             user.overallScore = req.body.overallScore;
             if (user.eggs.length > 0) {
