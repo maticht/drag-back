@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const {checkLevel} = require("../../utils/helpers");
+const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json")
 const mongoose = require('mongoose');
 
 class UserController {
@@ -20,13 +21,7 @@ class UserController {
 
             const users = await User.find({}, 'overallScore username chatId').sort({ overallScore: -1 });
 
-            const scoreRewards = [
-                { placeInTop: [1, 3], league: 'Diamond' },
-                { placeInTop: [4, 10], league: 'Golden' },
-                { placeInTop: [11, 20], league: 'Silver' },
-                { placeInTop: [21, 50], league: 'Bronze' },
-                { placeInTop: [51, 100], league: 'Stone' },
-            ];
+            const scoreRewards = rewardsTemplateData.weeklyScoreRewards;
 
             const userIndex = users.findIndex(user => user.chatId.toString() === currentUserId);
 
@@ -75,16 +70,8 @@ class UserController {
                 }
             ]);
 
-            // Определяем ранги и соответствующие награды
-            const referralRewards = [
-                { placeInTop: [1, 3], league: 'Diamond' },
-                { placeInTop: [4, 10], league: 'Golden' },
-                { placeInTop: [11, 20], league: 'Silver' },
-                { placeInTop: [21, 50], league: 'Bronze' },
-                { placeInTop: [51, 100], league: 'Stone' },
-            ];
+            const referralRewards = rewardsTemplateData.weeklyReferralRewards;
 
-            // Находим место текущего пользователя
             const userIndex = users.findIndex(user => user.chatId.toString() === currentUserId);
 
             if (userIndex === -1) {
@@ -92,8 +79,6 @@ class UserController {
             }
 
             const placeInTop = userIndex + 1;
-
-            // Определяем лигу текущего пользователя
 
             const userLeague = referralRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
 
