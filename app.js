@@ -1,6 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const faultAppearanceScene = require("./bot/serverRequests/user/faultAppearanceScene");
+const gettingEggScene = require("./bot/serverRequests/user/gettingEggScene");
+const firstGoblinGameScene = require("./bot/serverRequests/user/firstGoblinGameScene");
 
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/api', router);
 app.use("/faultAppearanceScene", faultAppearanceScene);
+app.use("/firstGoblinGameScene", firstGoblinGameScene);
 
 
 async function startBot() {

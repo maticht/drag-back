@@ -76,6 +76,7 @@ function handleCallbacks(bot) {
                         faultAppearance: false,
                         gettingEgg: false,
                         dragonHatching: false,
+                        firstGoblinGame: false,
                     },
                     axe: {
                         currentLevel: 1,

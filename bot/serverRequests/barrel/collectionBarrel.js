@@ -15,6 +15,7 @@ router.put("/:userid/", async (req, res) => {
         barrel.collectionTime = collectionTime;
         user.score += barrel.income[currentLevel - 1];
         user.overallScore += barrel.income[currentLevel - 1];
+        user.eggs[0].score += storeBarrelData.income[currentLevel - 1] * 0.5;
         await user.save();
         return res.json({lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, success:true})
     } catch (error) {

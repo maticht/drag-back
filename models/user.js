@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema({
         faultAppearance: {type: Boolean, default: false},
         gettingEgg: {type: Boolean, default: false},
         dragonHatching: {type: Boolean, default: false},
+        firstGoblinGame: {type: Boolean, default: false},
     },
     referrals:  {
         referralStartTime: {type: Date, required:false},
