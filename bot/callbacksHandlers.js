@@ -100,7 +100,7 @@ function handleCallbacks(bot) {
                         name: egg.name,
                         chance: egg.chance,
                         score: 0,
-                        stageScore: [180, 280, 380, 480, 580, 680, 780, 880],
+                        stageScore: [8000, 29000, 185000, 700000, 2200000, 6550000, 18000000, 99999000000],
                         isOpen: false,
                         isDone: false,
                         isModalShown: false,
@@ -123,7 +123,7 @@ function handleCallbacks(bot) {
                                 lastName: msg.from.last_name,
                                 username: msg.from.username,
                                 chatId: chatId,
-                                score: 250,
+                                score: 1000,
                                 lastRefScore:0,
                                 miniGameKeys: 10,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 1000)

@@ -12,11 +12,11 @@
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714841308/axes/ax-7-lvl_i4hh7y.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714841311/axes/ax-8-lvl_pt9jgj.png"
       ],
-      "damageMultiplier": [2, 3, 4, 5, 6, 7, 8, 10],
-      "timeOfUse": [5, 7, 9, 11, 13, 15, 17, 20],
+      "damageMultiplier": [2, 2.5, 3, 3.5, 4, 4.5, 5, 6],
+      "timeOfUse": [3, 4, 5, 6, 7, 8, 9, 10],
       "levels": [1, 2, 3, 4, 5, 6, 7, 8],
       "currentLevel": 1,
-      "price": [100, 150, 220, 300, 400, 550, 700, 1000]
+      "price": [0, 2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
     },
     "barrel": {
       "name": "Barrel",
@@ -31,13 +31,13 @@
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714833797/barrels/barrel-7-lvl_lv4duq.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714833797/barrels/barrel-8-lvl_pplder.png"
       ],
-      "income": [250, 500, 1500, 2000, 3000, 4000, 5000, 6666],
-      "waitingTime": [2, 4, 6, 8, 11, 14, 18, 24],
+      "income": [350, 2000, 5500, 12000, 22500, 46000, 105000, 200000],
+      "waitingTime": [2, 4, 6, 8, 10, 14, 18, 24],
       "lastEntrance": 0,
       "collectionTime": 0,
       "levels": [1, 2, 3, 4, 5, 6, 7, 8],
       "currentLevel": 1,
-      "price": [100, 150, 220, 300, 400, 550, 700, 1000]
+      "price": [0, 2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
     },
     "hammer": {
       "name": "Hammer",
@@ -56,7 +56,7 @@
       "income": [1, 2, 3, 4, 5, 6, 7, 8],
       "levels": [1, 2, 3, 4, 5, 6, 7, 8],
       "currentLevel": 1,
-      "price": [100, 150, 220, 300, 400, 550, 700, 1000]
+      "price": [0, 2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
     },
     "energyBottle": {
       "name": "Energy Bottle",
@@ -71,12 +71,12 @@
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397066/bottle-7-lvl_geyhit.png",
         "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716397067/bottle-8-lvl_f6uecl.png"
       ],
-      "energyCapacity": [500, 1000, 1500, 2000, 2500, 3000, 4000, 4500],
+      "energyCapacity": [500, 1000, 1500, 2000, 2500, 3000, 4000, 5000],
       "energyRecovery": [1, 2, 3, 4, 5, 6, 7, 8],
       "lastEntrance": 0,
       "collectionTime": 0,
       "levels": [1, 2, 3, 4, 5, 6, 7, 8],
       "currentLevel": 1,
-      "price": [100, 150, 220, 300, 400, 550, 700, 1000]
+      "price": [0, 2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
     }
 }

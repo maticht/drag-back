@@ -16,8 +16,18 @@
       ]
     },
     "rewards": [
-      "Mini game",
-      "Blacksmith items to level 1-3"
+      {
+        "title": "Reward coefficient 3",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient3_ziccvs.png"
+      },
+      {
+        "title": "Mini game",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/MiniGame_gxfrus.png"
+      },
+      {
+        "title": "Blacksmith items level 2-3",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems3_p7msmm.png"
+      }
     ]
   },
   "ThirdLevel": {
@@ -31,8 +41,18 @@
       "achievements": []
     },
     "rewards": [
-      "Offer Wall",
-      "Joining a clan"
+      {
+        "title": "Reward coefficient 5",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient5_ym849e.png"
+      },
+      {
+        "title": "Offer Wall",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/OfferWall_myqgeh.png"
+      },
+      {
+        "title": "Joining a clan",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/JoiningClan_mfzg9d.png"
+      }
     ]
   },
   "FourthLevel": {
@@ -52,8 +72,18 @@
       ]
     },
     "rewards": [
-      "Create your own clan",
-      "Blacksmith items to level 3-5"
+      {
+        "title": "Reward coefficient 8",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient8_wd0zc8.png"
+      },
+      {
+        "title": "Create your own clan",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/CreateOwnClan_ad25lk.png"
+      },
+      {
+        "title": "Blacksmith items level 3-5",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems5_kaplhv.png"
+      }
     ]
   },
   "FifthLevel": {
@@ -67,7 +97,14 @@
       "achievements": []
     },
     "rewards": [
-      "Alchemist"
+      {
+        "title": "Reward coefficient 11",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient11_hraycf.png"
+      },
+      {
+        "title": "Alchemist",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/Alchemist_yxvgui.png"
+      }
     ]
   },
   "SixthLevel": {
@@ -87,7 +124,14 @@
       ]
     },
     "rewards": [
-      "Blacksmith items to level 5-7"
+      {
+        "title": "Reward coefficient 16",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient16_egcl5d.png"
+      },
+      {
+        "title": "Blacksmith items level 5-7",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems7_v0e9vi.png"
+      }
     ]
   },
   "SeventhLevel": {
@@ -107,7 +151,14 @@
       ]
     },
     "rewards": [
-      "Connecting a wallet"
+      {
+        "title": "Reward coefficient 22",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028984/RewardCoefficient22_cnvefb.png"
+      },
+      {
+        "title": "Connecting a wallet",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/ConnectingWallet_mvttym.png"
+      }
     ]
   },
   "EighthLevel": {
@@ -127,7 +178,14 @@
       ]
     },
     "rewards": [
-      "Blacksmith items to level 8"
+      {
+        "title": "Reward coefficient 28",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028984/RewardCoefficient28_naosfy.png"
+      },
+      {
+        "title": "Blacksmith items level 8",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems8_wozui9.png"
+      }
     ]
   },
   "NinthLevel": {
@@ -147,14 +205,21 @@
       ]
     },
     "rewards": [
-      "Dragon Upgrades 1"
+      {
+        "title": "Reward coefficient 34",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028988/RewardCoefficient34_pcogaf.png"
+      },
+      {
+        "title": "Dragon Upgrades 1",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/DragonUpgrades1_dstqfr.png"
+      }
     ]
   },
   "TenthLevel": {
     "level": 10,
     "requirements": {
-      "overallScore": 4000000,
-      "spending": 3000000,
+      "overallScore": 21675000,
+      "spending": 15496000,
       "miniGameCompletedPlays": null,
       "referrals": null,
       "barrelWorkTime": "Your barrel should last more than 250 hours",
@@ -182,14 +247,21 @@
       ]
     },
     "rewards": [
-      "Dragon Upgrades 2"
+      {
+        "title": "Reward coefficient 40",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028988/RewardCoefficient40_a7tvnn.png"
+      },
+      {
+        "title": "Dragon Upgrades 2",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/DragonUpgrades2_eusutz.png"
+      }
     ]
   },
   "EleventhLevel": {
     "level": 11,
     "requirements": {
-      "overallScore": 7000000,
-      "spending": 5000000,
+      "overallScore": 31600000,
+      "spending": 22696000,
       "miniGameCompletedPlays": null,
       "referrals": 5,
       "barrelWorkTime": "Your barrel should last more than 500 hours",
@@ -216,6 +288,15 @@
         }
       ]
     },
-    "rewards": []
+    "rewards": [
+      {
+        "title": "Reward coefficient 47",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028989/RewardCoefficient47_yff3c1.png"
+      },
+      {
+        "title": "Dragon Upgrades 3",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/DragonUpgrades3_mfccr6.png"
+      }
+    ]
   }
 }
