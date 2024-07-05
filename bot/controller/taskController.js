@@ -2,6 +2,7 @@ const { User } = require("../../models/user");
 const { Task } = require("../../models/task");
 const bot = require("../../bot");
 const mongoose = require('mongoose');
+const rewardTemplateData = require('../../eggsTemplateData/rewardsTemplateData.json')
 
 class TaskController {
     async getTasks(req, res) {
@@ -37,7 +38,8 @@ class TaskController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore').session(session);
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore profileLevel').session(session);
+            const profileLevel = user.profileLevel;
             if (!user) {
                 res.status(400).send({success: false, message: "User not found" });
                 await session.abortTransaction();
@@ -60,8 +62,8 @@ class TaskController {
                 return;
             }
 
-            user.score += task.reward;
-            user.overallScore += task.reward;
+            user.score += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
+            user.overallScore += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
 
             user.completedTasks.push(req.body.taskId);
             await user.save({ session });

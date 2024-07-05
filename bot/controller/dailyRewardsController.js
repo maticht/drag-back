@@ -1,12 +1,14 @@
 const {User} = require("../../models/user");
+const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json");
 
 class DailyRewardsController {
     async collect(req, res) {
         try {
-            const user = await User.findOne({chatId: req.params.userId}, 'score overallScore dailyReward miniGameKeys');
+            const user = await User.findOne({chatId: req.params.userId}, 'score profileLevel overallScore dailyReward miniGameKeys');
             if (!user) return res.status(400).send({message: "Invalid userId"});
 
-            let dailyRewardsArr = [500, 1000, 1500, 2000, 2500, 3000, 3500];
+            const profileLevel = user.profileLevel;
+            let dailyRewardsArr = rewardsTemplateData.dailyRewards;
             let dailyGameKeysArr = [3, 4, 5, 6, 7, 8, 10];
             let now = new Date();
             let rewardIndex = user.dailyReward.findIndex(reward => !reward.isRewardTaken);
@@ -32,9 +34,11 @@ class DailyRewardsController {
             }
 
             user.dailyReward[rewardIndex].isRewardTaken = true;
+            console.log("profile level", profileLevel);
+            console.log("reward", (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]))
             // user.dailyReward[rewardIndex].dateOfAward = now.getTime();
-            user.score = (user.score || 0) + dailyRewardsArr[rewardIndex];
-            user.overallScore = (user.overallScore || 0) + dailyRewardsArr[rewardIndex];
+            user.score = (user.score || 0) + (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]);
+            user.overallScore = (user.overallScore || 0) + (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]);
             user.miniGameKeys = (user.miniGameKeys || 0) + dailyGameKeysArr[rewardIndex];
 
             if (rewardIndex === user.dailyReward.length - 1) {

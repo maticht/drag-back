@@ -1,6 +1,6 @@
 const {User} = require("../models/user");
 const {getRandomEgg} = require("../utils/helpers");
-
+const rewardTemplateData = require("../eggsTemplateData/rewardsTemplateData.json")
 
 function handleCallbacks(bot) {
 
@@ -123,7 +123,7 @@ function handleCallbacks(bot) {
                                 lastName: msg.from.last_name,
                                 username: msg.from.username,
                                 chatId: chatId,
-                                score: 1000,
+                                score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
                                 lastRefScore:0,
                                 miniGameKeys: 10,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 1000)

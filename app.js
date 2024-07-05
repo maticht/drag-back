@@ -32,13 +32,14 @@ async function performWeeklyTask() {
         const allUsers = await User.find()
             .sort({ overallScore: -1 })
             .limit(1000)
-            .select('_id weeklyScoreRewards overallScore');
+            .select('_id weeklyScoreRewards overallScore profileLevel');
 
         const scoreRewards = rewardsTemplateData.weeklyScoreRewards;
         const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
+            const profileLevel = user.profileLevel;
             const reward = scoreRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
             const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
 
@@ -54,8 +55,8 @@ async function performWeeklyTask() {
                 newRewardsArray.push({
                     league: reward.league,
                     placeInTop: placeInTop,
-                    rewardValue: reward.rewardValue,
-                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
+                    rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -86,7 +87,7 @@ async function performWeeklyTask() {
         const allUsers = await User.find()
             .sort({ 'referrals.referralUsers': -1 })
             .limit(1000)
-            .select('_id weeklyReferralRewards referrals');
+            .select('_id weeklyReferralRewards referrals profileLevel');
 
 
         const referralRewards = rewardsTemplateData.weeklyReferralRewards;
@@ -94,6 +95,7 @@ async function performWeeklyTask() {
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
+            const profileLevel = user.profileLevel;
             const reward = referralRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
             const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
 
@@ -109,8 +111,8 @@ async function performWeeklyTask() {
                 newRewardsArray.push({
                     league: reward.league,
                     placeInTop: placeInTop,
-                    rewardValue: reward.rewardValue,
-                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
+                    rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -143,7 +145,7 @@ async function performDailyTask() {
     try {
         const allUsers = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } })
             .sort({ 'miniGame.dailyBestScore': -1 })
-            .select('_id dailyMiniGameRewards miniGame');
+            .select('_id dailyMiniGameRewards miniGame profileLevel');
 
 
         const miniGameRewards = rewardsTemplateData.dailyGameRewards;
@@ -160,14 +162,15 @@ async function performDailyTask() {
             if (placeInTop <= 1000) {
                 const reward = miniGameRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
                 const bestPlayerReward = bestPlayersReward.find(r => r.placeInTop === placeInTop);
+                const profileLevel = user.profileLevel;
 
                 if (reward) {
                     const newRewardsArray = [...user.dailyMiniGameRewards];
                     newRewardsArray.push({
                         league: reward.league,
                         placeInTop: placeInTop,
-                        rewardValue: reward.rewardValue,
-                        specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue : 0,
+                        rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
+                        specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                         rewardIssuedDate: new Date(),
                         rewardClaimedDate: 0,
                         isTaken: false,
