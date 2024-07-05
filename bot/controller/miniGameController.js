@@ -24,12 +24,12 @@ class miniGameController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const { gameScore } = req.body;
+            const { gameScore, reward } = req.body;
             const user = await User.findOne({ chatId: req.params.userId }, 'miniGame score overallScore').session(session);
 
             user.miniGame.completedGamesNumber += 1;
-            user.score += gameScore;
-            user.overallScore += gameScore;
+            user.score += reward;
+            user.overallScore += reward;
 
             if(gameScore > user.miniGame.dailyBestScore){
                 user.miniGame.dailyBestScore = gameScore
