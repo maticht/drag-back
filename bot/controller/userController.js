@@ -181,6 +181,39 @@ class UserController {
             res.status(500).send({ message: "Internal Server Error" });
         }
     }
+
+    async updateScoreAndEnergy(req, res) {
+        try {
+            const { userId, energyRestoreTime, value, score, overallScore, eggScore } = req.body;
+
+            const updateFields = {
+                'energy.energyFullRecoveryDate': energyRestoreTime,
+                'energy.value': value,
+                'score': score,
+                'overallScore': overallScore,
+                'eggs.0.score': eggScore,
+                ...(eggScore >= 88 ? { 'eggs.0.isOpen': true } : {})
+            };
+
+            const result = await User.updateOne(
+                {
+                    chatId: userId,
+                    'eggs.0.score': 88,
+                    'eggs.0.isOpen': false
+                },
+                { $set: updateFields }
+            );
+
+            if (result.nModified === 0) {
+                return res.status(404).send({ message: "User not found or no update needed" });
+            }
+
+            return res.status(200).send({ message: "Счет и дата восстановления энергии обновлены успешно" });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ message: "Внутренняя ошибка сервера" });
+        }
+    }
 }
 
 module.exports = new UserController();
