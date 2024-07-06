@@ -219,16 +219,22 @@ async function userNotification() {
     if (usersToUpdate.length === 0) return;
 
     const chatIds = usersToUpdate.map(user => user.chatId);
+    const photoUrl = 'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720269783/Rectangle_139_ygi2a6.png';
+    const caption = 'The barrel is full and the energy is restored, come back';
 
-    await Promise.all(chatIds.map(chatId =>
-        bot.sendMessage(chatId, 'The barrel is full and the energy is restored, come back, hero', {
+    await Promise.all(chatIds.map(chatId => {
+
+        bot.sendPhoto(chatId, photoUrl, {
+            caption: caption,
             reply_markup: {
                 inline_keyboard: [
                     [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
                 ]
             }
-        })
-    ));
+        }).catch(error => {
+            console.error('Error sending photo message:', error);
+        });
+    }));
 
     await User.updateMany(
         {_id: {$in: usersToUpdate.map(user => user._id)}},
