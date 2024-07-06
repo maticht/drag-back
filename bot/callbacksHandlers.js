@@ -126,7 +126,7 @@ function handleCallbacks(bot) {
                                 score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
                                 lastRefScore:0,
                                 miniGameKeys: 10,
-                                collectionTime: new Date(Date.now() + 24 * 60 * 1000)
+                                collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
@@ -135,14 +135,20 @@ function handleCallbacks(bot) {
                     }
                 }
             }
-
-            await bot.sendMessage(chatId, 'Try your luck, break the egg and see what happens next!', {
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720271584/Group_877_bdvgia.png"
+            const caption = "Try your luck, break the egg and see what happens next!"
+            bot.sendPhoto(chatId, photoUrl, {
+                caption: caption,
                 reply_markup: {
                     inline_keyboard: [
-                        [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
+                        //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
+                        [{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
                     ]
                 }
-            })
+            }).catch(error => {
+                console.error('Error sending photo message:', error);
+            });
+
 
             console.log("user", user.firstName, user.chatId)
 

@@ -4,7 +4,7 @@
     "requirements": {
       "overallScore": 10000,
       "spending": 10000,
-      "miniGameCompletedPlays": 3,
+      "miniGameCompletedPlays": null,
       "referrals": null,
       "barrelWorkTime": null,
       "achievements": [
@@ -35,7 +35,7 @@
     "requirements": {
       "overallScore": 52500,
       "spending": 36000,
-      "miniGameCompletedPlays": 8,
+      "miniGameCompletedPlays": 3,
       "referrals": null,
       "barrelWorkTime": 10,
       "achievements": []
@@ -44,10 +44,6 @@
       {
         "title": "Reward coefficient 5",
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient5_ym849e.png"
-      },
-      {
-        "title": "Offer Wall",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/OfferWall_myqgeh.png"
       },
       {
         "title": "Joining a clan",
@@ -60,7 +56,7 @@
     "requirements": {
       "overallScore": 215000,
       "spending": 136000,
-      "miniGameCompletedPlays": 15,
+      "miniGameCompletedPlays": 8,
       "referrals": 1,
       "barrelWorkTime": 24,
       "achievements": [
@@ -91,7 +87,7 @@
     "requirements": {
       "overallScore": 665000,
       "spending": 401000,
-      "miniGameCompletedPlays": 25,
+      "miniGameCompletedPlays": 15,
       "referrals": null,
       "barrelWorkTime": 60,
       "achievements": []
@@ -112,7 +108,7 @@
     "requirements": {
       "overallScore": 1380000,
       "spending": 896000,
-      "miniGameCompletedPlays": 40,
+      "miniGameCompletedPlays": 25,
       "referrals": 2,
       "barrelWorkTime": null,
       "achievements": [
@@ -139,7 +135,7 @@
     "requirements": {
       "overallScore": 2880000,
       "spending": 1836000,
-      "miniGameCompletedPlays": 60,
+      "miniGameCompletedPlays": 40,
       "referrals": null,
       "barrelWorkTime": 120,
       "achievements": [
@@ -166,7 +162,7 @@
     "requirements": {
       "overallScore": 6315000,
       "spending": 4156000,
-      "miniGameCompletedPlays": 80,
+      "miniGameCompletedPlays": 60,
       "referrals": 3,
       "barrelWorkTime": 250,
       "achievements": [
@@ -193,7 +189,7 @@
     "requirements": {
       "overallScore": 12080000,
       "spending": 8296000,
-      "miniGameCompletedPlays": 100,
+      "miniGameCompletedPlays": 80,
       "referrals": null,
       "barrelWorkTime": null,
       "achievements": [
@@ -220,7 +216,7 @@
     "requirements": {
       "overallScore": 21675000,
       "spending": 15496000,
-      "miniGameCompletedPlays": 150,
+      "miniGameCompletedPlays": 100,
       "referrals": null,
       "barrelWorkTime": "Your barrel should last more than 250 hours",
       "achievements": [
@@ -257,7 +253,7 @@
     "requirements": {
       "overallScore": 31600000,
       "spending": 22696000,
-      "miniGameCompletedPlays": null,
+      "miniGameCompletedPlays": 150,
       "referrals": 5,
       "barrelWorkTime": "Your barrel should last more than 500 hours",
       "achievements": [

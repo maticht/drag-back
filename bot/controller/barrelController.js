@@ -17,7 +17,7 @@ class BarrelController {
             barrel.lastEntrance = new Date();
 
             const collectionTime = new Date();
-            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
+            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60 * 60 * 1000);
             barrel.collectionTime = collectionTime;
 
             const price = storeBarrelData.price[currentLevel - 1];
@@ -53,7 +53,7 @@ class BarrelController {
             barrel.lastEntrance = new Date();
 
             const collectionTime = new Date();
-            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000 * 60);
+            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60 * 60 * 1000);
 
             barrel.collectionTime = collectionTime;
             barrel.workTime += storeBarrelData.waitingTime[currentLevel - 1]
@@ -83,7 +83,7 @@ class BarrelController {
 
             barrel.lastEntrance = new Date();
             const collectionTime = new Date();
-            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
+            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60 * 60 * 1000);
             barrel.collectionTime = collectionTime;
 
             await user.save();
