@@ -224,7 +224,8 @@ async function userNotification() {
         bot.sendMessage(chatId, 'The barrel is full and the energy is restored, come back, hero', {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
+                    //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
+                        [{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
                 ]
             }
         })
