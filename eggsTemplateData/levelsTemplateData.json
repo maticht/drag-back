@@ -220,7 +220,7 @@
     "requirements": {
       "overallScore": 21675000,
       "spending": 15496000,
-      "miniGameCompletedPlays": null,
+      "miniGameCompletedPlays": 150,
       "referrals": null,
       "barrelWorkTime": "Your barrel should last more than 250 hours",
       "achievements": [
@@ -233,11 +233,6 @@
           "title": "Your barrel should last more than 250 hours",
           "id": "17",
           "name": "HourglassMaster"
-        },
-        {
-          "title": "Play 2000 games against goblins",
-          "id": "667ca7aef7fe1725c4e625ff",
-          "name": "GoblinOverlord"
         },
         {
           "title": "Upgrade your dragon...",
@@ -275,11 +270,6 @@
           "title": "Invite 5 referrals to the game",
           "id": "20",
           "name": "ReferralMaster"
-        },
-        {
-          "title": "Play 4000 games against goblins",
-          "id": "667ca7d3f7fe1725c4e62601",
-          "name": "GoblinGod"
         },
         {
           "title": "Upgrade your dragon...",
