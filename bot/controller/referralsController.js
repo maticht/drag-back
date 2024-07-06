@@ -49,23 +49,24 @@ class ReferralsController {
                 return res.status(400).send({message: "No invitees yet"});
             }
 
-            for (const referralUser of referralUsers) {
-                const referredUser = await User.findOne({chatId: referralUser.chatId});
-                if (referredUser) {
-                    if (user.referrals.referralUsers && user.referrals.referralUsers.length > 0) {
-                        const referredUserIndex = user.referrals.referralUsers.findIndex(user => user.chatId === referredUser.chatId);
-                        if (referredUserIndex !== -1) {
-                            user.referrals.referralUsers[referredUserIndex].score += Math.round((referredUser.score - user.referrals.referralUsers[referredUserIndex].lastRefScore) * 0.08);
-                            user.referrals.referralUsers[referredUserIndex].lastRefScore = referredUser.score;
-                        }
-                    }
-                    referredUser.score = Math.round(referredUser.score);
-                    await referredUser.save();
+            const referredUsers = await User.find({chatId: {$in: referralUsers.map(u => u.chatId)}}, "chatId overallScore");
+
+            for (const referredUser of referredUsers) {
+                const referredUserIndex = referralUsers.findIndex(u => u.chatId === referredUser.chatId);
+                if (referredUserIndex !== -1) {
+                    referralUsers[referredUserIndex].score += Math.round((referredUser.overallScore - referralUsers[referredUserIndex].lastRefScore) * 0.08);
+                    referralUsers[referredUserIndex].lastRefScore = referredUser.overallScore;
                 }
             }
+
             await user.save();
 
-            return res.json({score: user.score, overallScore: user.overallScore, referrals: user.referrals, miniGameKeys: user.miniGameKeys});
+            return res.json({
+                score: user.score,
+                overallScore: user.overallScore,
+                referrals: user.referrals,
+                miniGameKeys: user.miniGameKeys
+            });
         } catch (error) {
             console.error(error);
             res.status(500).send({message: "Internal Server Error"});

@@ -68,7 +68,7 @@ async function performWeeklyTask() {
                 updateOne: {
                     filter: { _id: user._id },
                     update: {
-                        $set: { weeklyScoreRewards: newRewardsArray }
+                        $set: { weeklyScoreRewards: newRewardsArray.slice(-2) }
                     }
                 }
             };
@@ -124,7 +124,7 @@ async function performWeeklyTask() {
                 updateOne: {
                     filter: { _id: user._id },
                     update: {
-                        $set: { weeklyReferralRewards: newRewardsArray }
+                        $set: { weeklyReferralRewards: newRewardsArray.slice(-2) }
                     }
                 }
             };
@@ -181,7 +181,7 @@ async function performDailyTask() {
                         ...update,
                         $set: {
                             'miniGame.dailyBestScore': 0,
-                            dailyMiniGameRewards: newRewardsArray
+                            dailyMiniGameRewards: newRewardsArray.slice(-2)
                         }
                     };
                 }
@@ -237,13 +237,13 @@ async function userNotification() {
 }
 
 // Планирование задачи на каждое воскресенье в 23:59:59
-// cron.schedule('5 4 * * 0', performWeeklyTask, {
-//     timezone: "Europe/Moscow" // Укажите нужный вам часовой пояс
-// });
-
-cron.schedule('0 */6 * * *', performWeeklyTask, {
-    timezone: "Europe/Moscow"
+cron.schedule('5 4 * * 0', performWeeklyTask, {
+    timezone: "Europe/Moscow" // Укажите нужный вам часовой пояс
 });
+
+// cron.schedule('0 */6 * * *', performWeeklyTask, {
+//     timezone: "Europe/Moscow"
+// });
 
 //каждый день в 01:00
 cron.schedule('0 1 * * *', performDailyTask, {
