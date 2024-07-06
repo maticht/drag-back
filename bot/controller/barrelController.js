@@ -53,7 +53,7 @@ class BarrelController {
             barrel.lastEntrance = new Date();
 
             const collectionTime = new Date();
-            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000);
+            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60000 * 60);
 
             barrel.collectionTime = collectionTime;
             barrel.workTime += storeBarrelData.waitingTime[currentLevel - 1]

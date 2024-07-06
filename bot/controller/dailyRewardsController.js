@@ -14,12 +14,12 @@ class DailyRewardsController {
             let rewardIndex = user.dailyReward.findIndex(reward => !reward.isRewardTaken);
 
             if (rewardIndex === 0) {
-                let nextRewardTime = now.getTime() + (2 * 60 * 1000);
+                let nextRewardTime = now.getTime() + (24 * 60 * 60 * 1000);
                 user.dailyReward.forEach((reward, index) => {
                     reward.isRewardTaken = false;
                     reward.dateOfAward = nextRewardTime;
                     if (index !== 0) {
-                        nextRewardTime += (2 * 60 * 1000);
+                        nextRewardTime += (24 * 60 * 60 * 1000);
                     }
                 });
                 rewardIndex = 0;
@@ -42,11 +42,11 @@ class DailyRewardsController {
             user.miniGameKeys = (user.miniGameKeys || 0) + dailyGameKeysArr[rewardIndex];
 
             if (rewardIndex === user.dailyReward.length - 1) {
-                let nextRewardTime = now.getTime() + (2 * 60 * 1000);
+                let nextRewardTime = now.getTime() + (24 * 60 * 60 * 1000);
                 user.dailyReward.forEach((reward, index) => {
                     reward.isRewardTaken = false;
                     reward.dateOfAward = nextRewardTime;
-                    nextRewardTime += (2 * 60 * 1000);
+                    nextRewardTime += (24 * 60 * 60 * 1000);
                 });
             }
 

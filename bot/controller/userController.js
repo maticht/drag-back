@@ -198,8 +198,6 @@ class UserController {
             const result = await User.updateOne(
                 {
                     chatId: userId,
-                    'eggs.0.score': 88,
-                    'eggs.0.isOpen': false
                 },
                 { $set: updateFields }
             );

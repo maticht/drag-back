@@ -23,7 +23,7 @@ class ReferralsController {
             user.score += totalScore;
             user.overallScore += totalScore;
             user.referrals.referralStartTime = Date.now();
-            user.referrals.referralCollectionTime = Date.now() + (2 * 60 * 1000);
+            user.referrals.referralCollectionTime = Date.now() + (24 * 60 * 60 * 1000);
 
             await user.save();
 

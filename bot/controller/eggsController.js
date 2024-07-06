@@ -74,7 +74,7 @@ class EggsController {
             }
 
             user.eggs[0].rarity = egg.rarity;
-            user.score -= 2000;
+            user.score -= 1000000;
             await user.save();
             return res.json({ eggRarity: egg.rarity, score: user.score });
         } catch (error) {
