@@ -1,0 +1,42 @@
+{
+  "dailyRewards": [
+    { "day": "Day 1", "reward": 1000, "keys": 3 },
+    { "day": "Day 2", "reward": 1500, "keys": 4 },
+    { "day": "Day 3", "reward": 2000, "keys": 5 },
+    { "day": "Day 4", "reward": 2500, "keys": 6 },
+    { "day": "Day 5", "reward": 3000, "keys": 7 },
+    { "day": "Day 6", "reward": 4000, "keys": 8 },
+    { "day": "Day 7", "reward": 7000, "keys": 10 }
+  ],
+  "gameRewards": {
+    "goblinReward": 10,
+    "timeReward": 3
+  },
+  "weeklyScoreRewards": [
+    { "placeInTop": [1, 20], "rewardValue": 20000, "league": "Diamond" },
+    { "placeInTop": [21, 100], "rewardValue": 15000, "league": "Golden" },
+    { "placeInTop": [101, 200], "rewardValue": 10000, "league": "Silver" },
+    { "placeInTop": [201, 400], "rewardValue": 7000, "league": "Bronze" },
+    { "placeInTop": [401, 1000], "rewardValue": 5000, "league": "Stone" }
+  ],
+  "weeklyReferralRewards": [
+    { "placeInTop": [1, 20], "rewardValue": 20000, "league": "Diamond" },
+    { "placeInTop": [21, 100], "rewardValue": 15000, "league": "Golden" },
+    { "placeInTop": [101, 200], "rewardValue": 10000, "league": "Silver" },
+    { "placeInTop": [201, 400], "rewardValue": 7000, "league": "Bronze" },
+    { "placeInTop": [401, 1000], "rewardValue": 5000, "league": "Stone" }
+  ],
+  "dailyGameRewards": [
+    { "placeInTop": [1, 20], "rewardValue": 20000, "league": "Diamond" },
+    { "placeInTop": [21, 100], "rewardValue": 15000, "league": "Golden" },
+    { "placeInTop": [101, 200], "rewardValue": 10000, "league": "Silver" },
+    { "placeInTop": [201, 400], "rewardValue": 7000, "league": "Bronze" },
+    { "placeInTop": [401, 1000], "rewardValue": 5000, "league": "Stone" }
+  ],
+  "bestPlayersReward": [
+    { "placeInTop": 1, "rewardValue": 50000},
+    { "placeInTop": 2, "rewardValue": 25000},
+    { "placeInTop": 3, "rewardValue": 10000}
+  ],
+  "RewardCoefficient": [1, 1, 3, 5, 8, 11, 16, 22, 28, 34, 40, 47]
+}

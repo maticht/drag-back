@@ -35,10 +35,10 @@ class DailyRewardsController {
 
             user.dailyReward[rewardIndex].isRewardTaken = true;
             console.log("profile level", profileLevel);
-            console.log("reward", (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]))
+            console.log("reward", (dailyRewardsArr[rewardIndex].reward[profileLevel-1]));// * rewardsTemplateData.RewardCoefficient[profileLevel]))
             // user.dailyReward[rewardIndex].dateOfAward = now.getTime();
-            user.score = (user.score || 0) + (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]);
-            user.overallScore = (user.overallScore || 0) + (dailyRewardsArr[rewardIndex].reward * rewardsTemplateData.RewardCoefficient[profileLevel]);
+            user.score = (user.score || 0) + (dailyRewardsArr[rewardIndex].reward[profileLevel-1])// * rewardsTemplateData.RewardCoefficient[profileLevel]);
+            user.overallScore = (user.overallScore || 0) + (dailyRewardsArr[rewardIndex].reward[profileLevel-1])// * rewardsTemplateData.RewardCoefficient[profileLevel]);
             user.miniGameKeys = (user.miniGameKeys || 0) + dailyGameKeysArr[rewardIndex];
 
             if (rewardIndex === user.dailyReward.length - 1) {

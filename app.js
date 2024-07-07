@@ -55,8 +55,8 @@ async function performWeeklyTask() {
                 newRewardsArray.push({
                     league: reward.league,
                     placeInTop: placeInTop,
-                    rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
-                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
+                    rewardValue: reward.rewardValue[profileLevel - 1],// * rewardsTemplateData.RewardCoefficient[profileLevel],
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue[profileLevel - 1] : 0, // * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -111,8 +111,8 @@ async function performWeeklyTask() {
                 newRewardsArray.push({
                     league: reward.league,
                     placeInTop: placeInTop,
-                    rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
-                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
+                    rewardValue: reward.rewardValue[profileLevel - 1],// * rewardsTemplateData.RewardCoefficient[profileLevel],
+                    specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue[profileLevel - 1] : 0, // * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                     rewardIssuedDate: new Date(),
                     rewardClaimedDate: 0,
                     isTaken: false,
@@ -169,8 +169,8 @@ async function performDailyTask() {
                     newRewardsArray.push({
                         league: reward.league,
                         placeInTop: placeInTop,
-                        rewardValue: reward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel],
-                        specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
+                        rewardValue: reward.rewardValue[profileLevel - 1],// * rewardsTemplateData.RewardCoefficient[profileLevel],
+                        specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue[profileLevel - 1] : 0, // * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
                         rewardIssuedDate: new Date(),
                         rewardClaimedDate: 0,
                         isTaken: false,
