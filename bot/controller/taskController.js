@@ -12,8 +12,12 @@ class TaskController {
             const allTasks = await Task.find();
 
             const tasksWithStatus = allTasks.map(task => {
-                const done = user.completedTasks.some(completedTask => completedTask.toString() === task._id.toString());
-                return { ...task.toObject(), done };
+                const done = user.completedTasks.some(completedTask => completedTask.id.toString() === task._id.toString() && completedTask.isCompleted);
+                let attemptsNumber = 0;
+                if (done){
+                    attemptsNumber = user.completedTasks.find(completedTask => completedTask.id.toString() === task._id.toString()).attemptsNumber;
+                }
+                return { ...task.toObject(), done, attemptsNumber };
             });
 
             return res.json({ tasks: tasksWithStatus });
@@ -56,35 +60,48 @@ class TaskController {
                 return;
             }
 
-            if (user.completedTasks.includes(req.body.taskId)) {
+            const completedTask = user.completedTasks.find(task => task.id === req.body.taskId);
+
+            if (completedTask && completedTask.isCompleted === true) {
                 res.status(400).send({success: false, message: "Task already completed" });
                 await session.abortTransaction();
                 session.endSession();
                 return;
+            }else if(!completedTask){
+                res.status(400).send({success: false, message: "Condition not done" });
+                await session.abortTransaction();
+                session.endSession();
+                return;
+            }else if(completedTask.attemptsNumber < 1){
+                res.status(400).send({success: false, message: "Condition not done" });
+                await session.abortTransaction();
+                session.endSession();
+                return;
+            }else{
+                user.score += rewardTemplateData.tasksReward[profileLevel -1];
+                user.overallScore += rewardTemplateData.tasksReward[profileLevel -1];
+
+                completedTask.isCompleted = true;
+                await user.save({ session });
+
+                await session.commitTransaction();
+                session.endSession();
+
+                const userAgentString = req.headers['user-agent'];
+                addToBuffer(req.params.userId, `complete task ${req.body.taskId}`, userAgentString, null);
+
+                return res.json({
+                    success: true,
+                    message: `Task completed successfully`,
+                    score: user.score,
+                    overallScore: user.overallScore,
+                    completedTaskId: req.body.taskId
+                });
             }
 
             // user.score += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
             // user.overallScore += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
 
-            user.score += rewardTemplateData.tasksReward[profileLevel -1];
-            user.overallScore += rewardTemplateData.tasksReward[profileLevel -1];
-
-            user.completedTasks.push(req.body.taskId);
-            await user.save({ session });
-
-            await session.commitTransaction();
-            session.endSession();
-
-            const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `complete task ${req.body.taskId}`, userAgentString, null);
-
-            return res.json({
-                success: true,
-                message: `Task completed successfully`,
-                score: user.score,
-                overallScore: user.overallScore,
-                completedTaskId: req.body.taskId
-            });
         } catch (error) {
             await session.abortTransaction();
             session.endSession();
@@ -97,7 +114,7 @@ class TaskController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore').session(session);
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore profileLevel').session(session);
 
             if (!user) {
                 res.status(400).send({success: false, message: "User not found" });
@@ -114,7 +131,9 @@ class TaskController {
                 return;
             }
 
-            if (user.completedTasks.includes(req.body.taskId)) {
+            const completedTask = user.completedTasks.find(task => task.id === req.body.taskId && task.isCompleted === true);
+
+            if (completedTask) {
                 res.status(400).send({success: false, message: "Task already completed" });
                 await session.abortTransaction();
                 session.endSession();
@@ -131,10 +150,14 @@ class TaskController {
                 return;
             }
 
-            user.score += task.reward;
-            user.overallScore += task.reward;
+            user.score += rewardTemplateData.tasksReward[user.profileLevel -1];
+            user.overallScore += rewardTemplateData.tasksReward[user.profileLevel -1];
 
-            user.completedTasks.push(req.body.taskId);
+            user.completedTasks.push({
+                id: task.id.toString(),
+                attemptsNumber: 1,
+                isCompleted: true,
+            });
             await user.save({ session });
 
             await session.commitTransaction();
@@ -157,16 +180,27 @@ class TaskController {
 
     async updateAttemptsNumber(req, res) {
         try {
-            const taskId = req.body.taskId;
-            const updatedTask = await Task.findByIdAndUpdate(
-                taskId,
-                { $inc: { attemptsNumber: 1 } },
-                { new: true }
-            );
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks');
 
-            if (!updatedTask) {
-                return res.status(404).json({ success: false, message: "Task not found" });
+            if (!user) {
+                res.status(400).send({success: false, message: "User not found" });
+                return;
             }
+
+
+            const completedTask = user.completedTasks.find(task => task.id === req.body.taskId);
+
+            if(!completedTask){
+                user.completedTasks.push({
+                    id: task.id.toString(),
+                    attemptsNumber: 1,
+                    isCompleted: false,
+                })
+            }else{
+                completedTask.attemptsNumber += 1;
+            }
+
+            await user.save();
 
             return res.json({ success: true});
         } catch (error) {

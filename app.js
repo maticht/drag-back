@@ -237,7 +237,7 @@ async function userNotification() {
     if (usersToUpdate.length === 0) return;
 
     const chatIds = usersToUpdate.map(user => user.chatId);
-    const photoUrl = 'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720269783/Rectangle_139_ygi2a6.png';
+    const photoUrl = 'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720283889/Rectangle_139_w7s8a9.png';
     const caption = 'The barrel is full and the energy is restored, come back';
 
     await Promise.all(chatIds.map(chatId => {
@@ -275,7 +275,7 @@ cron.schedule('0 */6 * * *', userNotification, {
     timezone: "Europe/Moscow"
 });
 
-cron.schedule('*/1 * * * *', insertDataToClickHouse, {
+cron.schedule('0 * * * *', insertDataToClickHouse, {
     timezone: "Europe/Moscow"
 });
 
