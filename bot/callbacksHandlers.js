@@ -123,7 +123,8 @@ function handleCallbacks(bot) {
                                 lastName: msg.from.last_name,
                                 username: msg.from.username,
                                 chatId: chatId,
-                                score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
+                                // score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
+                                score: rewardTemplateData.referralReward[user.profileLevel - 1],
                                 lastRefScore:0,
                                 miniGameKeys: 10,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)

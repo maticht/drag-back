@@ -62,8 +62,11 @@ class TaskController {
                 return;
             }
 
-            user.score += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
-            user.overallScore += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
+            // user.score += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
+            // user.overallScore += task.reward * rewardTemplateData.RewardCoefficient[profileLevel];
+
+            user.score += rewardTemplateData.tasksReward[profileLevel -1];
+            user.overallScore += rewardTemplateData.tasksReward[profileLevel -1];
 
             user.completedTasks.push(req.body.taskId);
             await user.save({ session });
