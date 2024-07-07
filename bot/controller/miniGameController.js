@@ -1,5 +1,6 @@
 const { User } = require("../../models/user");
 const mongoose = require('mongoose');
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class miniGameController {
 
@@ -10,6 +11,10 @@ class miniGameController {
             if (user.miniGameKeys > 0) {
                 user.miniGameKeys -= 1;
                 await user.save();
+
+                const userAgentString = req.headers['user-agent'];
+                addToBuffer(req.params.userId, `start mini game`, userAgentString, null);
+
                 return res.json({ message: "The game has begun!", miniGameKeys: user.miniGameKeys });
             } else {
                 return res.status(400).json({ message: "Not enough Game Keys" });

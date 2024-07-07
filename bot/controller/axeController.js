@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json')
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class AxeController {
     async upgrade(req, res) {
@@ -28,6 +29,9 @@ class AxeController {
             user.score -= price;
 
             await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `axe upgrade ${axe.currentLevel}`, userAgentString, null);
 
             return res.json({ axe, score: user.score });
         } catch (error) {

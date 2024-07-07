@@ -1,5 +1,7 @@
 const eggs = require("../eggsTemplateData/eggsTemplateData.json");
 const levelsTemplateData = require("../eggsTemplateData/levelsTemplateData.json");
+const moment = require('moment-timezone');
+const UAParser = require('ua-parser-js');
 
 function getRandomEgg() {
     let randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -74,5 +76,20 @@ function checkLevel(user, levelToCheck) {
         achievements.every(achievement => user.completedAchievements.includes(achievement.id))
     );
 }
+function getCurrentMoscowTime() {
+    return moment().tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss');
+}
 
-module.exports = {getRandomEgg, checkLevel};
+
+function parseUserAgent(userAgentString) {
+    const parser = new UAParser();
+    const result = parser.setUA(userAgentString).getResult();
+    return result.os.name;
+}
+
+module.exports = {
+    getRandomEgg,
+    checkLevel,
+    getCurrentMoscowTime,
+    parseUserAgent
+};

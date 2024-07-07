@@ -1,6 +1,6 @@
 const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json');
-
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class EnergyController {
 
@@ -75,8 +75,11 @@ class EnergyController {
             user.energy = energy;
 
             await user.save();
-            return res.json({energy: user.energy, score: user.score})
 
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `energy upgrade ${energy.currentLevel}`, userAgentString, null);
+
+            return res.json({energy: user.energy, score: user.score})
         } catch (error) {
             console.log(error);
             res.status(500).send({message: "Внутренняя ошибка сервера"});

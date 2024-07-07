@@ -3,6 +3,7 @@ const { Task } = require("../../models/task");
 const bot = require("../../bot");
 const mongoose = require('mongoose');
 const rewardTemplateData = require('../../eggsTemplateData/rewardsTemplateData.json')
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class TaskController {
     async getTasks(req, res) {
@@ -73,6 +74,9 @@ class TaskController {
 
             await session.commitTransaction();
             session.endSession();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `complete task ${req.body.taskId}`, userAgentString, null);
 
             return res.json({
                 success: true,

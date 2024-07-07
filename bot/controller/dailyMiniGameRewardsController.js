@@ -1,4 +1,5 @@
 const {User} = require("../../models/user");
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class DailyMiniGameRewardsController {
     async claim(req, res, next) {
@@ -35,6 +36,10 @@ class DailyMiniGameRewardsController {
             console.log(user.score)
 
             const savedUser = await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.body.userId, `collect weekly reward mini game`, userAgentString, null);
+
             return res.status(201).send({message: "Счет обновлен успешно", success: true, reward: currentDailyReward});
         } catch (error) {
             console.log(error);

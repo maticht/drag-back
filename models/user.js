@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema({
             lastRefScore: {type:Number, required:false, default:0},
         }],
     },
-    language:{type:String, default:'en'},
+    language:{type:String},
     userTopPlace: {type:Number, required:false, default:0},
     userReferralTopPlace: {type:Number, required:false, default:0},
     walletToken: {type: String, required: false},

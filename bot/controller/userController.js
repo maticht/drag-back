@@ -2,6 +2,7 @@ const {User} = require("../../models/user");
 const {checkLevel} = require("../../utils/helpers");
 const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json")
 const mongoose = require('mongoose');
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class UserController {
     async getUserData(req, res){
@@ -175,6 +176,9 @@ class UserController {
 
             await user.save();
 
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `level up ${profileLevel + 1}`, userAgentString, null);
+
             return res.json({ success: true, profileLevel: user.profileLevel });
         } catch (error) {
             console.error(error);
@@ -184,6 +188,7 @@ class UserController {
 
     async updateScoreAndEnergy(req, res) {
         try {
+
             const { userId, energyRestoreTime, value, score, overallScore, eggScore } = req.body;
 
             const updateFields = {

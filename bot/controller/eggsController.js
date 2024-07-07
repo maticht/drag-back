@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const {getRandomEgg} = require("../../utils/helpers");
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 const compareRarities = (rarity1, rarity2) => {
     const rarityOrder = ['Common', 'Rare', 'Epic', 'Mythical', 'Legendary'];
     return rarityOrder.indexOf(rarity1) >= rarityOrder.indexOf(rarity2);
@@ -24,6 +25,9 @@ class EggsController {
             if (!updatedUser) {
                 return res.status(404).send({ message: "User not found or no eggs available" });
             }
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(userId, "open egg", userAgentString, null);
 
             return res.status(200).json({ isModalShown: updatedUser.eggs[0].isModalShown });
         } catch (error) {
@@ -54,6 +58,10 @@ class EggsController {
                 return res.status(404).send({ message: "User not found" });
             }
 
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `narrative scene egg`, userAgentString, null);
+
+
             return res.status(200).json({ narrativeScenes: updatedUser.narrativeScenes, isEggOpen: updatedUser.eggs[0].isOpen });
         } catch (error) {
             console.error(error);
@@ -73,9 +81,21 @@ class EggsController {
                 egg = getRandomEgg();
             }
 
+            let success;
+            if(user.eggs[0].rarity === egg.rarity){
+                success = 0;
+            }else{
+                success = 1;
+            }
+
             user.eggs[0].rarity = egg.rarity;
             user.score -= 1000000;
             await user.save();
+
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `alchemist upgrade ${success}`, userAgentString, null);
+
             return res.json({ eggRarity: egg.rarity, score: user.score });
         } catch (error) {
             console.error(error);

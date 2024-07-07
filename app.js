@@ -1,7 +1,6 @@
 const express = require('express');
 const bot = require('./bot');
 const faultAppearanceScene = require("./bot/serverRequests/user/faultAppearanceScene");
-const gettingEggScene = require("./bot/serverRequests/user/gettingEggScene");
 const firstGoblinGameScene = require("./bot/serverRequests/user/firstGoblinGameScene");
 const rewardsTemplateData = require("./eggsTemplateData/rewardsTemplateData.json");
 
@@ -12,15 +11,34 @@ const router = require('./bot/routes/index');
 const cron = require('node-cron');
 const app = express();
 const connection = require("./db");
+const {checkConnection} = require("./clickHouseClient");
+const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
 
-connection();
+async function initializeApp() {
+    try {
 
-app.use(express.json());
-app.use(cors());
-app.use('/api', router);
-app.use("/faultAppearanceScene", faultAppearanceScene);
-app.use("/firstGoblinGameScene", firstGoblinGameScene);
+        await connection();
 
+        await checkConnection();
+
+        app.use(express.json());
+        app.use(cors());
+        app.use('/api', router);
+        app.use("/faultAppearanceScene", faultAppearanceScene);
+        app.use("/firstGoblinGameScene", firstGoblinGameScene);
+
+        const PORT = 8000;
+        app.listen(PORT, () => console.log('Server started on PORT ' + PORT));
+
+        await startBot();
+
+        console.log("Initialization complete");
+    } catch (error) {
+        console.error("Error during initialization:", error);
+    }
+}
+
+initializeApp();
 
 async function startBot() {
     handleCallbacks(bot);
@@ -245,12 +263,8 @@ async function userNotification() {
 
 // Планирование задачи на каждое воскресенье в 23:59:59
 cron.schedule('5 4 * * 0', performWeeklyTask, {
-    timezone: "Europe/Moscow" // Укажите нужный вам часовой пояс
+    timezone: "Europe/Moscow"
 });
-
-// cron.schedule('0 */6 * * *', performWeeklyTask, {
-//     timezone: "Europe/Moscow"
-// });
 
 //каждый день в 01:00
 cron.schedule('0 1 * * *', performDailyTask, {
@@ -261,11 +275,9 @@ cron.schedule('0 */6 * * *', userNotification, {
     timezone: "Europe/Moscow"
 });
 
-
-const PORT = 8000;
-
-app.listen(PORT, () => console.log('server started on PORT ' + PORT))
-
-startBot().catch(e => {
-    console.log(e.message);
+cron.schedule('*/1 * * * *', insertDataToClickHouse, {
+    timezone: "Europe/Moscow"
 });
+
+
+
