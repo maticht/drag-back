@@ -18,6 +18,16 @@ const alphaUserSchema = new mongoose.Schema({
             lastRefScore: {type: Number, required: false, default: 0},
         }],
     },
+    eggs: [{
+        rarity: {type: String, required: false},
+        name: {type: String, required: false},
+        chance: {type: Number, required: false},
+        score: {type: Number, required: false},
+        stageScore: [{type: Number, required: false}],
+        isOpen: {type: Boolean, default: false},
+        isDone: {type: Boolean, default: false},
+        isModalShown: {type: Boolean, default: false},
+    }],
     score: {type: Number, required: false, default: 0},
     overallScore: {type: Number, required: false, default: 0},
 }, {toJSON: {virtuals: true}});

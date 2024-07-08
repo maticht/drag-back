@@ -23,11 +23,12 @@ function handleCallbacks(bot) {
                 let alphaTesterFlag = false;
                 let scoreReward = 0;
                 let referralReward = 0;
+                let alphaEgg = null;
 
                 if (alphaTester){
                     const allUsers = await AlphaUser.find({ 'overallScore': { $ne: 0 } })
                         .sort({ 'overallScore': -1 })
-                        .select('_id overallScore chatId referrals');
+                        .select('_id overallScore chatId referrals eggs');
 
                     const alphaUser = allUsers.find(user => user.chatId === alphaTester.chatId);
                     console.log("alphaUser", alphaUser);
@@ -43,9 +44,19 @@ function handleCallbacks(bot) {
                         });
                         console.log("alphaTesterReward", alphaTesterReward);
                         console.log("alphaTesterFlag", alphaTesterFlag);
+                        alphaEgg = [{
+                                rarity: alphaTester.eggs[0].rarity,
+                                name: alphaTester.eggs[0].name,
+                                chance: alphaTester.eggs[0].chance,
+                                score: 100,
+                                stageScore: [8000, 29000, 185000, 704000, 2200000, 6550000, 18000000, 99999000000],
+                                isOpen: true,
+                                isDone: false,
+                                isModalShown: true,
+                        }]
                         await alphaTesterReward.save();
                     }
-                    await AlphaUser.deleteOne({ _id: alphaTester._id });
+                    //await AlphaUser.deleteOne({ _id: alphaTester._id });
                     addToBuffer(alphaTester.chatId, "registration alpha tester", null, msg.from.language_code);
                 }
 
@@ -115,7 +126,7 @@ function handleCallbacks(bot) {
                     ],
                     narrativeScenes:  {
                         faultAppearance: false,
-                        gettingEgg: false,
+                        gettingEgg: alphaTester ? true : false,
                         dragonHatching: false,
                         firstGoblinGame: false,
                     },
@@ -136,7 +147,10 @@ function handleCallbacks(bot) {
                         lastEntrance: 0,
                         currentLevel: 1,
                     },
-                    eggs: [{
+                    eggs: alphaTester ?
+                        alphaEgg
+                        :
+                        [{
                         rarity: egg.rarity,
                         name: egg.name,
                         chance: egg.chance,
