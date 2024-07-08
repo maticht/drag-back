@@ -48,11 +48,11 @@ function handleCallbacks(bot) {
                                 rarity: alphaTester.eggs[0].rarity,
                                 name: alphaTester.eggs[0].name,
                                 chance: alphaTester.eggs[0].chance,
-                                score: 100,
+                                score: 87,
                                 stageScore: [8000, 29000, 185000, 704000, 2200000, 6550000, 18000000, 99999000000],
-                                isOpen: true,
+                                isOpen: false,
                                 isDone: false,
-                                isModalShown: true,
+                                isModalShown: false,
                         }]
                         await alphaTesterReward.save();
                     }
@@ -126,7 +126,7 @@ function handleCallbacks(bot) {
                     ],
                     narrativeScenes:  {
                         faultAppearance: false,
-                        gettingEgg: alphaTester ? true : false,
+                        gettingEgg: false,
                         dragonHatching: false,
                         firstGoblinGame: false,
                     },
