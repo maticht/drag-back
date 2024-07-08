@@ -7,10 +7,14 @@ class AlphaTesterController {
     async get(req, res) {
         try {
             const reward = await AlphaUserReward.findOne({chatId: req.params.userId});
-            return res.json({reward});
+            if(reward){
+                return res.json({success:true, reward});
+            }else{
+                return res.json({success:false});
+            }
         } catch (error) {
             console.log(error);
-            res.status(500).send({message: "Внутренняя ошибка сервера"});
+            res.status(500).send({success:false, message: "Внутренняя ошибка сервера"});
         }
     }
 
