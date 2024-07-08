@@ -187,15 +187,14 @@ class TaskController {
                 return;
             }
 
-
             const completedTask = user.completedTasks.find(task => task.id === req.body.taskId);
 
             if(!completedTask){
                 user.completedTasks.push({
-                    id: task.id.toString(),
+                    id: req.body.taskId,
                     attemptsNumber: 1,
                     isCompleted: false,
-                })
+                });
             }else{
                 completedTask.attemptsNumber += 1;
             }
