@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json");
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class DailyRewardsController {
     async collect(req, res) {
@@ -51,6 +52,10 @@ class DailyRewardsController {
             }
 
             await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `collect daily reward ${rewardIndex + 1}`, userAgentString, null);
+
             return res.json({
                 score: user.score,
                 overallScore: user.overallScore,

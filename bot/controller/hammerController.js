@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json');
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class HammerController {
 
@@ -20,6 +21,10 @@ class HammerController {
                 return res.status(400).send({ message: "Maximum level reached" });
             }
             await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `hammer upgrade ${hammer.currentLevel}`, userAgentString, null);
+
             return res.json({hammer: user.hammer, score: user.score});
         } catch (error) {
             console.error(error);

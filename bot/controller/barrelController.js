@@ -1,5 +1,6 @@
 const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json')
+const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 
 class BarrelController {
 
@@ -32,6 +33,10 @@ class BarrelController {
             }
 
             await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `barrel upgrade ${barrel.currentLevel}`, userAgentString, null);
+
             return res.json({barrel, score: user.score})
         } catch (error) {
             console.error(error);
@@ -64,6 +69,10 @@ class BarrelController {
                 user.eggs[0].score += Math.round(storeBarrelData.income[currentLevel - 1] * 0.5);
             }
             await user.save();
+
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, `collect barrel`, userAgentString, null);
+
             return res.json({workTime: barrel.workTime, lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, eggScore: user.eggs[0].score, success:true})
         } catch (error) {
             console.error(error);

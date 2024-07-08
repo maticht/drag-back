@@ -1,6 +1,7 @@
 const {User} = require("../models/user");
 const {getRandomEgg} = require("../utils/helpers");
 const rewardTemplateData = require("../eggsTemplateData/rewardsTemplateData.json")
+const {addToBuffer} = require("../utils/clickHouse/dataBuffer");
 
 function handleCallbacks(bot) {
 
@@ -23,6 +24,7 @@ function handleCallbacks(bot) {
                     chatId: chatId,
                     profileLevel: 1,
                     childReferral: childReferral,
+                    language: msg.from?.language_code ? msg.from?.language_code : "",
                     referrals:{
                         referralStartTime: 0,
                         referralCollectionTime: 0,
@@ -109,6 +111,8 @@ function handleCallbacks(bot) {
                     weeklyReferralRewards: [],
                 }).save();
 
+                addToBuffer(user.chatId, "registration", null, msg.from.language_code);
+
                 if (childReferral) {
 
                     let maternalReferralUser = await User.findOne({chatId: childReferral}); // юзер родитель
@@ -131,6 +135,7 @@ function handleCallbacks(bot) {
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
+                            addToBuffer(user.chatId, "invite friend", null, msg.from.language_code);
                         }
 
                     }
@@ -149,9 +154,6 @@ function handleCallbacks(bot) {
             }).catch(error => {
                 console.error('Error sending photo message:', error);
             });
-
-
-            console.log("user", user.firstName, user.chatId)
 
 
         } catch (e) {

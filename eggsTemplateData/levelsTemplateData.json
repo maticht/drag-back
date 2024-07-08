@@ -25,19 +25,19 @@
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/MiniGame_gxfrus.png"
       },
       {
-        "title": "Blacksmith items level 2-3",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems3_p7msmm.png"
+        "title": "Blacksmith items level 4",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720370243/BlacksmithItems4_p7r0ju.png"
       }
     ]
   },
   "ThirdLevel": {
     "level": 3,
     "requirements": {
-      "overallScore": 52500,
-      "spending": 36000,
+      "overallScore": 50000,
+      "spending": 35000,
       "miniGameCompletedPlays": 3,
-      "referrals": null,
-      "barrelWorkTime": 10,
+      "referrals": 1,
+      "barrelWorkTime": 2,
       "achievements": []
     },
     "rewards": [
@@ -48,17 +48,21 @@
       {
         "title": "Joining a clan",
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/JoiningClan_mfzg9d.png"
+      },
+      {
+        "title": "Blacksmith items level 5",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems5_kaplhv.png"
       }
     ]
   },
   "FourthLevel": {
     "level": 4,
     "requirements": {
-      "overallScore": 215000,
-      "spending": 136000,
+      "overallScore": 200000,
+      "spending": 130000,
       "miniGameCompletedPlays": 8,
       "referrals": 1,
-      "barrelWorkTime": 24,
+      "barrelWorkTime": 10,
       "achievements": [
         {
           "title": "Upgrade all blacksmith items to level 3",
@@ -77,19 +81,19 @@
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/CreateOwnClan_ad25lk.png"
       },
       {
-        "title": "Blacksmith items level 3-5",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems5_kaplhv.png"
+        "title": "Blacksmith items level 6",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720370250/BlacksmithItems6_pahd7u.png"
       }
     ]
   },
   "FifthLevel": {
     "level": 5,
     "requirements": {
-      "overallScore": 665000,
-      "spending": 401000,
+      "overallScore": 600000,
+      "spending": 400000,
       "miniGameCompletedPlays": 15,
       "referrals": null,
-      "barrelWorkTime": 60,
+      "barrelWorkTime": 24,
       "achievements": []
     },
     "rewards": [
@@ -100,17 +104,21 @@
       {
         "title": "Alchemist",
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/Alchemist_yxvgui.png"
+      },
+      {
+        "title": "Blacksmith items level 7",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems7_v0e9vi.png"
       }
     ]
   },
   "SixthLevel": {
     "level": 6,
     "requirements": {
-      "overallScore": 1380000,
-      "spending": 896000,
+      "overallScore": 1500000,
+      "spending": 800000,
       "miniGameCompletedPlays": 25,
       "referrals": 2,
-      "barrelWorkTime": null,
+      "barrelWorkTime": 60,
       "achievements": [
         {
           "title": "Upgrade all blacksmith items to level 5",
@@ -125,19 +133,19 @@
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient16_egcl5d.png"
       },
       {
-        "title": "Blacksmith items level 5-7",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems7_v0e9vi.png"
+        "title": "Blacksmith items level 8",
+        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems8_wozui9.png"
       }
     ]
   },
   "SeventhLevel": {
     "level": 7,
     "requirements": {
-      "overallScore": 2880000,
-      "spending": 1836000,
+      "overallScore": 3000000,
+      "spending": 1800000,
       "miniGameCompletedPlays": 40,
       "referrals": null,
-      "barrelWorkTime": 120,
+      "barrelWorkTime": null,
       "achievements": [
         {
           "title": "Complete a streak of seven days in the game",
@@ -160,11 +168,11 @@
   "EighthLevel": {
     "level": 8,
     "requirements": {
-      "overallScore": 6315000,
-      "spending": 4156000,
+      "overallScore": 6000000,
+      "spending": 4000000,
       "miniGameCompletedPlays": 60,
       "referrals": 3,
-      "barrelWorkTime": 250,
+      "barrelWorkTime": 120,
       "achievements": [
         {
           "title": "Upgrade all blacksmith items to level 7",
@@ -177,21 +185,17 @@
       {
         "title": "Reward coefficient 28",
         "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028984/RewardCoefficient28_naosfy.png"
-      },
-      {
-        "title": "Blacksmith items level 8",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems8_wozui9.png"
       }
     ]
   },
   "NinthLevel": {
     "level": 9,
     "requirements": {
-      "overallScore": 12080000,
-      "spending": 8296000,
+      "overallScore": 10000000,
+      "spending": 8000000,
       "miniGameCompletedPlays": 80,
       "referrals": null,
-      "barrelWorkTime": null,
+      "barrelWorkTime": 250,
       "achievements": [
         {
           "title": "Break the egg and find out what to do next",
@@ -214,21 +218,16 @@
   "TenthLevel": {
     "level": 10,
     "requirements": {
-      "overallScore": 21675000,
-      "spending": 15496000,
+      "overallScore": 20000000,
+      "spending": 15000000,
       "miniGameCompletedPlays": 100,
       "referrals": null,
-      "barrelWorkTime": "Your barrel should last more than 250 hours",
+      "barrelWorkTime": 500,
       "achievements": [
         {
           "title": "Create your own clan",
           "id": "16",
           "name": ""
-        },
-        {
-          "title": "Your barrel should last more than 250 hours",
-          "id": "17",
-          "name": "HourglassMaster"
         },
         {
           "title": "Upgrade your dragon...",
@@ -251,17 +250,12 @@
   "EleventhLevel": {
     "level": 11,
     "requirements": {
-      "overallScore": 31600000,
-      "spending": 22696000,
+      "overallScore": 30000000,
+      "spending": 20000000,
       "miniGameCompletedPlays": 150,
       "referrals": 5,
-      "barrelWorkTime": "Your barrel should last more than 500 hours",
+      "barrelWorkTime": 1000,
       "achievements": [
-        {
-          "title": "Your barrel should last more than 500 hours",
-          "id": "19",
-          "name": "HourglassLegend"
-        },
         {
           "title": "Invite 5 referrals to the game",
           "id": "20",
