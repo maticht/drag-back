@@ -183,5 +183,12 @@
       "topPlaces": "401-1000"
     }
   ],
-  "RewardCoefficient": [1, 1, 3, 5, 8, 11, 16, 22, 28, 34, 40, 47]
+  "RewardCoefficient": [1, 1, 3, 5, 8, 11, 16, 22, 28, 34, 40, 47],
+  "alphaRewards": [
+  { "placeInTop": [1, 3], "rewardValue": 150000, "league": "Diamond" },
+  { "placeInTop": [4, 10], "rewardValue": 100000, "league": "Golden" },
+  { "placeInTop": [11, 20], "rewardValue": 80000, "league": "Silver" },
+  { "placeInTop": [21, 50], "rewardValue": 60000, "league": "Bronze" },
+  { "placeInTop": [51, 200], "rewardValue": 50000, "league": "Stone" }
+]
 }
