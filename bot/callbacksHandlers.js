@@ -56,7 +56,7 @@ function handleCallbacks(bot) {
                         }]
                         await alphaTesterReward.save();
                     }
-                    //await AlphaUser.deleteOne({ _id: alphaTester._id });
+                    await AlphaUser.deleteOne({ _id: alphaTester._id });
                     addToBuffer(alphaTester.chatId, "registration alpha tester", null, msg.from.language_code);
                 }
 
