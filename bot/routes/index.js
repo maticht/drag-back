@@ -15,6 +15,7 @@ const hammerRouter = require('./hammerRouter');
 const taskRouter = require("./taskRouter");
 const achievementRouter = require("./achievementRouter");
 const miniGameRouter = require("./miniGameRouter");
+const alphaTesterRouter = require('./alphaTesterRouter');
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
@@ -25,6 +26,7 @@ router.use('/boosters', scoreRouter);
 router.use('/assistant', scoreRouter);
 router.use('/dragons', scoreRouter);
 router.use('/users', userRouter);
+router.use('/alphaTesters', alphaTesterRouter);
 router.use('/energy', energyRouter)
 router.use('/weeklyScoreRewards', weeklyScoreRewardsRouter);
 router.use('/weeklyReferralRewards', weeklyReferralRewardsRouter);

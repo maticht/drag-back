@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     username: {type: String, required: false},
     chatId: {type: String, required: false, unique: true, index: true},
     profileLevel: {type: Number, required: false, default: 1},
+    alphaTester: {type: Boolean, default: false},
     childReferral: {type: String, required: false},
     auroraWalletHash: {type: String, required: false},
     dailyReward: [

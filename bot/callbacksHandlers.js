@@ -2,6 +2,9 @@ const {User} = require("../models/user");
 const {getRandomEgg} = require("../utils/helpers");
 const rewardTemplateData = require("../eggsTemplateData/rewardsTemplateData.json")
 const {addToBuffer} = require("../utils/clickHouse/dataBuffer");
+const {AlphaUser} = require("../models/alphaUsers");
+const {AlphaUserReward} = require("../models/alphaUsersReward");
+
 
 function handleCallbacks(bot) {
 
@@ -13,6 +16,41 @@ function handleCallbacks(bot) {
 
             if (!user) {
 
+                //--------------------------ALPHA-TESTERS-----------------------------------------------
+
+                const alphaTester = await AlphaUser.findOne({chatId: chatId});
+                console.log("alphaTester", alphaTester);
+                let alphaTesterFlag = false;
+                let scoreReward = 0;
+                let referralReward = 0;
+
+                if (alphaTester){
+                    const allUsers = await AlphaUser.find({ 'overallScore': { $ne: 0 } })
+                        .sort({ 'overallScore': -1 })
+                        .select('_id overallScore chatId referrals');
+
+                    const alphaUser = allUsers.find(user => user.chatId === alphaTester.chatId);
+                    console.log("alphaUser", alphaUser);
+                    if (alphaUser) {
+                        alphaTesterFlag = true;
+                        const placeInTop = allUsers.findIndex(user => user.chatId === alphaTester.chatId) + 1;
+                        scoreReward = rewardTemplateData.alphaRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]).rewardValue;
+                        referralReward = 10000 * alphaTester.referrals.referralUsers.length;
+                        const alphaTesterReward = new AlphaUserReward({
+                            chatId: alphaTester.chatId,
+                            scoreReward,
+                            referralReward
+                        });
+                        console.log("alphaTesterReward", alphaTesterReward);
+                        console.log("alphaTesterFlag", alphaTesterFlag);
+                        await alphaTesterReward.save();
+                    }
+                    await AlphaUser.deleteOne({ _id: alphaTester._id });
+                    addToBuffer(alphaTester.chatId, "registration alpha tester", null, msg.from.language_code);
+                }
+
+                //--------------------------ALPHA-TESTERS-----------------------------------------------
+
                 const egg = getRandomEgg();
 
                 const childReferral = msg.text?.replace("/start ", ""); //айди родителя
@@ -22,6 +60,7 @@ function handleCallbacks(bot) {
                     firstName: msg.from?.first_name ? msg.from.first_name : "",
                     username: msg.from.username,
                     chatId: chatId,
+                    alphaTester: alphaTesterFlag,
                     profileLevel: 1,
                     childReferral: childReferral,
                     language: msg.from?.language_code ? msg.from?.language_code : "",
