@@ -183,7 +183,7 @@ function handleCallbacks(bot) {
                                 // score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
                                 score: rewardTemplateData.referralReward[user.profileLevel - 1],
                                 lastRefScore:0,
-                                miniGameKeys: 10,
+                                miniGameKeys: 5,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
@@ -201,7 +201,10 @@ function handleCallbacks(bot) {
                 reply_markup: {
                     inline_keyboard: [
                         //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
-                        [{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
+                        //[{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
+                            //PROD
+                            [{text: 'Play', web_app: {url: `https://oyster-app-4mimt.ondigitalocean.app/loadingScreen`}}]
+                            //PROD
                     ]
                 }
             }).catch(error => {
