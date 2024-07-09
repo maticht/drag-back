@@ -201,7 +201,10 @@ function handleCallbacks(bot) {
                 reply_markup: {
                     inline_keyboard: [
                         //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
-                        [{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
+                        //[{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
+                            //PROD
+                            [{text: 'Play', web_app: {url: `https://oyster-app-4mimt.ondigitalocean.app/loadingScreen`}}]
+                            //PROD
                     ]
                 }
             }).catch(error => {
