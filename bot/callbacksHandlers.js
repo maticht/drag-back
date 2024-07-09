@@ -183,7 +183,7 @@ function handleCallbacks(bot) {
                                 // score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
                                 score: rewardTemplateData.referralReward[user.profileLevel - 1],
                                 lastRefScore:0,
-                                miniGameKeys: 10,
+                                miniGameKeys: 5,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
