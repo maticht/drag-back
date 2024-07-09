@@ -202,9 +202,8 @@ function handleCallbacks(bot) {
                     inline_keyboard: [
                         //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
                         //[{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
-                            //PROD
-                            [{text: 'Play', web_app: {url: `https://oyster-app-4mimt.ondigitalocean.app/loadingScreen`}}]
-                            //PROD
+                        [{text: 'Play 👾', web_app: {url: `https://oyster-app-4mimt.ondigitalocean.app/loadingScreen`}}], //PROD
+                        [{text: 'Join Community 👥', url: `https://t.me/eggoquest`}]
                     ]
                 }
             }).catch(error => {
@@ -268,13 +267,77 @@ function handleCallbacks(bot) {
                 '- Invite your friends to join the game and earn rewards for each new player.\n' +
                 '- Get 8% of their daily income as a bonus!\n' +
                 '\n' +
-                'This is just the beginning! Many more exciting features are currently in development. Stay tuned for updates and new adventures!')
+                '🏅 Achievements:\n' +
+                '\n' +
+                '- Earn achievements for your progress in the game.\n' +
+                '- Each achievement comes with special rewards and bonuses.\n' +
+                '\n' +
+                '📈 Player Levels:\n' +
+                '\n' +
+                '- Level up your player by gaining experience points.\n' +
+                '- Higher levels unlock new features and abilities.\n' +
+                '\n' +
+                '🎮 Mini Game:\n' +
+                '\n' +
+                '- Participate in fun mini games to earn extra rewards.\n' +
+                '- Mini games are a great way to boost your progress.\n' +
+                '\n' +
+                'This is just the beginning! Many more exciting features are currently in development. Stay tuned for updates and new adventures!',
+                {
+                    reply_markup: {
+                        inline_keyboard: [
+                            [{text: 'Join Community 👥', url: `https://t.me/eggoquest`}]
+                        ]
+                    }
+                });
         } catch (e) {
             console.log(e.message);
         }
-
     });
+    bot.onText(/\/news/, async (msg) => {
+        try {
+            const chatId = msg.chat.id;
+            console.log(msg);
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720567289/Group_819_bhwxy5.png"
+            const caption = "Stay updated with the latest news and announcements! Get the scoop on new features, upcoming events, and exciting updates!"
 
+            bot.sendPhoto(chatId, photoUrl, {
+                caption: caption,
+                reply_markup: {
+                    inline_keyboard: [
+                        [{text: 'Join Community 👥', url: `https://t.me/eggoquest`}]
+                    ]
+                }
+            }).catch(error => {
+                console.error('Error sending photo message:', error);
+            });
+
+        } catch (e) {
+            console.log(e.message);
+        }
+    });
+    bot.onText(/\/help/, async (msg) => {
+        try {
+            const chatId = msg.chat.id;
+            console.log(msg);
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720568264/Group_890_liuaek.png"
+            const caption = "Need assistance? We're here to help! If you have any questions, errors, issues, or need support, please reach out to our technical support team."
+
+            bot.sendPhoto(chatId, photoUrl, {
+                caption: caption,
+                reply_markup: {
+                    inline_keyboard: [
+                        [{text: 'Technical Support 🛠️', url: `https://t.me/eggoquest_support`}]
+                    ]
+                }
+            }).catch(error => {
+                console.error('Error sending photo message:', error);
+            });
+
+        } catch (e) {
+            console.log(e.message);
+        }
+    });
 }
 
 module.exports = {handleCallbacks};
