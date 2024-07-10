@@ -298,7 +298,7 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720567289/Group_819_bhwxy5.png"
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720570825/Group_893_gohi1t.png"
             const caption = "Stay updated with the latest news and announcements! Get the scoop on new features, upcoming events, and exciting updates!"
 
             bot.sendPhoto(chatId, photoUrl, {
@@ -320,7 +320,7 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720568264/Group_890_liuaek.png"
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720570006/Group_890_gn42pv.png"
             const caption = "Need assistance? We're here to help! If you have any questions, errors, issues, or need support, please reach out to our technical support team."
 
             bot.sendPhoto(chatId, photoUrl, {
