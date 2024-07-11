@@ -37,7 +37,7 @@
       "spending": 35000,
       "miniGameCompletedPlays": 3,
       "referrals": 1,
-      "barrelWorkTime": 2,
+      "barrelWorkTime": null,
       "achievements": []
     },
     "rewards": [

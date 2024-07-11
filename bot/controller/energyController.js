@@ -1,7 +1,7 @@
 const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json');
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
-
+const bot = require("../../bot");
 class EnergyController {
 
     async update(req, res, next){
@@ -88,35 +88,58 @@ class EnergyController {
 
     async addPole(req, res, next) {
         try {
-            const nameMapping = {
-                "Mystic Shadowleaf": "Pearl",
-                "Abyssal Onyx Heart": "Obsidian",
-                "Shadowed Viridian Nightshade": "Venom",
-                "Azure Crystal Shard": "Diamond",
-                "Crimson Emberstone": "Ruby",
-                "Infernal Blazeheart": "Meteorite",
-                "Ethereal Amethyst Essence": "Emerald",
-                "Celestial Sovereign's Egg": "Gold"
-            };
+            // const allUsers = await User.find({}, 'chatId'); // Получаем всех пользователей и их chatId
+            //
+            // const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666106/Group_899_df6gl9.png"
+            // const caption = "Hello Eggo Quest Adventurers!\n" +
+            //     "\n" +
+            //     "To show our appreciation, we have a special reward waiting for you. To claim your reward, join our new bot by clicking the link below and await more prizes for alpha testers. Not only will you receive your reward, but you will also keep the style and rarity of your egg. Your feedback was invaluable, and we can't wait to continue this journey with you.\n" +
+            //     "\n" +
+            //     "Thank you for your support and happy questing!"
+            //
+            // // Проходим по каждому пользователю и отправляем сообщение
+            // await Promise.all(allUsers.map(async (user) => {
+            //     const chatId = user.chatId;
+            //
+            //     bot.sendPhoto(chatId, photoUrl, {
+            //         caption: caption,
+            //         reply_markup: {
+            //             inline_keyboard: [
+            //                 [{ text: 'Go to Eggo Quest bot!', url: 'https://t.me/eggo_quest_bot' }]
+            //             ]
+            //         }
+            //     }).catch(error => {
+            //         console.error('Error sending photo message:', error);
+            //     });
+            // }));
+            //
+            // return res.json({ message: 'Energy field added to users' });
 
-           const users = await User.find();
 
-            const updatePromises = users.map(async user => {
-                if (user.eggs && user.eggs.length > 0) {
-                    const oldName = user.eggs[0].name;
-                    const newName = nameMapping[oldName];
 
-                    if (newName) {
-                        user.eggs[0].name = newName;
-                        return user.save();
-                    }
-                }
-                return Promise.resolve();
-            });
 
-            await Promise.all(updatePromises);
-
-            return res.json({ message: 'Energy field added to users'});
+            //
+            // const allUsers = await User.find();
+            //
+            // const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666106/Group_899_df6gl9.png"
+            // const caption = "Hello Eggo Quest Adventurers!\n" +
+            //     "\n" +
+            //     "To show our appreciation, we have a special reward waiting for you. To claim your reward, please join our new bot by clicking the link below. Not only will you receive your reward, but you will also keep the style and rarity of your egg. Your feedback was invaluable, and we can't wait to continue this journey with you.\n" +
+            //     "\n" +
+            //     "Thank you for your support and happy questing!"
+            //
+            // bot.sendPhoto("409840876", photoUrl, {
+            //     caption: caption,
+            //     reply_markup: {
+            //         inline_keyboard: [
+            //             [{ text: 'Go to Eggo Quest bot!', url: 'https://t.me/eggo_quest_bot' }]
+            //         ]
+            //     }
+            // }).catch(error => {
+            //     console.error('Error sending photo message:', error);
+            // });
+            //
+            // return res.json({ message: 'Energy field added to users'});
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Внутренняя ошибка сервера" });
