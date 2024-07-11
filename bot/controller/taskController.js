@@ -43,7 +43,7 @@ class TaskController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore profileLevel').session(session);
+            const user = await User.findOne({ chatId: req.params.userId }, 'completedTasks score overallScore profileLevel username').session(session);
             const profileLevel = user.profileLevel;
             if (!user) {
                 res.status(400).send({success: false, message: "User not found" });
@@ -88,7 +88,7 @@ class TaskController {
                 session.endSession();
 
                 const userAgentString = req.headers['user-agent'];
-                addToBuffer(req.params.userId, `complete task ${req.body.taskId}`, userAgentString, null);
+                addToBuffer(req.params.userId, user.username, `complete task ${req.body.taskId}`, userAgentString, user.score);
 
                 return res.json({
                     success: true,

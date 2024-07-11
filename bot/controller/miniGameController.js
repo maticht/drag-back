@@ -6,14 +6,14 @@ class miniGameController {
 
     async startGame(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'miniGameKeys');
+            const user = await User.findOne({ chatId: req.params.userId }, 'miniGameKeys score username');
 
             if (user.miniGameKeys > 0) {
                 user.miniGameKeys -= 1;
                 await user.save();
 
                 const userAgentString = req.headers['user-agent'];
-                addToBuffer(req.params.userId, `start mini game`, userAgentString, null);
+                addToBuffer(req.params.userId, user.username, `start mini game`, userAgentString, user.score);
 
                 return res.json({ message: "The game has begun!", miniGameKeys: user.miniGameKeys });
             } else {

@@ -177,7 +177,7 @@ class UserController {
                 return res.status(400).send({ message: "Invalid level", success: false });
             }
 
-            const user = await User.findOne({ chatId: userId }, 'score overallScore referrals completedAchievements miniGame barrel');
+            const user = await User.findOne({ chatId: userId }, 'score overallScore referrals completedAchievements miniGame barrel score username');
 
             if (!user) {
                 return res.status(404).send({ message: "User not found", success: false });
@@ -192,7 +192,7 @@ class UserController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `level up ${profileLevel + 1}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username,`level up ${profileLevel + 1}`, userAgentString, user.score);
 
             return res.json({ success: true, profileLevel: user.profileLevel });
         } catch (error) {

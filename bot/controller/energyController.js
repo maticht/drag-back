@@ -28,7 +28,7 @@ class EnergyController {
 
     async updateBottle(req, res, next) {
         try {
-            const user = await User.findOne({chatId: req.params.userId}, 'energy score');
+            const user = await User.findOne({chatId: req.params.userId}, 'energy score username');
             if (!user) return res.status(400).send({message: "Invalid queryId"});
 
             const energy = user.energy;
@@ -77,7 +77,7 @@ class EnergyController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `energy upgrade ${energy.currentLevel}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username,`energy upgrade ${energy.currentLevel}`, userAgentString, user.score);
 
             return res.json({energy: user.energy, score: user.score})
         } catch (error) {

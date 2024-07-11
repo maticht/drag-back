@@ -1,9 +1,7 @@
 const { clickHouseClient } = require('../../clickHouseClient');
-const {getBuffer, clearBuffer} = require('./dataBuffer');
-
+const { getBuffer, clearBuffer } = require('./dataBuffer');
 
 async function insertDataToClickHouse() {
-
     const dataBuffer = getBuffer();
 
     if (dataBuffer.length === 0) {
@@ -11,17 +9,17 @@ async function insertDataToClickHouse() {
         return;
     }
 
-    const tableName = "users_events";
+    const tableName = "user_event";
 
     try {
         const query = `
-            INSERT INTO ${tableName} (chat_id, event_timestamp, event_name, platform, language)
+            INSERT INTO ${tableName} (chat_id, username, event_timestamp, event_name, platform, score)
             VALUES
         `;
 
         const values = dataBuffer.map(item => {
-            const { chat_id, event_timestamp, event_name, platform, language } = item;
-            return `(${chat_id}, '${event_timestamp}', '${event_name}', '${platform}', '${language}')`;
+            const { chat_id, username, event_timestamp, event_name, platform, score } = item;
+            return `(${chat_id}, '${username}', '${event_timestamp}', '${event_name}', '${platform}', ${score})`;
         }).join(',');
 
         const fullQuery = query + values;

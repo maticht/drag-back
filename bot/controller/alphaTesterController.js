@@ -22,7 +22,7 @@ class AlphaTesterController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await User.findOne({chatId: req.params.userId}, 'score overallScore').session(session);
+            const user = await User.findOne({chatId: req.params.userId}, 'score overallScore username').session(session);
             if (!user) {
                 res.status(400).send({success: false, message: "User not found"});
                 await session.abortTransaction();
@@ -52,7 +52,7 @@ class AlphaTesterController {
 
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `claim alpha reward`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `claim alpha reward`, userAgentString, user.score);
 
             return res.json({
                 success: true,

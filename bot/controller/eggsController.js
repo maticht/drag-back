@@ -16,7 +16,7 @@ class EggsController {
                 { $set: { 'eggs.0.isModalShown': true } },
                 {
                     new: true, // возвращаем обновленный документ
-                    projection: { 'eggs': 1, _id: 0 }
+                    projection: { 'eggs': 1, username: 1, score: 1, _id: 0 }
                 }
             );
 
@@ -27,7 +27,7 @@ class EggsController {
             }
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(userId, "open egg", userAgentString, null);
+            addToBuffer(userId, updatedUser.username, "open egg", userAgentString, updatedUser.score);
 
             return res.status(200).json({ isModalShown: updatedUser.eggs[0].isModalShown });
         } catch (error) {
@@ -50,7 +50,7 @@ class EggsController {
                 },
                 {
                     new: true, // возвращаем обновленный документ
-                    projection: { 'narrativeScenes': 1, 'eggs': 1, _id: 0 } // исправленная проекция
+                    projection: { 'narrativeScenes': 1, 'eggs': 1, username: 1, score: 1, _id: 0 } // исправленная проекция
                 }
             );
 
@@ -59,7 +59,7 @@ class EggsController {
             }
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `narrative scene egg`, userAgentString, null);
+            addToBuffer(req.params.userId, updatedUser.username, `narrative scene egg`, userAgentString, updatedUser.score);
 
 
             return res.status(200).json({ narrativeScenes: updatedUser.narrativeScenes, isEggOpen: updatedUser.eggs[0].isOpen });
@@ -72,7 +72,7 @@ class EggsController {
 
     async alchemistUpgrade(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'eggs score');
+            const user = await User.findOne({ chatId: req.params.userId }, 'eggs score username');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             let egg = getRandomEgg();
@@ -94,7 +94,7 @@ class EggsController {
 
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `alchemist upgrade ${success}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `alchemist upgrade ${success}`, userAgentString, user.score);
 
             return res.json({ eggRarity: egg.rarity, score: user.score });
         } catch (error) {

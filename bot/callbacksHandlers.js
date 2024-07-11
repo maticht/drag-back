@@ -57,7 +57,7 @@ function handleCallbacks(bot) {
                         await alphaTesterReward.save();
                     }
                     await AlphaUser.deleteOne({ _id: alphaTester._id });
-                    addToBuffer(alphaTester.chatId, "registration alpha tester", null, msg.from.language_code);
+                    addToBuffer(alphaTester.chatId, alphaTester.username, "registration alpha tester", alphaTester.score);
                 }
 
                 //--------------------------ALPHA-TESTERS-----------------------------------------------
@@ -164,7 +164,7 @@ function handleCallbacks(bot) {
                     weeklyReferralRewards: [],
                 }).save();
 
-                addToBuffer(user.chatId, "registration", null, msg.from.language_code);
+                addToBuffer(user.chatId, user.username, "registration", null, user.score);
 
                 if (childReferral) {
 
@@ -191,7 +191,7 @@ function handleCallbacks(bot) {
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
                             console.log(newReferral);
-                            addToBuffer(user.chatId, "invite friend", null, msg.from.language_code);
+                            addToBuffer(user.chatId, user.username,"invite friend", null, user.score);
                         }
 
                     }

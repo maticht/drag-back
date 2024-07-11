@@ -5,7 +5,7 @@ const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 class AxeController {
     async upgrade(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'axe score');
+            const user = await User.findOne({ chatId: req.params.userId }, 'axe score username');
 
             if (!user) {
                 return res.status(400).send({ message: "Invalid queryId" });
@@ -31,7 +31,7 @@ class AxeController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `axe upgrade ${axe.currentLevel}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `axe upgrade ${axe.currentLevel}`, userAgentString, user.score);
 
             return res.json({ axe, score: user.score });
         } catch (error) {

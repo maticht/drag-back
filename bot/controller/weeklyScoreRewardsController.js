@@ -5,7 +5,7 @@ class WeeklyScoreRewardsController {
     async claim(req, res, next) {
         try {
             console.log(req.body);
-            const user = await User.findOne({chatId: req.body.userId}, 'weeklyScoreRewards score overallScore');
+            const user = await User.findOne({chatId: req.body.userId}, 'weeklyScoreRewards score overallScore username');
             console.log(user)
             const rewardId = req.body.rewardId;
             const currentWeeklyReward = user.weeklyScoreRewards.find(reward => reward._id.toString() === rewardId);
@@ -38,7 +38,7 @@ class WeeklyScoreRewardsController {
             const savedUser = await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.body.userId, `collect weekly reward score`, userAgentString, null);
+            addToBuffer(req.body.userId, user.username, `collect weekly reward score`, userAgentString, user.score);
 
             return res.status(201).send({message: "Счет обновлен успешно", success: true, reward: currentWeeklyReward});
         } catch (error) {
