@@ -52,8 +52,12 @@ class UserController {
         try {
             const currentUserId = req.params.userId;
 
-            // Находим всех пользователей и считаем количество рефералов
             const users = await User.aggregate([
+                {
+                    $match: {
+                        'referrals.referralUsers': { $ne: [] } // Фильтр: только пользователи с непустым массивом referralUsers
+                    }
+                },
                 {
                     $addFields: {
                         referralsCount: { $size: "$referrals.referralUsers" }
@@ -76,7 +80,13 @@ class UserController {
             const userIndex = users.findIndex(user => user.chatId.toString() === currentUserId);
 
             if (userIndex === -1) {
-                return res.status(404).send({ message: "User not found" });
+                const currentUser = {
+                    placeInTop: "You are not in top",
+                    league: null,
+                    referralsCount: 0,
+                    //username: users[userIndex].username
+                };
+                return res.send({users: users.slice(0, 1000), currentUser });
             }
 
             const placeInTop = userIndex + 1;
@@ -85,7 +95,7 @@ class UserController {
 
             const currentUser = {
                 placeInTop: placeInTop,
-                league: userLeague ? userLeague.league : 'Unranked',
+                league: userLeague ? userLeague.league : null,
                 referralsCount: users[userIndex].referralsCount,
                 username: users[userIndex].username
             };
@@ -102,19 +112,24 @@ class UserController {
 
             const currentUserId = req.params.userId;
 
-            const users = await User.find({}, 'miniGame.dailyBestScore username chatId').sort({ "miniGame.dailyBestScore": -1 });
+            const users = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } }, 'miniGame.dailyBestScore username chatId')
+                .sort({ "miniGame.dailyBestScore": -1 });
 
-            const scoreRewards = rewardsTemplateData.weeklyScoreRewards;
+            const miniGameRewards = rewardsTemplateData.dailyGameRewards;
 
             const userIndex = users.findIndex(user => user.chatId.toString() === currentUserId);
 
             if (userIndex === -1) {
-                return res.status(404).send({ message: "User not found" });
+                const currentUser = {
+                    placeInTop: "You are not in top",
+                    league: null,
+                };
+                return res.status(200).send({ users: users.slice(0, 1000), currentUser });
             }
 
             const placeInTop = userIndex + 1;
 
-            const userLeague = scoreRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
+            const userLeague = miniGameRewards.find(r => placeInTop >= r.placeInTop[0] && placeInTop <= r.placeInTop[1]);
 
             const currentUser = {
                 placeInTop: placeInTop,

@@ -113,10 +113,18 @@ async function performWeeklyTask() {
     }
 
     try {
-        const allUsers = await User.find()
-            .sort({ 'referrals.referralUsers': -1 })
-            .limit(1000)
-            .select('_id weeklyReferralRewards referrals profileLevel');
+        const allUsers = await User.aggregate([
+            { $match: { 'referrals.referralUsers': { $ne: [] } } },
+            { $addFields: { referralCount: { $size: '$referrals.referralUsers' } } },
+            { $sort: { referralCount: -1 } },
+            { $limit: 1000 },
+            { $project: {
+                    _id: 1,
+                    weeklyReferralRewards: 1,
+                    referrals: 1,
+                    profileLevel: 1
+                } }
+        ]);
 
 
         const referralRewards = rewardsTemplateData.weeklyReferralRewards;

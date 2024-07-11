@@ -19,7 +19,7 @@ function handleCallbacks(bot) {
                 //--------------------------ALPHA-TESTERS-----------------------------------------------
 
                 const alphaTester = await AlphaUser.findOne({chatId: chatId});
-                console.log("alphaTester", alphaTester);
+                //console.log("alphaTester", alphaTester);
                 let alphaTesterFlag = false;
                 let scoreReward = 0;
                 let referralReward = 0;
@@ -31,7 +31,7 @@ function handleCallbacks(bot) {
                         .select('_id overallScore chatId referrals eggs');
 
                     const alphaUser = allUsers.find(user => user.chatId === alphaTester.chatId);
-                    console.log("alphaUser", alphaUser);
+                    //console.log("alphaUser", alphaUser);
                     if (alphaUser) {
                         alphaTesterFlag = true;
                         const placeInTop = allUsers.findIndex(user => user.chatId === alphaTester.chatId) + 1;
@@ -42,8 +42,8 @@ function handleCallbacks(bot) {
                             scoreReward,
                             referralReward
                         });
-                        console.log("alphaTesterReward", alphaTesterReward);
-                        console.log("alphaTesterFlag", alphaTesterFlag);
+                        //console.log("alphaTesterReward", alphaTesterReward);
+                        //console.log("alphaTesterFlag", alphaTesterFlag);
                         alphaEgg = [{
                                 rarity: alphaTester.eggs[0].rarity,
                                 name: alphaTester.eggs[0].name,
@@ -65,7 +65,7 @@ function handleCallbacks(bot) {
                 const egg = getRandomEgg();
 
                 const childReferral = msg.text?.replace("/start ", ""); //айди родителя
-                console.log("childReferral", childReferral)
+                //console.log("childReferral", childReferral)
 
                 user = await new User({
                     firstName: msg.from?.first_name ? msg.from.first_name : "",
@@ -175,19 +175,22 @@ function handleCallbacks(bot) {
                         const pretendentIds = maternalReferralUser.referrals.referralUsers.map(user => user.chatId);
 
                         if (!pretendentIds.includes(chatId)) {
+                            console.log("user level", maternalReferralUser.profileLevel)
+                            console.log("refReward", rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1])
                             const newReferral = {
                                 firstName: msg.from.first_name,
                                 lastName: msg.from.last_name,
                                 username: msg.from.username,
                                 chatId: chatId,
                                 // score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
-                                score: rewardTemplateData.referralReward[user.profileLevel - 1],
+                                score: rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1],
                                 lastRefScore:0,
                                 miniGameKeys: 5,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
+                            console.log(newReferral);
                             addToBuffer(user.chatId, "invite friend", null, msg.from.language_code);
                         }
 
@@ -298,8 +301,8 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720570825/Group_893_gohi1t.png"
-            const caption = "Stay updated with the latest news and announcements! Get the scoop on new features, upcoming events, and exciting updates!"
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666625/Group_893_hitwxb.png"
+            const caption = "Get the scoop on new features, upcoming events, and exciting updates!"
 
             bot.sendPhoto(chatId, photoUrl, {
                 caption: caption,
@@ -320,7 +323,7 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720570006/Group_890_gn42pv.png"
+            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720667153/Group_890_kzunsq.png"
             const caption = "Need assistance? We're here to help! If you have any questions, errors, issues, or need support, please reach out to our technical support team."
 
             bot.sendPhoto(chatId, photoUrl, {
