@@ -90,33 +90,46 @@ class EnergyController {
         try {
             // const allUsers = await User.find({}, 'chatId'); // Получаем всех пользователей и их chatId
             //
-            // const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666106/Group_899_df6gl9.png"
+            // const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666106/Group_899_df6gl9.png";
             // const caption = "Hello Eggo Quest Adventurers!\n" +
             //     "\n" +
             //     "To show our appreciation, we have a special reward waiting for you. To claim your reward, join our new bot by clicking the link below and await more prizes for alpha testers. Not only will you receive your reward, but you will also keep the style and rarity of your egg. Your feedback was invaluable, and we can't wait to continue this journey with you.\n" +
             //     "\n" +
-            //     "Thank you for your support and happy questing!"
+            //     "Thank you for your support and happy questing!";
             //
-            // // Проходим по каждому пользователю и отправляем сообщение
-            // await Promise.all(allUsers.map(async (user) => {
+            // // Функция для задержки в миллисекундах
+            //
+            // let count = 0;
+            //
+            // function delay(ms) {
+            //     count +=1 ;
+            //     return new Promise(resolve => setTimeout(resolve, ms));
+            // }
+            //
+            //
+            // // Проходим по каждому пользователю и отправляем сообщение с задержкой
+            // for (const user of allUsers) {
             //     const chatId = user.chatId;
             //
-            //     bot.sendPhoto(chatId, photoUrl, {
-            //         caption: caption,
-            //         reply_markup: {
-            //             inline_keyboard: [
-            //                 [{ text: 'Go to Eggo Quest bot!', url: 'https://t.me/eggo_quest_bot' }]
-            //             ]
-            //         }
-            //     }).catch(error => {
-            //         console.error('Error sending photo message:', error);
-            //     });
-            // }));
+            //     try {
+            //         await bot.sendPhoto(chatId, photoUrl, {
+            //             caption: caption,
+            //             reply_markup: {
+            //                 inline_keyboard: [
+            //                     [{ text: 'Go to Eggo Quest bot!', url: 'https://t.me/eggo_quest_bot' }]
+            //                 ]
+            //             }
+            //         });
+            //
+            //         console.log(`Message sent to user with chatId ${chatId}`);
+            //     } catch (error) {
+            //         console.error(`Error sending photo message to user with chatId ${chatId}:`, error);
+            //     }
+            //
+            //     await delay(1000);
+            // }
             //
             // return res.json({ message: 'Energy field added to users' });
-
-
-
 
             //
             // const allUsers = await User.find();

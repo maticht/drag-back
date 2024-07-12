@@ -16,6 +16,23 @@ class UserController {
         }
     }
 
+    async getUserDataLoadingScreen(req, res){
+        try {
+            const {isLoadingScreen} = req.body;
+            const user = await User.findOne({ chatId: req.params.userId });
+            console.log(req.params.userId)
+            if (!user) return res.status(400).send({ message: "Invalid queryId" });
+            if(isLoadingScreen){
+                const userAgentString = req.headers['user-agent'];
+                addToBuffer(req.params.userId, user.username,`open bot`, userAgentString, user.score);
+            }
+            return res.json({user})
+        } catch (error) {
+            res.status(500).send({ message: "Internal Server Error" });
+        }
+    }
+
+
     async getAllUsersForScoreTop(req, res){
         try {
             const currentUserId = req.params.userId;

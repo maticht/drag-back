@@ -191,7 +191,7 @@ function handleCallbacks(bot) {
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
                             await maternalReferralUser.save();
                             console.log(newReferral);
-                            addToBuffer(user.chatId, user.username,"invite friend", null, user.score);
+                            addToBuffer(maternalReferralUser.chatId, maternalReferralUser.username, "invite friend", null, user.score);
                         }
 
                     }

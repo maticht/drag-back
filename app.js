@@ -295,7 +295,7 @@ cron.schedule('0 */6 * * *', userNotification, {
     timezone: "Europe/Moscow"
 });
 
-cron.schedule('0 * * * *', insertDataToClickHouse, {
+cron.schedule('*/10 * * * *', insertDataToClickHouse, {
     timezone: "Europe/Moscow"
 });
 
