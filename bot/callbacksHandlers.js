@@ -183,20 +183,36 @@ function handleCallbacks(bot) {
                                 username: msg.from.username,
                                 chatId: chatId,
                                 // score: 1000 * rewardTemplateData.RewardCoefficient[user.profileLevel],
-                                score: rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1],
+                                score: 0,//rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1],
                                 lastRefScore:0,
-                                miniGameKeys: 5,
+                                miniGameKeys: 0,//5,
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
+                            maternalReferralUser.score += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
+                            maternalReferralUser.overallScore += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
+                            maternalReferralUser.miniGameKeys += 5;
                             await maternalReferralUser.save();
-                            console.log(newReferral);
-                            addToBuffer(maternalReferralUser.chatId, maternalReferralUser.username, "invite friend", null, user.score);
-                        }
 
+                            console.log(newReferral);
+                            try {
+                                bot.sendMessage(maternalReferralUser.chatId, `Congratulations, you have a new referral <b>${msg.from.username ? msg.from.username : msg.from.first_name}</b> 🚀\nYou have received 5 keys and ${rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1]} coins ✅`, {
+                                    parse_mode: 'HTML',
+                                    reply_markup: {
+                                        inline_keyboard: [
+                                            [{ text: 'Collect reward', web_app: { url: 'https://oyster-app-4mimt.ondigitalocean.app/loadingScreen' } }]
+                                        ]
+                                    }
+                                });
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+                            addToBuffer(maternalReferralUser.chatId, maternalReferralUser.username, "invite friend", null, maternalReferralUser.score);
+                        }
                     }
                 }
             }
+
             const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720271584/Group_877_bdvgia.png"
             const caption = "Try your luck, break the egg and see what happens next!"
             bot.sendPhoto(chatId, photoUrl, {

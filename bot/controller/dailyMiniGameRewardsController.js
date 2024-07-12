@@ -38,7 +38,7 @@ class DailyMiniGameRewardsController {
             const savedUser = await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.body.userId, user.username `collect weekly reward mini game`, userAgentString, user.score);
+            addToBuffer(req.body.userId, user.username, `collect weekly reward mini game`, userAgentString, user.score);
 
             return res.status(201).send({message: "Счет обновлен успешно", success: true, reward: currentDailyReward});
         } catch (error) {
