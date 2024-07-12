@@ -1,7 +1,7 @@
 const {getCurrentMoscowTime, parseUserAgent} = require('../helpers')
 let dataBuffer = [];
 
-function addToBuffer(chatId, event_name, userAgentString, language) {
+function addToBuffer(chatId, username, event_name, userAgentString, score) {
 
     const event_timestamp = getCurrentMoscowTime();
     let platform;
@@ -11,11 +11,12 @@ function addToBuffer(chatId, event_name, userAgentString, language) {
     }
 
     const data = {
-        chat_id: chatId || null,
+        chat_id: chatId.toString() || null,
+        username: username || null,
         event_timestamp: event_timestamp || null,
         event_name: event_name || null,
         platform: platform || null,
-        language: language || null
+        score: score || null
     };
 
     dataBuffer.push(data);

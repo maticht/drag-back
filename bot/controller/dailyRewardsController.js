@@ -5,7 +5,7 @@ const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 class DailyRewardsController {
     async collect(req, res) {
         try {
-            const user = await User.findOne({chatId: req.params.userId}, 'score profileLevel overallScore dailyReward miniGameKeys');
+            const user = await User.findOne({chatId: req.params.userId}, 'score profileLevel overallScore dailyReward miniGameKeys username');
             if (!user) return res.status(400).send({message: "Invalid userId"});
 
             const profileLevel = user.profileLevel;
@@ -54,7 +54,7 @@ class DailyRewardsController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `collect daily reward ${rewardIndex + 1}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `collect daily reward ${rewardIndex + 1}`, userAgentString, user.score);
 
             return res.json({
                 score: user.score,

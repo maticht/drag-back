@@ -6,7 +6,7 @@ class HammerController {
 
     async upgrade(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'hammer score');
+            const user = await User.findOne({ chatId: req.params.userId }, 'hammer score username');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const hammer = user.hammer;
@@ -23,7 +23,7 @@ class HammerController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `hammer upgrade ${hammer.currentLevel}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `hammer upgrade ${hammer.currentLevel}`, userAgentString, user.score);
 
             return res.json({hammer: user.hammer, score: user.score});
         } catch (error) {

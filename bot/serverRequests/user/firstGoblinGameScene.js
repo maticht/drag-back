@@ -4,7 +4,7 @@ const {addToBuffer} = require("../../../utils/clickHouse/dataBuffer");
 
 router.put("/:userId/", async (req, res) => {
     try {
-        const user = await User.findOne({ chatId: req.params.userId }, 'narrativeScenes');
+        const user = await User.findOne({ chatId: req.params.userId }, 'narrativeScenes score username');
         if (!user) return res.status(400).send({ message: "Invalid queryId" });
         if (!user.narrativeScenes.firstGoblinGame) {
             user.narrativeScenes.firstGoblinGame = true;
@@ -12,7 +12,7 @@ router.put("/:userId/", async (req, res) => {
         await user.save();
 
         const userAgentString = req.headers['user-agent'];
-        addToBuffer(req.params.userId, `narrative scene mini game`, userAgentString, null);
+        addToBuffer(req.params.userId, user.username, `narrative scene mini game`, userAgentString, user.score);
 
         return res.json({ narrativeScenes: user.narrativeScenes});
     } catch (error) {

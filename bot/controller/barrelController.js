@@ -6,7 +6,7 @@ class BarrelController {
 
     async upgrade(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score');
+            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score username');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const barrel = user.barrel;
@@ -35,7 +35,7 @@ class BarrelController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `barrel upgrade ${barrel.currentLevel}`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `barrel upgrade ${barrel.currentLevel}`, userAgentString, user.score);
 
             return res.json({barrel, score: user.score})
         } catch (error) {
@@ -46,7 +46,7 @@ class BarrelController {
 
     async collect(req, res){
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score overallScore isNotified eggs');
+            const user = await User.findOne({ chatId: req.params.userId }, 'barrel score overallScore isNotified eggs username');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
             const barrel = user.barrel;
@@ -71,7 +71,7 @@ class BarrelController {
             await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, `collect barrel`, userAgentString, null);
+            addToBuffer(req.params.userId, user.username, `collect barrel`, userAgentString, user.score);
 
             return res.json({workTime: barrel.workTime, lastEntrance: barrel.lastEntrance, collectionTime, score: user.score, overallScore: user.overallScore, eggScore: user.eggs[0].score, success:true})
         } catch (error) {
