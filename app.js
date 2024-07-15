@@ -64,7 +64,7 @@ async function performWeeklyTask() {
             .select('_id weeklyScoreRewards overallScore profileLevel');
 
         const scoreRewards = rewardsTemplateData.weeklyScoreRewards;
-        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersScoreReward;
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
@@ -128,7 +128,7 @@ async function performWeeklyTask() {
 
 
         const referralRewards = rewardsTemplateData.weeklyReferralRewards;
-        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersRefReward;
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;
@@ -186,7 +186,7 @@ async function performDailyTask() {
 
 
         const miniGameRewards = rewardsTemplateData.dailyGameRewards;
-        const bestPlayersReward = rewardsTemplateData.bestPlayersReward;
+        const bestPlayersReward = rewardsTemplateData.bestPlayersGameReward;
 
         // const topUsers = allUsers.slice(0, 1000);
 
