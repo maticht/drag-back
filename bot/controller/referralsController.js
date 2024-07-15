@@ -1,4 +1,5 @@
 const {User} = require("../../models/user");
+const mongoose = require("mongoose");
 
 class ReferralsController {
 
@@ -70,6 +71,69 @@ class ReferralsController {
         } catch (error) {
             console.error(error);
             res.status(500).send({message: "Internal Server Error"});
+        }
+    }
+
+    async collectFromNewReferrals(req, res) {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+
+        try {
+            const user = await User.findOne({ chatId: req.params.userId }).session(session);
+            if (!user) {
+                await session.abortTransaction();
+                session.endSession();
+                return res.status(400).send({ message: "Invalid queryId" });
+            }
+
+            const { rewardsChatIds } = req.body; // массив chatId, пришедший в теле запроса
+            if (!Array.isArray(rewardsChatIds) || rewardsChatIds.length === 0) {
+                await session.abortTransaction();
+                session.endSession();
+                return res.status(400).send({ message: "Invalid or empty rewardsChatIds array" });
+            }
+
+            const newReferralsRewards = user.newReferralsRewards;
+            if (!newReferralsRewards || newReferralsRewards.length === 0) {
+                await session.abortTransaction();
+                session.endSession();
+                return res.status(400).send({ message: "No new referral rewards to collect" });
+            }
+
+            let totalRewardValue = 0;
+            let totalKeys = 0;
+            const remainingRewards = [];
+            newReferralsRewards.forEach(reward => {
+                if (rewardsChatIds.includes(reward.chatId)) {
+                    totalRewardValue += reward.rewardValue || 0;
+                    totalKeys += reward.keys || 0;
+                } else {
+                    remainingRewards.push(reward);
+                }
+            });
+
+            user.score += totalRewardValue;
+            user.overallScore += totalRewardValue;
+            user.miniGameKeys += totalKeys;
+
+            user.newReferralsRewards = remainingRewards;
+
+            await user.save({ session });
+
+            await session.commitTransaction();
+            session.endSession();
+
+            return res.json({
+                success: true,
+                score: user.score,
+                overallScore: user.overallScore,
+                miniGameKeys: user.miniGameKeys
+            });
+        } catch (error) {
+            await session.abortTransaction();
+            session.endSession();
+            console.error(error);
+            res.status(500).send({ message: "Internal Server Error" });
         }
     }
 }

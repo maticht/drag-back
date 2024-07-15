@@ -190,9 +190,18 @@ function handleCallbacks(bot) {
                                 collectionTime: new Date(Date.now() + 24 * 60 * 60 * 1000)
                             };
                             maternalReferralUser.referrals.referralUsers.push(newReferral);
-                            maternalReferralUser.score += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
-                            maternalReferralUser.overallScore += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
-                            maternalReferralUser.miniGameKeys += 5;
+                            const newReferralReward = {
+                                referralName: msg.from.username ? msg.from.username : msg.from.first_name,
+                                chatId: user.chatId,
+                                rewardValue: rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1],
+                                keys: 5,
+                            }
+                            maternalReferralUser.newReferralsRewards.push(newReferralReward)
+
+                            // maternalReferralUser.score += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
+                            // maternalReferralUser.overallScore += rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
+                            // maternalReferralUser.miniGameKeys += 5;
+
                             await maternalReferralUser.save();
 
                             console.log(newReferral);

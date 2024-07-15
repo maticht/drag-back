@@ -58,6 +58,12 @@ const userSchema = new mongoose.Schema({
             lastRefScore: {type: Number, required: false, default: 0},
         }],
     },
+    newReferralsRewards: [{
+        referralName: {type: String, required: false},
+        chatId: {type: String, required: false},
+        rewardValue: {type: Number, required: false},
+        keys: {type: Number, required: false},
+    }],
     language: {type: String},
     userTopPlace: {type: Number, required: false, default: 0},
     userReferralTopPlace: {type: Number, required: false, default: 0},
