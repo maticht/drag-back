@@ -4,6 +4,7 @@ const rewardTemplateData = require("../eggsTemplateData/rewardsTemplateData.json
 const {addToBuffer} = require("../utils/clickHouse/dataBuffer");
 const {AlphaUser} = require("../models/alphaUsers");
 const {AlphaUserReward} = require("../models/alphaUsersReward");
+const {addToRefBuffer} = require("../utils/clickHouse/refDataBuffer");
 
 
 function handleCallbacks(bot) {
@@ -207,6 +208,7 @@ function handleCallbacks(bot) {
                             } catch (e) {
                                 console.log(e.message);
                             }
+                            addToRefBuffer(maternalReferralUser.chatId, user.chatId);
                             addToBuffer(maternalReferralUser.chatId, maternalReferralUser.username, "invite friend", null, maternalReferralUser.score);
                         }
                     }
