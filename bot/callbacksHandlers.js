@@ -9,11 +9,11 @@ const {languageMap} = require("../utils/localization");
 const locales = require('../eggsTemplateData/locales.json');
 
 const languageNames = {
-    'En': 'English',
-    'Ru': 'Русский',
-    'Ua': 'Українська',
-    'Pt': 'Português',
-    'Es': 'Español'
+    'en': 'English',
+    'ru': 'Русский',
+    'ua': 'Українська',
+    'pt': 'Português',
+    'es': 'Español'
 };
 
 const msgId = {};
@@ -86,7 +86,7 @@ function handleCallbacks(bot) {
                     alphaTester: alphaTesterFlag,
                     profileLevel: 1,
                     childReferral: childReferral,
-                    language: "En",
+                    language: "en",
                     referrals:{
                         referralStartTime: 0,
                         referralCollectionTime: 0,
@@ -176,7 +176,7 @@ function handleCallbacks(bot) {
                     weeklyReferralRewards: [],
                 }).save();
 
-                languageMap.set(user.chatId.toString(), 'En');
+                languageMap.set(user.chatId.toString(), 'en');
 
                 addToBuffer(user.chatId, user.username, "registration", null, user.score);
 
@@ -211,7 +211,7 @@ function handleCallbacks(bot) {
                             await maternalReferralUser.save();
 
                             try {
-                                const userLanguage = languageMap.get(maternalReferralUser.chatId.toString()) || 'En';
+                                const userLanguage = languageMap.get(maternalReferralUser.chatId.toString()) || 'en';
                                 const text = locales[userLanguage].congratulationsMessage.replace('{username}', msg.from.username ? msg.from.username : msg.from.first_name);
                                 const reward = rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
                                 const message = text.replace('{reward}', reward);
@@ -431,6 +431,7 @@ function handleCallbacks(bot) {
                 }
             }
         }
+
     });
 }
 

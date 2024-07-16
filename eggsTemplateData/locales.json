@@ -1,12 +1,12 @@
 {
-  "En": {
+  "en": {
     "startLanguageMessage": "Please select your language:",
     "startMessageInlineKeyboardLanguages": [
-      [{ "text": "English", "callback_data": "start_language:En" }],
-      [{ "text": "Русский", "callback_data": "start_language:Ru" }],
-      [{ "text": "Українська", "callback_data": "start_language:Ua" }],
-      [{ "text": "Português", "callback_data": "start_language:Pt" }],
-      [{ "text": "Español", "callback_data": "start_language:Es" }]
+      [{ "text": "English", "callback_data": "start_language:en" }],
+      [{ "text": "Русский", "callback_data": "start_language:ru" }],
+      [{ "text": "Українська", "callback_data": "start_language:ua" }],
+      [{ "text": "Português", "callback_data": "start_language:pt" }],
+      [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "tryYourLuckMessage": "Try your luck, break the egg and see what happens next!",
     "eggPlayInlineKeyboard": [
@@ -28,22 +28,22 @@
     "helpMessage": "Need assistance? We're here to help! If you have any questions, errors, issues, or need support, please reach out to our technical support team.",
     "settingsMessage": "Please select your language:",
     "settingsInlineKeyboard": [
-      [{ "text": "English", "callback_data": "language:En" }],
-      [{ "text": "Русский", "callback_data": "language:Ru" }],
-      [{ "text": "Українська", "callback_data": "language:Ua" }],
-      [{ "text": "Português", "callback_data": "language:Pt" }],
-      [{ "text": "Español", "callback_data": "language:Es" }]
+      [{ "text": "English", "callback_data": "language:en" }],
+      [{ "text": "Русский", "callback_data": "language:ru" }],
+      [{ "text": "Українська", "callback_data": "language:ua" }],
+      [{ "text": "Português", "callback_data": "language:pt" }],
+      [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Language has been set to"
 },
-  "Ru": {
+  "ru": {
     "startLanguageMessage": "Выберите язык:",
     "startMessageInlineKeyboardLanguages": [
-      [{ "text": "English", "callback_data": "start_language:En" }],
-      [{ "text": "Русский", "callback_data": "start_language:Ru" }],
-      [{ "text": "Українська", "callback_data": "start_language:Ua" }],
-      [{ "text": "Português", "callback_data": "start_language:Pt" }],
-      [{ "text": "Español", "callback_data": "start_language:Es" }]
+      [{ "text": "English", "callback_data": "start_language:en" }],
+      [{ "text": "Русский", "callback_data": "start_language:ru" }],
+      [{ "text": "Українська", "callback_data": "start_language:ua" }],
+      [{ "text": "Português", "callback_data": "start_language:pt" }],
+      [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "tryYourLuckMessage": "Испытайте свою удачу, разбейте яйцо и посмотрите, что произойдет дальше!",
     "eggPlayInlineKeyboard": [
@@ -65,22 +65,22 @@
     "helpMessage": "Нужна помощь? Мы здесь, чтобы помочь! Если у вас есть возникли вопросы, ошибки или проблемы, пожалуйста, обратитесь в нашу службу технической поддержки.",
     "settingsMessage": "Выберите язык:",
     "settingsInlineKeyboard": [
-      [{ "text": "English", "callback_data": "language:En" }],
-      [{ "text": "Русский", "callback_data": "language:Ru" }],
-      [{ "text": "Українська", "callback_data": "language:Ua" }],
-      [{ "text": "Português", "callback_data": "language:Pt" }],
-      [{ "text": "Español", "callback_data": "language:Es" }]
+      [{ "text": "English", "callback_data": "language:en" }],
+      [{ "text": "Русский", "callback_data": "language:ru" }],
+      [{ "text": "Українська", "callback_data": "language:ua" }],
+      [{ "text": "Português", "callback_data": "language:pt" }],
+      [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Язык был установлен на"
   },
-  "Ua": {
+  "ua": {
     "startLanguageMessage": "Виберіть мову:",
     "startMessageInlineKeyboardLanguages": [
-      [{ "text": "English", "callback_data": "start_language:En" }],
-      [{ "text": "Русский", "callback_data": "start_language:Ru" }],
-      [{ "text": "Українська", "callback_data": "start_language:Ua" }],
-      [{ "text": "Português", "callback_data": "start_language:Pt" }],
-      [{ "text": "Español", "callback_data": "start_language:Es" }]
+      [{ "text": "English", "callback_data": "start_language:en" }],
+      [{ "text": "Русский", "callback_data": "start_language:ru" }],
+      [{ "text": "Українська", "callback_data": "start_language:ua" }],
+      [{ "text": "Português", "callback_data": "start_language:pt" }],
+      [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "eggPlayInlineKeyboard": [
       [{ "text": "Грати 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
@@ -102,22 +102,22 @@
     "helpMessage": "Потрібна допомога? Ми тут, щоб допомогти! Якщо у вас є питання, помилки, проблеми або потрібна підтримка, будь ласка, зверніться до нашої служби технічної підтримки.",
     "settingsMessage": "Виберіть вашу мову:",
     "settingsInlineKeyboard": [
-      [{ "text": "English", "callback_data": "language:En" }],
-      [{ "text": "Русский", "callback_data": "language:Ru" }],
-      [{ "text": "Українська", "callback_data": "language:Ua" }],
-      [{ "text": "Português", "callback_data": "language:Pt" }],
-      [{ "text": "Español", "callback_data": "language:Es" }]
+      [{ "text": "English", "callback_data": "language:en" }],
+      [{ "text": "Русский", "callback_data": "language:ru" }],
+      [{ "text": "Українська", "callback_data": "language:ua" }],
+      [{ "text": "Português", "callback_data": "language:pt" }],
+      [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Мову було встановлено на"
   },
-  "Pt": {
+  "pt": {
     "startLanguageMessage": "Por favor, escolha seu idioma:",
     "startMessageInlineKeyboardLanguages": [
-      [{ "text": "English", "callback_data": "start_language:En" }],
-      [{ "text": "Русский", "callback_data": "start_language:Ru" }],
-      [{ "text": "Українська", "callback_data": "start_language:Ua" }],
-      [{ "text": "Português", "callback_data": "start_language:Pt" }],
-      [{ "text": "Español", "callback_data": "start_language:Es" }]
+      [{ "text": "English", "callback_data": "start_language:en" }],
+      [{ "text": "Русский", "callback_data": "start_language:ru" }],
+      [{ "text": "Українська", "callback_data": "start_language:ua" }],
+      [{ "text": "Português", "callback_data": "start_language:pt" }],
+      [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "newReferralRewardInlineKeyboard": [
       [{ "text":"Coletar recompensa", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
@@ -139,22 +139,22 @@
     "helpMessage": "Precisa de ajuda? Estamos aqui para ajudar! Se você tiver perguntas, erros, problemas ou precisar de suporte, entre em contato com nossa equipe de suporte técnico.",
     "settingsMessage": "Por favor, escolha seu idioma:",
     "settingsInlineKeyboard": [
-      [{ "text": "English", "callback_data": "language:En" }],
-      [{ "text": "Русский", "callback_data": "language:Ru" }],
-      [{ "text": "Українська", "callback_data": "language:Ua" }],
-      [{ "text": "Português", "callback_data": "language:Pt" }],
-      [{ "text": "Español", "callback_data": "language:Es" }]
+      [{ "text": "English", "callback_data": "language:en" }],
+      [{ "text": "Русский", "callback_data": "language:ru" }],
+      [{ "text": "Українська", "callback_data": "language:ua" }],
+      [{ "text": "Português", "callback_data": "language:pt" }],
+      [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "O idioma foi configurado para"
   },
-  "Es": {
+  "es": {
     "startLanguageMessage": "Por favor, selecciona tu idioma:",
     "startMessageInlineKeyboardLanguages": [
-      [{ "text": "English", "callback_data": "start_language:En" }],
-      [{ "text": "Русский", "callback_data": "start_language:Ru" }],
-      [{ "text": "Українська", "callback_data": "start_language:Ua" }],
-      [{ "text": "Português", "callback_data": "start_language:Pt" }],
-      [{ "text": "Español", "callback_data": "start_language:Es" }]
+      [{ "text": "English", "callback_data": "start_language:en" }],
+      [{ "text": "Русский", "callback_data": "start_language:ru" }],
+      [{ "text": "Українська", "callback_data": "start_language:ua" }],
+      [{ "text": "Português", "callback_data": "start_language:pt" }],
+      [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "tryYourLuckMessage": "Prueba tu suerte, rompe el huevo y mira qué pasa después!",
     "eggPlayInlineKeyboard": [
@@ -176,11 +176,11 @@
     "helpMessage": "¿Necesitas ayuda? ¡Estamos aquí para ayudarte! Si tienes preguntas, errores, problemas o necesitas soporte, por favor contacta a nuestro equipo de soporte técnico.",
     "settingsMessage": "Por favor, selecciona tu idioma:",
     "settingsInlineKeyboard": [
-      [{ "text": "English", "callback_data": "language:En" }],
-      [{ "text": "Русский", "callback_data": "language:Ru" }],
-      [{ "text": "Українська", "callback_data": "language:Ua" }],
-      [{ "text": "Português", "callback_data": "language:Pt" }],
-      [{ "text": "Español", "callback_data": "language:Es" }]
+      [{ "text": "English", "callback_data": "language:en" }],
+      [{ "text": "Русский", "callback_data": "language:ru" }],
+      [{ "text": "Українська", "callback_data": "language:ua" }],
+      [{ "text": "Português", "callback_data": "language:pt" }],
+      [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "El idioma se ha configurado a"
   }
