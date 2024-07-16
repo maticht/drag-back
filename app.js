@@ -284,7 +284,7 @@ async function userNotification() {
 }
 
 // Планирование задачи на каждое воскресенье в 23:59:59
-cron.schedule('5 4 * * 0', performWeeklyTask, {
+cron.schedule('59 59 23 * * 0', performWeeklyTask, {
     timezone: "Europe/Moscow"
 });
 
