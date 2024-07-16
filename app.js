@@ -13,6 +13,7 @@ const app = express();
 const connection = require("./db");
 const {checkConnection} = require("./clickHouseClient");
 const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
+const {setUsersLanguages} = require("./utils/localization");
 
 async function initializeApp() {
     try {
@@ -49,11 +50,12 @@ async function initializeApp() {
     }
 }
 
-initializeApp();
-
 async function startBot() {
+    await setUsersLanguages();
     handleCallbacks(bot);
 }
+
+initializeApp();
 
 async function performWeeklyTask() {
 
@@ -295,9 +297,9 @@ cron.schedule('0 */6 * * *', userNotification, {
     timezone: "Europe/Moscow"
 });
 
-// cron.schedule('*/10 * * * *', insertDataToClickHouse, {
-//     timezone: "Europe/Moscow"
-// });
+cron.schedule('*/10 * * * *', insertDataToClickHouse, {
+    timezone: "Europe/Moscow"
+});
 
 
 
