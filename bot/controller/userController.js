@@ -249,6 +249,31 @@ class UserController {
             return res.status(500).send({ message: "Внутренняя ошибка сервера" });
         }
     }
+    async changeLanguage(req, res){
+        try {
+            const { userId } = req.params;
+            const { languageCode } = req.body;
+
+            if (!languageCode) {
+                return res.status(400).send({ message: "Invalid language code" });
+            }
+
+            const user = await User.findOneAndUpdate(
+                { chatId: userId },
+                { language: languageCode || "En" },
+                { new: true, select: 'language' }
+            );
+
+            if (!user) {
+                return res.status(404).send({ message: "User not found" });
+            }
+
+            return res.json({ language: user.language });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: "Internal Server Error" });
+        }
+    }
 }
 
 module.exports = new UserController();
