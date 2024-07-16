@@ -3,6 +3,7 @@ const {checkLevel} = require("../../utils/helpers");
 const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json")
 const mongoose = require('mongoose');
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
+const {languageMap} = require("../../utils/localization");
 
 class UserController {
     async getUserData(req, res){
@@ -260,9 +261,11 @@ class UserController {
 
             const user = await User.findOneAndUpdate(
                 { chatId: userId },
-                { language: languageCode || "En" },
+                { language: languageCode || "en" },
                 { new: true, select: 'language' }
             );
+
+            languageMap.set(userId.toString(), languageCode || 'en');
 
             if (!user) {
                 return res.status(404).send({ message: "User not found" });
