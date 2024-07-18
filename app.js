@@ -14,6 +14,7 @@ const connection = require("./db");
 const {checkConnection} = require("./clickHouseClient");
 const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
 const {setUsersLanguages} = require("./utils/localization");
+const locales = require("./eggsTemplateData/locales.json");
 
 async function initializeApp() {
     try {
@@ -249,28 +250,26 @@ async function userNotification() {
 
     const usersToUpdate = await User.find({
         $and: [
-            {"energy.energyFullRecoveryDate": {$lte: dateNow}},
-            {"barrel.collectionTime": {$lte: dateNow}},
-            {isNotified: false}
+            { "energy.energyFullRecoveryDate": { $lte: dateNow } },
+            { "barrel.collectionTime": { $lte: dateNow } },
+            { isNotified: false }
         ]
-    }, "chatId isNotified");
+    }, "chatId isNotified language");
 
+    
     if (usersToUpdate.length === 0) return;
 
-    const chatIds = usersToUpdate.map(user => user.chatId);
     const photoUrl = 'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720283889/Rectangle_139_w7s8a9.png';
-    const caption = 'The barrel is full and the energy is restored, come back';
 
-    await Promise.all(chatIds.map(chatId => {
+    await Promise.all(usersToUpdate.map(user => {
+        const userLanguage = user.language || 'en';
+        const caption = locales[userLanguage].barrelEnergyNotification;
+        const keyboard = locales[userLanguage].playInlineKeyboard;
 
-        bot.sendPhoto(chatId, photoUrl, {
+        return bot.sendPhoto(user.chatId, photoUrl, {
             caption: caption,
             reply_markup: {
-                inline_keyboard: [
-                    //[{text: 'Play', web_app: {url: `https://dragoneggs.net.pl/loadingScreen`}}]
-                    //[{text: 'Play', web_app: {url: `https://sad-hamster.com.pl/loadingScreen`}}]
-                    [{text: 'Play 👾', web_app: {url: `https://oyster-app-4mimt.ondigitalocean.app/loadingScreen`}}] //PROD
-                ]
+                inline_keyboard: keyboard
             }
         }).catch(error => {
             console.error('Error sending photo message:', error);
@@ -278,8 +277,8 @@ async function userNotification() {
     }));
 
     await User.updateMany(
-        {_id: {$in: usersToUpdate.map(user => user._id)}},
-        {$set: {isNotified: true}}
+        { _id: { $in: usersToUpdate.map(user => user._id) } },
+        { $set: { isNotified: true } }
     );
 }
 

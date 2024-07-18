@@ -59,7 +59,7 @@ class UserController {
                 // username: users[userIndex].username
             };
 
-            res.status(200).send({ users: users.slice(0, 1000), currentUser });
+            res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
@@ -104,7 +104,7 @@ class UserController {
                     referralsCount: 0,
                     //username: users[userIndex].username
                 };
-                return res.send({users: users.slice(0, 1000), currentUser });
+                return res.send({users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
             }
 
             const placeInTop = userIndex + 1;
@@ -115,7 +115,8 @@ class UserController {
                 placeInTop: placeInTop,
                 league: userLeague ? userLeague.league : null,
                 referralsCount: users[userIndex].referralsCount,
-                username: users[userIndex].username
+                username: users[userIndex].username,
+                allUsersLength: users.length
             };
 
             res.status(200).send({ users: users.slice(0, 1000), currentUser });
@@ -140,6 +141,7 @@ class UserController {
             if (userIndex === -1) {
                 const currentUser = {
                     placeInTop: "You are not in top",
+                    allUsersLength: users.length,
                     league: null,
                 };
                 return res.status(200).send({ users: users.slice(0, 1000), currentUser });
@@ -154,7 +156,7 @@ class UserController {
                 league: userLeague ? userLeague.league : 'Unranked',
             };
 
-            res.status(200).send({ users: users.slice(0, 1000), currentUser });
+            res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });

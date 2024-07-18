@@ -2,6 +2,7 @@ const {User} = require("../../models/user");
 const storeData = require('../../eggsTemplateData/storeTemplateData.json');
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 const bot = require("../../bot");
+const {AlphaUser} = require("../../models/alphaUsers");
 class EnergyController {
 
     async update(req, res, next){
@@ -88,7 +89,7 @@ class EnergyController {
 
     async addPole(req, res, next) {
         try {
-            // const allUsers = await User.find({}, 'chatId'); // Получаем всех пользователей и их chatId
+            // const allUsers = await AlphaUser.find({}, 'chatId username firstName'); // Получаем всех пользователей и их chatId
             //
             // const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666106/Group_899_df6gl9.png";
             // const caption = "Hello Eggo Quest Adventurers!\n" +
@@ -97,8 +98,6 @@ class EnergyController {
             //     "\n" +
             //     "Thank you for your support and happy questing!";
             //
-            // // Функция для задержки в миллисекундах
-            //
             // let count = 0;
             //
             // function delay(ms) {
@@ -106,8 +105,6 @@ class EnergyController {
             //     return new Promise(resolve => setTimeout(resolve, ms));
             // }
             //
-            //
-            // // Проходим по каждому пользователю и отправляем сообщение с задержкой
             // for (const user of allUsers) {
             //     const chatId = user.chatId;
             //
@@ -121,9 +118,9 @@ class EnergyController {
             //             }
             //         });
             //
-            //         console.log(`Message sent to user with chatId ${chatId}`);
+            //         console.log(`Message sent to user with chatId ${chatId} and username ${user.username ? user.username: user.firstName}`);
             //     } catch (error) {
-            //         console.error(`Error sending photo message to user with chatId ${chatId}:`, error);
+            //         console.log(`Error sending photo message to user with chatId ${chatId} and username ${user.username ? user.username: user.firstName}: `, error.message);
             //     }
             //
             //     await delay(1000);

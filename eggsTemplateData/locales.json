@@ -13,6 +13,9 @@
       [{ "text": "Play 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
     ],
+    "playInlineKeyboard": [
+      [{ "text": "Play 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+    ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
     ],
@@ -34,7 +37,8 @@
       [{ "text": "Português", "callback_data": "language:pt" }],
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
-    "languageSet": "Language has been set to"
+    "languageSet": "Language has been set to",
+    "barrelEnergyNotification": "The barrel is full and the energy is restored, come back"
   },
   "ru": {
     "startLanguageMessage": "Выберите язык:",
@@ -49,6 +53,9 @@
     "eggPlayInlineKeyboard": [
       [{ "text": "Играть 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Присоединиться к сообществу 👥", "url": "https://t.me/eggoquest"}]
+    ],
+    "playInlineKeyboard": [
+      [{ "text": "Играть 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Присоединиться к сообществу 👥", "url": "https://t.me/eggoquest"}]
@@ -71,7 +78,8 @@
       [{ "text": "Português", "callback_data": "language:pt" }],
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
-    "languageSet": "Язык был установлен на"
+    "languageSet": "Язык был установлен на",
+    "barrelEnergyNotification": "Бочка полна, а энергия восстановлена. Возвращайтесь!"
   },
   "ua": {
     "startLanguageMessage": "Виберіть мову:",
@@ -85,6 +93,9 @@
     "eggPlayInlineKeyboard": [
       [{ "text": "Грати 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Приєднатися до спільноти 👥", "url": "https://t.me/eggoquest"}]
+    ],
+    "playInlineKeyboard": [
+      [{ "text": "Грати 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Приєднатися до спільноти 👥", "url": "https://t.me/eggoquest"}]
@@ -108,7 +119,8 @@
       [{ "text": "Português", "callback_data": "language:pt" }],
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
-    "languageSet": "Мову було встановлено на"
+    "languageSet": "Мову було встановлено на",
+    "barrelEnergyNotification": "Бочка повна, а енергія відновлена. Поверніться!"
   },
   "pt": {
     "startLanguageMessage": "Por favor, escolha seu idioma:",
@@ -125,6 +137,9 @@
     "eggPlayInlineKeyboard": [
       [{ "text": "Jogar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Junte-se à Comunidade 👥", "url": "https://t.me/eggoquest"}]
+    ],
+    "playInlineKeyboard": [
+      [{ "text": "Jogar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Junte-se à Comunidade 👥", "url": "https://t.me/eggoquest"}]
@@ -145,7 +160,8 @@
       [{ "text": "Português", "callback_data": "language:pt" }],
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
-    "languageSet": "O idioma foi configurado para"
+    "languageSet": "O idioma foi configurado para",
+    "barrelEnergyNotification": "O barril está cheio e a energia foi restaurada. Volte!"
   },
   "es": {
     "startLanguageMessage": "Por favor, selecciona tu idioma:",
@@ -160,6 +176,9 @@
     "eggPlayInlineKeyboard": [
       [{ "text": "Jugar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Únete a la Comunidad 👥", "url": "https://t.me/eggoquest"}]
+    ],
+    "playInlineKeyboard": [
+      [{ "text": "Jugar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Únete a la Comunidad 👥", "url": "https://t.me/eggoquest"}]
@@ -182,6 +201,7 @@
       [{ "text": "Português", "callback_data": "language:pt" }],
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
-    "languageSet": "El idioma se ha configurado a"
+    "languageSet": "El idioma se ha configurado a",
+    "barrelEnergyNotification": "¡El barril está lleno y la energía ha sido restaurada. Vuelve!"
   }
 }
