@@ -33,8 +33,8 @@
   "ThirdLevel": {
     "level": 3,
     "requirements": {
-      "overallScore": 50000,
-      "spending": 35000,
+      "overallScore": 60000,
+      "spending": 36000,
       "miniGameCompletedPlays": 3,
       "referrals": 1,
       "barrelWorkTime": null,
@@ -58,7 +58,7 @@
   "FourthLevel": {
     "level": 4,
     "requirements": {
-      "overallScore": 200000,
+      "overallScore": 250000,
       "spending": 130000,
       "miniGameCompletedPlays": 8,
       "referrals": 1,
@@ -89,7 +89,7 @@
   "FifthLevel": {
     "level": 5,
     "requirements": {
-      "overallScore": 600000,
+      "overallScore": 700000,
       "spending": 400000,
       "miniGameCompletedPlays": 15,
       "referrals": null,
@@ -114,7 +114,7 @@
   "SixthLevel": {
     "level": 6,
     "requirements": {
-      "overallScore": 1500000,
+      "overallScore": 1800000,
       "spending": 800000,
       "miniGameCompletedPlays": 25,
       "referrals": 2,
@@ -141,7 +141,7 @@
   "SeventhLevel": {
     "level": 7,
     "requirements": {
-      "overallScore": 3000000,
+      "overallScore": 3500000,
       "spending": 1800000,
       "miniGameCompletedPlays": 40,
       "referrals": null,
@@ -168,7 +168,7 @@
   "EighthLevel": {
     "level": 8,
     "requirements": {
-      "overallScore": 6000000,
+      "overallScore": 7000000,
       "spending": 4000000,
       "miniGameCompletedPlays": 60,
       "referrals": 3,
@@ -191,7 +191,7 @@
   "NinthLevel": {
     "level": 9,
     "requirements": {
-      "overallScore": 10000000,
+      "overallScore": 13000000,
       "spending": 8000000,
       "miniGameCompletedPlays": 80,
       "referrals": null,
@@ -218,7 +218,7 @@
   "TenthLevel": {
     "level": 10,
     "requirements": {
-      "overallScore": 20000000,
+      "overallScore": 25000000,
       "spending": 15000000,
       "miniGameCompletedPlays": 100,
       "referrals": null,
@@ -250,7 +250,7 @@
   "EleventhLevel": {
     "level": 11,
     "requirements": {
-      "overallScore": 30000000,
+      "overallScore": 40000000,
       "spending": 20000000,
       "miniGameCompletedPlays": 150,
       "referrals": 5,

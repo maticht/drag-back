@@ -16,7 +16,7 @@
     "timeOfUse": [3, 4, 5, 6, 7, 8, 9, 10],
     "levels": [1, 2, 3, 4, 5, 6, 7, 8],
     "currentLevel": 1,
-    "price": [2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
+    "price": [3000, 8000, 60000, 200000, 600000, 1700000, 4600000]
   },
   "barrel": {
     "name": "Barrel",
@@ -31,13 +31,13 @@
       "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Store/barrels/barrel-7-lvl.png",
       "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Store/barrels/barrel-8-lvl.png"
     ],
-    "income": [350, 2000, 5500, 12000, 22500, 46000, 105000, 200000],
+    "income": [600, 3000, 8500, 18000, 36000, 70000, 160000, 320000],
     "waitingTime": [2, 4, 6, 8, 10, 14, 18, 24],
     "lastEntrance": 0,
     "collectionTime": 0,
     "levels": [1, 2, 3, 4, 5, 6, 7, 8],
     "currentLevel": 1,
-    "price": [2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
+    "price": [3000, 8000, 60000, 200000, 600000, 1700000, 4600000]
   },
   "hammer": {
     "name": "Hammer",
@@ -56,7 +56,7 @@
     "income": [1, 2, 3, 4, 5, 6, 7, 8],
     "levels": [1, 2, 3, 4, 5, 6, 7, 8],
     "currentLevel": 1,
-    "price": [2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
+    "price": [3000, 8000, 60000, 200000, 600000, 1700000, 4600000]
   },
   "energyBottle": {
     "name": "Energy Bottle",
@@ -77,6 +77,6 @@
     "collectionTime": 0,
     "levels": [1, 2, 3, 4, 5, 6, 7, 8],
     "currentLevel": 1,
-    "price": [2500, 6500, 50000, 165000, 470000, 1380000, 3600000]
+    "price": [3000, 8000, 60000, 200000, 600000, 1700000, 4600000]
   }
 }
