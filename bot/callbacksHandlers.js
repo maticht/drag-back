@@ -247,7 +247,7 @@ function handleCallbacks(bot) {
 
             }else{
 
-                const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720271584/Group_877_bdvgia.png"
+                const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Whatisinside.png"
                 const caption = locales[languageMap.get(chatId.toString())].tryYourLuckMessage
                 const keyboard = locales[languageMap.get(chatId.toString())].eggPlayInlineKeyboard;
 
@@ -289,7 +289,7 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720666625/Group_893_hitwxb.png"
+            const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/EggoQuesNews.png"
             const caption = locales[languageMap.get(chatId.toString())].newsMessage;
             const keyboard = locales[languageMap.get(chatId.toString())].joinCommunityInlineKeyboard;
 
@@ -311,7 +311,7 @@ function handleCallbacks(bot) {
         try {
             const chatId = msg.chat.id;
             console.log(msg);
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720667153/Group_890_kzunsq.png"
+            const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/TECHNICAlsUPPORT.png"
             const caption = locales[languageMap.get(chatId.toString())].helpMessage;
             const keyboard = locales[languageMap.get(chatId.toString())].technicalSupportInlineKeyboard;
 
@@ -378,7 +378,7 @@ function handleCallbacks(bot) {
             await User.findOneAndUpdate({ chatId }, { language: languageCode }, { new: true, upsert: true });
             languageMap.set(chatId.toString(), languageCode);
 
-            const photoUrl = "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720271584/Group_877_bdvgia.png"
+            const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Whatisinside.png"
             const caption = locales[languageCode].tryYourLuckMessage;
             const keyboard = locales[languageCode].eggPlayInlineKeyboard;
 

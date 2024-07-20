@@ -259,7 +259,7 @@ async function userNotification() {
     
     if (usersToUpdate.length === 0) return;
 
-    const photoUrl = 'https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720283889/Rectangle_139_w7s8a9.png';
+    const photoUrl = 'https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Thetimehascomefornewexploits!.png';
 
     await Promise.all(usersToUpdate.map(user => {
         const userLanguage = user.language || 'en';

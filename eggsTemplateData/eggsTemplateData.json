@@ -5,14 +5,14 @@
       "rarity": "Common",
       "name": "Pearl",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage1_et105p.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130716/dragonEggs/eggRarity1Stage2_xgweun.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage3_xh5vk0.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage4_o9wczb.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130718/dragonEggs/eggRarity1Stage5_tvfsqo.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage6_tlpdhn.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714130717/dragonEggs/eggRarity1Stage7_xmqhnu.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1714827758/dragonEggs/eggRarity1Stage8_qugm9.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity1/eggRarity1Stage8.png"
       ],
       "chance": 0.65
     },
@@ -21,14 +21,14 @@
       "rarity": "Common",
       "name": "Obsidian",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547988/eggRarity2Stage1_dmxre1.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage2_hsuaji.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage3_z0focb.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage4_cq4uef.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage5_pmapeb.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage6_lu0xpb.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547987/eggRarity2Stage7_q3mdkq.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715547988/eggRarity2Stage8_blkk12.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity2/eggRarity2Stage8.png"
       ],
       "chance": 0.65
     },
@@ -37,14 +37,14 @@
       "rarity": "Rare",
       "name": "Venom",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548070/eggRarity3Stage1_leo0y9.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548071/eggRarity3Stage2_qixhhg.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548070/eggRarity3Stage3_fsuc1j.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548071/eggRarity3Stage4_ztnm2v.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548071/eggRarity3Stage5_oxoucl.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548073/eggRarity3Stage6_tptahy.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548073/eggRarity3Stage7_xysbkg.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548073/eggRarity3Stage8_qbdx8g.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity3/eggRarity3Stage8.png"
       ],
       "chance": 0.65
     },
@@ -53,14 +53,14 @@
       "rarity": "Epic",
       "name": "Diamond",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548177/eggRarity4Stage1_rawmup.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548177/eggRarity4Stage2_po7w3c.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548178/eggRarity4Stage3_fsuald.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548178/eggRarity4Stage4_hypipd.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548178/eggRarity4Stage5_gr1cbe.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548180/eggRarity4Stage6_p4k0yv.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548181/eggRarity4Stage7_lypztf.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548181/eggRarity4Stage8_v1urhl.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity4/eggRarity4Stage8.png"
       ],
       "chance": 0.23
     },
@@ -69,14 +69,14 @@
       "rarity": "Epic",
       "name": "Ruby",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548286/eggRarity5Stage1_s1zrxt.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548287/eggRarity5Stage2_rru2wn.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548287/eggRarity5Stage3_zekher.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548288/eggRarity5Stage4_whtymm.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548289/eggRarity5Stage5_owdh8c.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548290/eggRarity5Stage6_croren.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548291/eggRarity5Stage7_otekhn.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548291/eggRarity5Stage8_y53zy3.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity5/eggRarity5Stage8.png"
       ],
       "chance": 0.23
     },
@@ -85,14 +85,14 @@
       "rarity": "Mythical",
       "name": "Meteorite",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548449/eggRarity6Stage1_zyugwf.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548450/eggRarity6Stage2_avt2et.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548450/eggRarity6Stage3_sn6uek.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548451/eggRarity6Stage4_dpkkug.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548453/eggRarity6Stage5_c6ecqe.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548454/eggRarity6Stage6_enuevy.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548454/eggRarity6Stage7_a19adr.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548456/eggRarity6Stage8_uocvhj.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity6/eggRarity6Stage8.png"
       ],
       "chance": 0.08
     },
@@ -101,14 +101,14 @@
       "rarity": "Mythical",
       "name": "Emerald",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548550/eggRarity7Stage1_kankzz.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548551/eggRarity7Stage2_gjo6ax.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548552/eggRarity7Stage3_y7tqpb.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548553/eggRarity7Stage4_u7fhkz.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548554/eggRarity7Stage5_l1hont.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548555/eggRarity7Stage6_bxquw8.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548556/eggRarity7Stage7_mgpdwo.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1715548557/eggRarity7Stage8_i097bh.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity7/eggRarity7Stage8.png"
       ],
       "chance": 0.08
     },
@@ -117,15 +117,16 @@
       "rarity": "Legendary",
       "name": "Gold",
       "images": [
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897679/eggRarity8Stage1_dq6idj.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897678/eggRarity8Stage2_ki2drj.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897678/eggRarity8Stage3_lxrb0f.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897679/eggRarity8Stage4_ejn3vn.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897679/eggRarity8Stage5_x4njix.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897679/eggRarity8Stage6_c2eyrj.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897682/eggRarity8Stage7_n8drze.png",
-        "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1716897682/eggRarity8Stage8_brpvmt.png"
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage1.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage2.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage3.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage4.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage5.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage6.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage7.png",
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/eggs/rarity8/eggRarity8Stage8.png"
       ],
       "chance": 0.04
     }
-  ]}
+  ]
+}

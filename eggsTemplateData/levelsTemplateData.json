@@ -18,15 +18,15 @@
     "rewards": [
       {
         "title": "Reward coefficient 3",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient3_ziccvs.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient3.png"
       },
       {
         "title": "Mini game",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/MiniGame_gxfrus.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/MiniGame.png"
       },
       {
         "title": "Blacksmith items level 4",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720370243/BlacksmithItems4_p7r0ju.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems4.png"
       }
     ]
   },
@@ -43,15 +43,15 @@
     "rewards": [
       {
         "title": "Reward coefficient 5",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient5_ym849e.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient5.png"
       },
       {
         "title": "Joining a clan",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/JoiningClan_mfzg9d.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/JoiningClan.png"
       },
       {
         "title": "Blacksmith items level 5",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems5_kaplhv.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems5.png"
       }
     ]
   },
@@ -74,15 +74,15 @@
     "rewards": [
       {
         "title": "Reward coefficient 8",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient8_wd0zc8.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient8.png"
       },
       {
         "title": "Create your own clan",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/CreateOwnClan_ad25lk.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/CreateOwnClan.png"
       },
       {
         "title": "Blacksmith items level 6",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720370250/BlacksmithItems6_pahd7u.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems6.png"
       }
     ]
   },
@@ -99,15 +99,15 @@
     "rewards": [
       {
         "title": "Reward coefficient 11",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient11_hraycf.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient11.png"
       },
       {
         "title": "Alchemist",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/Alchemist_yxvgui.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/Alchemist.png"
       },
       {
         "title": "Blacksmith items level 7",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems7_v0e9vi.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems7.png"
       }
     ]
   },
@@ -130,11 +130,11 @@
     "rewards": [
       {
         "title": "Reward coefficient 16",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/RewardCoefficient16_egcl5d.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient16.png"
       },
       {
         "title": "Blacksmith items level 8",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/BlacksmithItems8_wozui9.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems8.png"
       }
     ]
   },
@@ -157,11 +157,11 @@
     "rewards": [
       {
         "title": "Reward coefficient 22",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028984/RewardCoefficient22_cnvefb.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient22.png"
       },
       {
         "title": "Connecting a wallet",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/ConnectingWallet_mvttym.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/ConnectingWallet.png"
       }
     ]
   },
@@ -184,7 +184,7 @@
     "rewards": [
       {
         "title": "Reward coefficient 28",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028984/RewardCoefficient28_naosfy.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient28.png"
       }
     ]
   },
@@ -207,11 +207,11 @@
     "rewards": [
       {
         "title": "Reward coefficient 34",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028988/RewardCoefficient34_pcogaf.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient34.png"
       },
       {
         "title": "Dragon Upgrades 1",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028983/DragonUpgrades1_dstqfr.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/DragonUpgrades1.png"
       }
     ]
   },
@@ -239,11 +239,11 @@
     "rewards": [
       {
         "title": "Reward coefficient 40",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028988/RewardCoefficient40_a7tvnn.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient40.png"
       },
       {
         "title": "Dragon Upgrades 2",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/DragonUpgrades2_eusutz.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/DragonUpgrades2.png"
       }
     ]
   },
@@ -271,11 +271,11 @@
     "rewards": [
       {
         "title": "Reward coefficient 47",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028989/RewardCoefficient47_yff3c1.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient47.png"
       },
       {
         "title": "Dragon Upgrades 3",
-        "icon": "https://res.cloudinary.com/dfl7i5tm2/image/upload/v1720028982/DragonUpgrades3_mfccr6.png"
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/DragonUpgrades3.png"
       }
     ]
   }
