@@ -116,10 +116,9 @@ class UserController {
                 league: userLeague ? userLeague.league : null,
                 referralsCount: users[userIndex].referralsCount,
                 username: users[userIndex].username,
-                allUsersLength: users.length
             };
 
-            res.status(200).send({ users: users.slice(0, 1000), currentUser });
+            res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
