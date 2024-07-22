@@ -204,7 +204,7 @@ function handleCallbacks(bot) {
                                 referralName: msg.from.username ? msg.from.username : msg.from.first_name,
                                 chatId: user.chatId,
                                 rewardValue: rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1],
-                                keys: 5,
+                                keys: 3,
                             }
                             maternalReferralUser.newReferralsRewards.push(newReferralReward)
 
