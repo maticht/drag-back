@@ -55,6 +55,10 @@ class BarrelController {
             const currentLevel = barrel.currentLevel;
             const waitingTime = storeBarrelData.waitingTime[currentLevel - 1];
 
+            if(new Date() < barrel.collectionTime){
+                return res.status(400).send({ message: "Collection unavailable" });
+            }
+
             barrel.lastEntrance = new Date();
 
             const collectionTime = new Date();

@@ -75,6 +75,8 @@ class EggsController {
             const user = await User.findOne({ chatId: req.params.userId }, 'eggs score username');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
 
+            if (user.score < 1000000) return res.status(400).send({ message: "not enough money" });
+
             let egg = getRandomEgg();
 
             while (!compareRarities(egg.rarity, user.eggs[0].rarity)) {
