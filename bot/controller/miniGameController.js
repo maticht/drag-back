@@ -46,6 +46,7 @@ class miniGameController {
             if (error) {
                 return res.status(400).send({ message: "Invalid data", details: error.details });
             }
+            console.log(value)
 
             const { gameScore, reward } = value;
             const user = await User.findOne({ chatId: req.params.userId }, 'miniGame score overallScore').session(session);

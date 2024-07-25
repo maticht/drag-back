@@ -23,9 +23,11 @@ class WeeklyScoreRewardsController {
             if (error) {
                 return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
             }
+            console.log(value)
 
             // Извлечение данных после валидации
             const { userId, rewardId } = value;
+            console.log(value)
 
             const user = await User.findOne({chatId: userId}, 'weeklyScoreRewards score overallScore username');
             console.log(user)

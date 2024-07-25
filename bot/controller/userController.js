@@ -38,6 +38,7 @@ class UserController {
             if (error) {
                 return res.status(400).send({ message: "Invalid data", details: error.details });
             }
+            console.log(value)
 
             const { isLoadingScreen } = value;
 
@@ -229,8 +230,10 @@ class UserController {
             if (error) {
                 return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
             }
+            console.log(value)
 
             const { profileLevel } = value;
+            console.log(value)
 
             if (!profileLevel && profileLevel !== "") {
                 return res.status(400).send({ message: "Invalid level", success: false });
@@ -287,6 +290,7 @@ class UserController {
             if (error) {
                 return res.status(400).send({ message: error.details[0].message });
             }
+            console.log(value)
 
             const { userId, energyRestoreTime, value: energyValue, score, overallScore, eggScore } = value;
 

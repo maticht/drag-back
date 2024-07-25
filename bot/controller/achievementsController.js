@@ -46,8 +46,10 @@ class AchievementsController {
             if (error) {
                 return res.status(400).send({ message: "Invalid data", details: error.details });
             }
+            console.log(value)
 
             const { achievementId } = value;
+            console.log(value)
 
             const user = await User.findOne({ chatId: req.params.userId }, 'completedAchievements');
             if (!user) {
