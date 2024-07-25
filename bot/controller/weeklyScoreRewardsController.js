@@ -13,20 +13,20 @@ class WeeklyScoreRewardsController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                userId: Joi.string().required(),
-                rewardId: Joi.string().required()
-            });
-
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
-            }
-            console.log(value)
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     userId: Joi.string().required(),
+            //     rewardId: Joi.string().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
+            // }
+            // console.log(value)
 
             // Извлечение данных после валидации
-            const { userId, rewardId } = value;
+            const { userId, rewardId } = decryptedData;
             console.log(value)
 
             const user = await User.findOne({chatId: userId}, 'weeklyScoreRewards score overallScore username');

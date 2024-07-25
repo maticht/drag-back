@@ -29,18 +29,18 @@ class UserController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                isLoadingScreen: Joi.boolean().required()
-            });
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     isLoadingScreen: Joi.boolean().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
 
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: "Invalid data", details: error.details });
-            }
-            console.log(value)
-
-            const { isLoadingScreen } = value;
+            const { isLoadingScreen } = decryptedData;
 
             const user = await User.findOne({ chatId: req.params.userId });
             if (!user) return res.status(400).send({ message: "Invalid userId" });
@@ -221,18 +221,18 @@ class UserController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                profileLevel: Joi.number().integer().required()
-            });
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     profileLevel: Joi.number().integer().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
+            // }
+            // console.log(value)
 
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
-            }
-            console.log(value)
-
-            const { profileLevel } = value;
+            const { profileLevel } = decryptedData;
             console.log(value)
 
             if (!profileLevel && profileLevel !== "") {
@@ -274,32 +274,32 @@ class UserController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            // Схема валидации
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                userId: Joi.string().required(),
-                energyRestoreTime: Joi.date().required(),
-                value: Joi.number().required(),
-                score: Joi.number().required(),
-                overallScore: Joi.number().required(),
-                eggScore: Joi.number().required()
-            });
+            // // Схема валидации
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     userId: Joi.string().required(),
+            //     energyRestoreTime: Joi.date().required(),
+            //     value: Joi.number().required(),
+            //     score: Joi.number().required(),
+            //     overallScore: Joi.number().required(),
+            //     eggScore: Joi.number().required()
+            // });
+            //
+            // // Валидация данных
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: error.details[0].message });
+            // }
+            // console.log(value)
 
-            // Валидация данных
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: error.details[0].message });
-            }
-            console.log(value)
-
-            const { userId, energyRestoreTime, value: energyValue, score, overallScore, eggScore } = value;
+            const { userId, energyRestoreTime, value, score, overallScore, eggScore } = decryptedData;
 
             console.log('Encrypted Value:', bodyValue);
             console.log('Decrypted Data:', decryptData(bodyValue));
 
             const updateFields = {
                 'energy.energyFullRecoveryDate': energyRestoreTime,
-                'energy.value': energyValue,
+                'energy.value': value,
                 'score': score,
                 'overallScore': overallScore,
                 'eggs.0.score': eggScore,

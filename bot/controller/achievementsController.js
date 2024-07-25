@@ -37,19 +37,18 @@ class AchievementsController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                achievementId: Joi.string().required()
-            });
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     achievementId: Joi.string().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
 
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: "Invalid data", details: error.details });
-            }
-            console.log(value)
-
-            const { achievementId } = value;
-            console.log(value)
+            const { achievementId } = decryptedData;
 
             const user = await User.findOne({ chatId: req.params.userId }, 'completedAchievements');
             if (!user) {

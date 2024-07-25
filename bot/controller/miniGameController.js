@@ -36,19 +36,19 @@ class miniGameController {
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
-            const schema = Joi.object({
-                timestamp: Joi.date().required(),
-                gameScore: Joi.number().required(),
-                reward: Joi.number().required()
-            });
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     gameScore: Joi.number().required(),
+            //     reward: Joi.number().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
 
-            const { error, value } = schema.validate(decryptedData);
-            if (error) {
-                return res.status(400).send({ message: "Invalid data", details: error.details });
-            }
-            console.log(value)
-
-            const { gameScore, reward } = value;
+            const { gameScore, reward } = decryptedData;
             const user = await User.findOne({ chatId: req.params.userId }, 'miniGame score overallScore').session(session);
 
             user.miniGame.completedGamesNumber += 1;
