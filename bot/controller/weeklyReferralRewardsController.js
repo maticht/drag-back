@@ -22,8 +22,8 @@ class WeeklyReferralRewardsController {
             // if (error) {
             //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
             // }
-
             // Извлечение данных после валидации
+
             const { userId, rewardId } = decryptedData;
 
             const user = await User.findOne({chatId: userId}, 'weeklyReferralRewards score overallScore username');

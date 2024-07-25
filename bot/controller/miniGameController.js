@@ -48,6 +48,7 @@ class miniGameController {
             // }
             // console.log(value)
 
+
             const { gameScore, reward } = decryptedData;
             const user = await User.findOne({ chatId: req.params.userId }, 'miniGame score overallScore').session(session);
 

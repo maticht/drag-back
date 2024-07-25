@@ -40,6 +40,7 @@ class UserController {
             // }
             // console.log(value)
 
+
             const { isLoadingScreen } = decryptedData;
 
             const user = await User.findOne({ chatId: req.params.userId });
@@ -232,8 +233,8 @@ class UserController {
             // }
             // console.log(value)
 
+
             const { profileLevel } = decryptedData;
-            console.log(value)
 
             if (!profileLevel && profileLevel !== "") {
                 return res.status(400).send({ message: "Invalid level", success: false });
@@ -269,8 +270,6 @@ class UserController {
             const { bodyValue } = req.body;
             console.log(bodyValue)
 
-
-            // Расшифровка данных
             const decryptedData = decryptData(bodyValue);
             console.log(decryptedData)
 
@@ -291,6 +290,7 @@ class UserController {
             //     return res.status(400).send({ message: error.details[0].message });
             // }
             // console.log(value)
+
 
             const { userId, energyRestoreTime, value, score, overallScore, eggScore } = decryptedData;
 

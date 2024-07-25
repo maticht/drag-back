@@ -48,6 +48,7 @@ class AchievementsController {
             // }
             // console.log(value)
 
+
             const { achievementId } = decryptedData;
 
             const user = await User.findOne({ chatId: req.params.userId }, 'completedAchievements');

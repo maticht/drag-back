@@ -22,8 +22,9 @@ class DailyMiniGameRewardsController {
             //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
             // }
             // console.log(value)
-
             // Извлечение данных после валидации
+
+
             const { userId, rewardId } = decryptedData;
 
             const user = await User.findOne({chatId: userId}, 'dailyMiniGameRewards score overallScore username');
