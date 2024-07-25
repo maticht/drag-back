@@ -39,23 +39,27 @@ async function initializeApp() {
             domain = process.env.BASE_URL_TEST_PROD; //PROD
         }
 
-        const corsOptions = {
-            origin: domain,
-            optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-        };
+        if(process.env.APP_MODE === "PROD"){
+            const corsOptions = {
+                origin: domain,
+                optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+            };
+            app.use(cors(corsOptions));
+            app.use((req, res, next) => {
+                const allowedDomain = domain;
+                const origin = req.headers.origin;
+                const referer = req.headers.referer;
 
-        app.use(cors(corsOptions));
+                if (!origin || !referer || origin !== allowedDomain || !referer.startsWith(allowedDomain)) {
+                    return res.status(403).json({ message: 'Access forbidden.' });
+                }
+                next();
+            });
+        }else{
+            app.use(cors());
+        }
 
-        app.use((req, res, next) => {
-            const allowedDomain = domain;
-            const origin = req.headers.origin;
-            const referer = req.headers.referer;
 
-            if (!origin || !referer || origin !== allowedDomain || !referer.startsWith(allowedDomain)) {
-                return res.status(403).json({ message: 'Access forbidden.' });
-            }
-            next();
-        });
 
         app.use('/api', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
