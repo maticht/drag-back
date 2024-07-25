@@ -10,6 +10,7 @@ class WeeklyReferralRewardsController {
 
 
             const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
 
             const schema = Joi.object({
                 timestamp: Joi.date().required(),

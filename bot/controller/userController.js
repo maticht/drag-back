@@ -27,6 +27,7 @@ class UserController {
             console.log(bodyValue)
 
             const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
 
             const schema = Joi.object({
                 timestamp: Joi.date().required(),
@@ -217,6 +218,7 @@ class UserController {
 
 
             const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
 
             const schema = Joi.object({
                 timestamp: Joi.date().required(),
@@ -267,6 +269,7 @@ class UserController {
 
             // Расшифровка данных
             const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
 
             // Схема валидации
             const schema = Joi.object({
