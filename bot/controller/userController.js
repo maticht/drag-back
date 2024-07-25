@@ -24,6 +24,8 @@ class UserController {
         try {
             // Извлечение и расшифровка данных
             const { bodyValue } = req.body;
+            console.log(bodyValue)
+
             const decryptedData = decryptData(bodyValue);
 
             const schema = Joi.object({
@@ -211,6 +213,8 @@ class UserController {
         try {
             const { userId } = req.params;
             const { bodyValue } = req.body;
+            console.log(bodyValue)
+
 
             const decryptedData = decryptData(bodyValue);
 
@@ -258,6 +262,8 @@ class UserController {
         try {
 
             const { bodyValue } = req.body;
+            console.log(bodyValue)
+
 
             // Расшифровка данных
             const decryptedData = decryptData(bodyValue);

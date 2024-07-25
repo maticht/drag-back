@@ -31,6 +31,8 @@ class AchievementsController {
     async completeAchievement(req, res) {
         try {
             const { bodyValue } = req.body;
+            console.log(bodyValue)
+
 
             const decryptedData = decryptData(bodyValue);
 

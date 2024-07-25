@@ -31,6 +31,7 @@ class miniGameController {
         session.startTransaction();
         try {
             const { bodyValue } = req.body;
+            console.log(bodyValue)
 
             const decryptedData = decryptData(bodyValue);
 

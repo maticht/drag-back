@@ -7,6 +7,8 @@ class WeeklyScoreRewardsController {
     async claim(req, res, next) {
         try {
             const { bodyValue } = req.body;
+            console.log(bodyValue)
+
 
             const decryptedData = decryptData(bodyValue);
 
