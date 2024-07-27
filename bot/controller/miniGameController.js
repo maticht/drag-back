@@ -1,7 +1,8 @@
 const { User } = require("../../models/user");
 const mongoose = require('mongoose');
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
-
+const {decryptData} = require("../../utils/helpers");
+const Joi = require('joi');
 class miniGameController {
 
     async startGame(req, res) {
@@ -29,7 +30,26 @@ class miniGameController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const { gameScore, reward } = req.body;
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     gameScore: Joi.number().required(),
+            //     reward: Joi.number().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
+
+
+            const { gameScore, reward } = decryptedData;
             const user = await User.findOne({ chatId: req.params.userId }, 'miniGame score overallScore').session(session);
 
             user.miniGame.completedGamesNumber += 1;

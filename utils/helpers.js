@@ -2,6 +2,8 @@ const eggs = require("../eggsTemplateData/eggsTemplateData.json");
 const levelsTemplateData = require("../eggsTemplateData/levelsTemplateData.json");
 const moment = require('moment-timezone');
 const UAParser = require('ua-parser-js');
+const CryptoJS = require("crypto-js");
+require('dotenv').config();
 
 function getRandomEgg() {
     let randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -87,9 +89,16 @@ function parseUserAgent(userAgentString) {
     return result.os.name;
 }
 
+function decryptData(ciphertext) {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, process.env.SECRET_KEY);
+    const originalData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    return originalData;
+}
+
 module.exports = {
     getRandomEgg,
     checkLevel,
     getCurrentMoscowTime,
-    parseUserAgent
+    parseUserAgent,
+    decryptData
 };

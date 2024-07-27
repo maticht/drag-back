@@ -1,7 +1,8 @@
 const { User } = require("../../models/user");
 const { Achievement } = require("../../models/achievements");
 const mongoose = require('mongoose');
-
+const {decryptData} = require("../../utils/helpers");
+const Joi = require('joi');
 class AchievementsController {
 
     async getAchievements(req, res) {
@@ -29,22 +30,43 @@ class AchievementsController {
 
     async completeAchievement(req, res) {
         try {
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     achievementId: Joi.string().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
+
+
+            const { achievementId } = decryptedData;
+
             const user = await User.findOne({ chatId: req.params.userId }, 'completedAchievements');
             if (!user) {
                 return res.json({ message: `"User not found"` });
             }
 
-            if (user.completedAchievements.includes(req.body.achievementId)) {
+            if (user.completedAchievements.includes(achievementId)) {
                 return res.json({success: false, message: `"Achievement already completed"` });
             }
 
-            user.completedAchievements.push(req.body.achievementId);
+            user.completedAchievements.push(achievementId);
             await user.save();
 
             return res.json({
                 message: `Achievement completed successfully`,
                 success: true,
-                completedAchievementId: req.body.achievementId,
+                completedAchievementId: achievementId,
             });
         } catch (error) {
             console.log(error);

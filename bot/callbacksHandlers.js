@@ -7,6 +7,7 @@ const {AlphaUserReward} = require("../models/alphaUsersReward");
 const {addToRefBuffer} = require("../utils/clickHouse/refDataBuffer");
 const {languageMap} = require("../utils/localization");
 const locales = require('../eggsTemplateData/locales.json');
+require('dotenv').config();
 
 const languageNames = {
     'en': 'English',
@@ -247,19 +248,35 @@ function handleCallbacks(bot) {
 
             }else{
 
-                const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Whatisinside.png"
-                const caption = locales[languageMap.get(chatId.toString())].tryYourLuckMessage
-                const keyboard = locales[languageMap.get(chatId.toString())].eggPlayInlineKeyboard;
+                if(process.env.APP_MODE === "PROD"){
+                    const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Whatisinside.png"
+                    const caption = locales[languageMap.get(chatId.toString())].tryYourLuckMessage
+                    const keyboard = locales[languageMap.get(chatId.toString())].eggPlayInlineKeyboard;
 
-                bot.sendPhoto(chatId, photoUrl, {
-                    caption: caption,
-                    reply_markup: {
-                        inline_keyboard: keyboard
-                    }
-                }).catch(error => {
-                    console.error('Error sending photo message:', error);
-                });
+                    bot.sendPhoto(chatId, photoUrl, {
+                        caption: caption,
+                        reply_markup: {
+                            inline_keyboard: keyboard
+                        }
+                    }).catch(error => {
+                        console.error('Error sending photo message:', error);
+                    });
+                }else{
+                    const photoUrl = "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Promo/Whatisinside.png"
+                    const caption = locales[languageMap.get(chatId.toString())].tryYourLuckMessage
 
+                    bot.sendPhoto(chatId, photoUrl, {
+                        caption: caption,
+                        reply_markup: {
+                            inline_keyboard: [
+                                 [{ "text": "Play 👾", "web_app": { "url": "https://eggo-quest-test-nx3se.ondigitalocean.app/loadingScreen" } }],
+                                 [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
+                            ],
+                        }
+                    }).catch(error => {
+                        console.error('Error sending photo message:', error);
+                    });
+                }
             }
 
         } catch (e) {

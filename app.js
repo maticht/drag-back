@@ -15,6 +15,10 @@ const {checkConnection} = require("./clickHouseClient");
 const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
 const {setUsersLanguages} = require("./utils/localization");
 const locales = require("./eggsTemplateData/locales.json");
+const mongoose = require("mongoose");
+
+require('dotenv').config();
+
 
 async function initializeApp() {
     try {
@@ -24,18 +28,39 @@ async function initializeApp() {
         await checkConnection();
 
         app.use(express.json());
-        // const allowedOrigins = ['https://oyster-app-4mimt.ondigitalocean.app'];
-        // app.use(cors({
-        //     origin: function (origin, callback) {
-        //         if (!origin || allowedOrigins.includes(origin)) {
-        //             callback(null, true);
-        //         } else {
-        //             callback(new Error('Not allowed by CORS'));
-        //         }
-        //     }
-        // }));
 
-        app.use(cors());
+        let domain;
+
+        if(process.env.APP_MODE === "DEV"){
+            domain = process.env.BASE_URL_DEV;//DEV
+        }else if(process.env.APP_MODE === "PROD"){
+            domain = process.env.BASE_URL_PROD; //PROD
+        }else if(process.env.APP_MODE === "TEST_PROD"){
+            domain = process.env.BASE_URL_TEST_PROD; //PROD
+        }
+
+        if(process.env.APP_MODE === "PROD"){
+            const corsOptions = {
+                origin: domain,
+                optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+            };
+            app.use(cors(corsOptions));
+            app.use((req, res, next) => {
+                const allowedDomain = domain;
+                const origin = req.headers.origin;
+                const referer = req.headers.referer;
+
+                if (!origin || !referer || origin !== allowedDomain || !referer.startsWith(allowedDomain)) {
+                    return res.status(403).json({ message: 'Access forbidden.' });
+                }
+                next();
+            });
+        }else{
+            app.use(cors());
+        }
+
+
+
         app.use('/api', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
         app.use("/firstGoblinGameScene", firstGoblinGameScene);
@@ -296,9 +321,10 @@ cron.schedule('0 */6 * * *', userNotification, {
     timezone: "Europe/Moscow"
 });
 
-cron.schedule('*/10 * * * *', insertDataToClickHouse, {
-    timezone: "Europe/Moscow"
-});
-
-
+if(process.env.APP_MODE === "PROD"){
+    console.log("Click house timer begin")
+    cron.schedule('*/10 * * * *', insertDataToClickHouse, {
+        timezone: "Europe/Moscow"
+    });
+}
 

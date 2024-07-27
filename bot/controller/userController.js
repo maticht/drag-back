@@ -1,9 +1,10 @@
 const {User} = require("../../models/user");
-const {checkLevel} = require("../../utils/helpers");
+const {checkLevel, decryptData} = require("../../utils/helpers");
 const rewardsTemplateData = require("../../eggsTemplateData/rewardsTemplateData.json")
 const mongoose = require('mongoose');
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
 const {languageMap} = require("../../utils/localization");
+const Joi = require('joi');
 
 class UserController {
     async getUserData(req, res){
@@ -17,19 +18,43 @@ class UserController {
         }
     }
 
-    async getUserDataLoadingScreen(req, res){
+
+
+    async getUserDataLoadingScreen(req, res) {
         try {
-            const {isLoadingScreen} = req.body;
+            // Извлечение и расшифровка данных
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     isLoadingScreen: Joi.boolean().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details });
+            // }
+            // console.log(value)
+
+
+            const { isLoadingScreen } = decryptedData;
+
             const user = await User.findOne({ chatId: req.params.userId });
-            console.log(req.params.userId)
-            if (!user) return res.status(400).send({ message: "Invalid queryId" });
-            if(isLoadingScreen){
+            if (!user) return res.status(400).send({ message: "Invalid userId" });
+
+            if (isLoadingScreen) {
                 const userAgentString = req.headers['user-agent'];
-                addToBuffer(req.params.userId, user.username,`open bot`, userAgentString, user.score);
+                addToBuffer(req.params.userId, user.username, `open bot`, userAgentString, user.score);
             }
-            return res.json({user})
+
+            return res.json({ user });
         } catch (error) {
-            res.status(500).send({ message: "Internal Server Error" });
+            console.error(error);
+            return res.status(500).send({ message: "Internal Server Error" });
         }
     }
 
@@ -190,7 +215,26 @@ class UserController {
     async updateProfileLevel(req, res){
         try {
             const { userId } = req.params;
-            const { profileLevel } = req.body;
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     profileLevel: Joi.number().integer().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
+            // }
+            // console.log(value)
+
+
+            const { profileLevel } = decryptedData;
 
             if (!profileLevel && profileLevel !== "") {
                 return res.status(400).send({ message: "Invalid level", success: false });
@@ -216,14 +260,42 @@ class UserController {
             return res.json({ success: true, profileLevel: user.profileLevel });
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "Internal Server Error" });
+            res.status(500).send({ message: "Internal Server Error", success: false });
         }
     }
 
     async updateScoreAndEnergy(req, res) {
         try {
 
-            const { userId, energyRestoreTime, value, score, overallScore, eggScore } = req.body;
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // // Схема валидации
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     userId: Joi.string().required(),
+            //     energyRestoreTime: Joi.date().required(),
+            //     value: Joi.number().required(),
+            //     score: Joi.number().required(),
+            //     overallScore: Joi.number().required(),
+            //     eggScore: Joi.number().required()
+            // });
+            //
+            // // Валидация данных
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: error.details[0].message });
+            // }
+            // console.log(value)
+
+
+            const { userId, energyRestoreTime, value, score, overallScore, eggScore } = decryptedData;
+
+            console.log('Encrypted Value:', bodyValue);
+            console.log('Decrypted Data:', decryptData(bodyValue));
 
             const updateFields = {
                 'energy.energyFullRecoveryDate': energyRestoreTime,

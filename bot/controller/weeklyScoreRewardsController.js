@@ -1,13 +1,35 @@
 const {User} = require("../../models/user");
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
+const {decryptData} = require("../../utils/helpers");
+const Joi = require('joi');
 
 class WeeklyScoreRewardsController {
     async claim(req, res, next) {
         try {
-            console.log(req.body);
-            const user = await User.findOne({chatId: req.body.userId}, 'weeklyScoreRewards score overallScore username');
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            // const schema = Joi.object({
+            //     timestamp: Joi.date().required(),
+            //     userId: Joi.string().required(),
+            //     rewardId: Joi.string().required()
+            // });
+            //
+            // const { error, value } = schema.validate(decryptedData);
+            // if (error) {
+            //     return res.status(400).send({ message: "Invalid data", details: error.details, success: false });
+            // }
+            // console.log(value)
+            // Извлечение данных после валидации
+
+            const { userId, rewardId } = decryptedData;
+
+            const user = await User.findOne({chatId: userId}, 'weeklyScoreRewards score overallScore username');
             console.log(user)
-            const rewardId = req.body.rewardId;
             const currentWeeklyReward = user.weeklyScoreRewards.find(reward => reward._id.toString() === rewardId);
             console.log(currentWeeklyReward)
             if (!currentWeeklyReward) {
@@ -38,7 +60,7 @@ class WeeklyScoreRewardsController {
             const savedUser = await user.save();
 
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.body.userId, user.username, `collect weekly reward score`, userAgentString, user.score);
+            addToBuffer(userId, user.username, `collect weekly reward score`, userAgentString, user.score);
 
             return res.status(201).send({message: "Счет обновлен успешно", success: true, reward: currentWeeklyReward});
         } catch (error) {
