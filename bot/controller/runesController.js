@@ -2,6 +2,7 @@ const { User } = require("../../models/user");
 const { Runes } = require("../../models/runes");
 const runesTemplateData = require('../../eggsTemplateData/runesTemplateData.json')
 const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
+const {decryptData} = require("../../utils/helpers");
 
 class RunesController {
     async getUserRunes(req, res) {
@@ -60,7 +61,13 @@ class RunesController {
     async buyRune(req, res) {
         try {
             const { userId } = req.params;
-            const { title } = req.body;
+            const { bodyValue } = req.body;
+            console.log(bodyValue)
+
+            const decryptedData = decryptData(bodyValue);
+            console.log(decryptedData)
+
+            const { title } = decryptedData;
 
             const user = await User.findOne({ chatId: userId }, 'runes score username');
             if (!user) {
@@ -95,14 +102,14 @@ class RunesController {
             }
 
             await user.save();
-
-            return res.json({ message: `Rune "${rune.title}" purchased successfully`, user });
+            const userAgentString = req.headers['user-agent'];
+            addToBuffer(req.params.userId, user.username, `buy rune ${rune.title}`, userAgentString, user.score);
+            return res.json({ message: `Rune "${rune.title}" purchased successfully`, userRunes: user.runes, score: user.score });
         } catch (error) {
             console.log(error);
             res.status(500).send({ message: "Internal server error" });
         }
     }
-
 }
 
 module.exports = new RunesController();
