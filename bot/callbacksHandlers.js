@@ -173,6 +173,7 @@ function handleCallbacks(bot) {
                         isDone: false,
                         isModalShown: false,
                     }],
+                    runes: [],
                     weeklyScoreRewards: [],
                     weeklyReferralRewards: [],
                 }).save();

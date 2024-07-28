@@ -100,6 +100,11 @@ const userSchema = new mongoose.Schema({
         isDone: {type: Boolean, default: false},
         isModalShown: {type: Boolean, default: false},
     }],
+    runes: [{
+        title: {type:String, required:false},
+        codeName: {type:String, required:false},
+        wasBought: {type:Boolean, required:false},
+    }],
     miniGameKeys: {type: Number, required: false, default: 0},
     miniGame: {
         bestScore: {type: Number, required: false, default: 0},

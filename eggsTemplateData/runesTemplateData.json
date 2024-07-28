@@ -1,0 +1,76 @@
+{
+  "runes": [
+    {
+      "_id": 0,
+      "title": "Dagaz",
+      "codeName": "D",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveDRune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/DRune.png"
+      ],
+      "price": 300000
+    },
+    {
+      "_id": 1,
+      "title": "Raidho",
+      "codeName": "R",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveRRune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/RRune.png"
+      ],
+      "price": 500000
+    },
+    {
+      "_id": 2,
+      "title": "Ansuz",
+      "codeName": "A",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveARune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/ARune.png"
+      ],
+      "price": 1000000
+    },
+    {
+      "_id": 3,
+      "title": "Kaunan",
+      "codeName": "K",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveKRune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/KRune.png"
+      ],
+      "price": 2000000
+    },
+    {
+      "_id": 4,
+      "title": "Othala",
+      "codeName": "O",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveORune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/ORune.png"
+      ],
+      "price": 5000000
+    },
+    {
+      "_id": 5,
+      "title": "Naudiz",
+      "codeName": "N",
+      "inactiveImage": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/InactiveNRune.png"
+      ],
+      "images": [
+        "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/NRune.png"
+      ],
+      "price": 10000000
+    }
+  ]
+}

@@ -7,6 +7,7 @@ const rewardsTemplateData = require("./eggsTemplateData/rewardsTemplateData.json
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
+const {Runes} = require("./models/runes");
 const router = require('./bot/routes/index');
 const cron = require('node-cron');
 const app = express();
@@ -307,6 +308,41 @@ async function userNotification() {
     );
 }
 
+async function updateRuneAvailability() {
+    try {
+        const runes = await Runes.find();
+
+        const currentAvailableRuneIndex = runes.findIndex(rune => rune.isAvailable);
+
+        const nextRuneIndex = (currentAvailableRuneIndex + 1) % 4;
+
+        const bulkOperations = runes.map((rune, index) => {
+            const isAvailable = index === nextRuneIndex;
+            const expirationDate = isAvailable ? new Date(Date.now() + 2 * 60 * 1000) : rune.expirationDate;
+
+            return {
+                updateOne: {
+                    filter: { _id: rune._id },
+                    update: {
+                        $set: {
+                            isAvailable: isAvailable,
+                            expirationDate: expirationDate
+                        }
+                    }
+                }
+            };
+        });
+
+        if (bulkOperations.length > 0) {
+            await Runes.bulkWrite(bulkOperations);
+        }
+
+        console.log(`Rune availability updated. Next available rune: ${runes[nextRuneIndex].title}`);
+    } catch (error) {
+        console.error("Error updating rune availability:", error);
+    }
+}
+
 // Планирование задачи на каждое воскресенье в 23:59:59
 cron.schedule('59 59 23 * * 0', performWeeklyTask, {
     timezone: "Europe/Moscow"
@@ -318,6 +354,11 @@ cron.schedule('0 1 * * *', performDailyTask, {
 });
 
 cron.schedule('0 */6 * * *', userNotification, {
+    timezone: "Europe/Moscow"
+});
+
+//каждые 2 мин
+cron.schedule('*/2 * * * *', updateRuneAvailability, {
     timezone: "Europe/Moscow"
 });
 

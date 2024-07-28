@@ -16,6 +16,7 @@ const taskRouter = require("./taskRouter");
 const achievementRouter = require("./achievementRouter");
 const miniGameRouter = require("./miniGameRouter");
 const alphaTesterRouter = require('./alphaTesterRouter');
+const runesRouter = require('./runesRouter');
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
@@ -36,6 +37,6 @@ router.use('/referrals', referralsRouter);
 router.use('/task', taskRouter);
 router.use('/achievement', achievementRouter);
 router.use('/miniGame', miniGameRouter);
-
+router.use('/runes', runesRouter);
 
 module.exports = router
