@@ -31,13 +31,48 @@ async function initializeApp() {
 
         app.set('trust proxy', true);
 
+        const blockedIPs = new Map();
+
         const requestLimiter = rateLimit({
-            windowMs: 1 * 60 * 1000,
-            max: 20,
+            windowMs: 3 * 60 * 1000,
+            max: 260,
             handler: (req, res, next) => {
-                console.log(`IP ${req.ip} is blocked for exceeding the request limit.`);
+                const ip = req.ip;
+                const blockDuration = 2 * 60 * 1000;
+                blockedIPs.set(ip, Date.now() + blockDuration);
+                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
                 res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+            },
+            keyGenerator: (req) => req.ip,
+            skip: (req) => {
+                const ip = req.ip;
+                if (blockedIPs.has(ip)) {
+                    const blockTime = blockedIPs.get(ip);
+                    if (Date.now() < blockTime) {
+                        return true;
+                    } else {
+                        blockedIPs.delete(ip);
+                    }
+                }
+                return false;
             }
+        });
+
+        app.use((req, res, next) => {
+            const ip = req.ip;
+            if (blockedIPs.has(ip) && Date.now() < blockedIPs.get(ip)) {
+                const blockEndTime = blockedIPs.get(ip);
+                const remainingTime = blockEndTime - Date.now();
+
+                const remainingMinutes = Math.floor(remainingTime / (1000 * 60));
+                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
+                console.log(`Remaining time: ${remainingMinutes} minutes and ${remainingSeconds} seconds`);
+
+                return res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+            }
+            next();
         });
 
         app.use(requestLimiter);
