@@ -16,6 +16,7 @@ const {checkConnection} = require("./clickHouseClient");
 const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
 const {setUsersLanguages} = require("./utils/localization");
 const locales = require("./eggsTemplateData/locales.json");
+const rateLimit = require('express-rate-limit');
 const mongoose = require("mongoose");
 
 require('dotenv').config();
@@ -27,6 +28,19 @@ async function initializeApp() {
         await connection();
 
         await checkConnection();
+
+        app.set('trust proxy', true);
+
+        const requestLimiter = rateLimit({
+            windowMs: 1 * 60 * 1000,
+            max: 20,
+            handler: (req, res, next) => {
+                console.log(`IP ${req.ip} is blocked for exceeding the request limit.`);
+                res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+            }
+        });
+
+        app.use(requestLimiter);
 
         app.use(express.json());
 
@@ -60,7 +74,10 @@ async function initializeApp() {
             app.use(cors());
         }
 
-
+        app.use((req, res, next) => {
+            console.log('IP адрес клиента:', req.ip);
+            next();
+        });
 
         app.use('/api', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
