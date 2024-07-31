@@ -3,7 +3,7 @@
     "level": 2,
     "requirements": {
       "overallScore": 10000,
-      "spending": 10000,
+      "spending": 8000,
       "miniGameCompletedPlays": null,
       "referrals": null,
       "barrelWorkTime": null,
@@ -34,7 +34,7 @@
     "level": 3,
     "requirements": {
       "overallScore": 60000,
-      "spending": 36000,
+      "spending": 35000,
       "miniGameCompletedPlays": 3,
       "referrals": 1,
       "barrelWorkTime": null,
@@ -52,6 +52,10 @@
       {
         "title": "Blacksmith items level 5",
         "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/BlacksmithItems5.png"
+      },
+      {
+        "title": "Connecting a wallet",
+        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/ConnectingWallet.png"
       }
     ]
   },
@@ -158,10 +162,6 @@
       {
         "title": "Reward coefficient 22",
         "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/RewardCoefficient22.png"
-      },
-      {
-        "title": "Connecting a wallet",
-        "icon": "https://eggoquest.fra1.cdn.digitaloceanspaces.com/lvlRewards/ConnectingWallet.png"
       }
     ]
   },
