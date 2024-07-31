@@ -25,8 +25,12 @@ class AxeController {
                 return res.status(400).send({ message: "Not enough money" });
             }
 
-            axe.currentLevel++;
-            user.score -= price;
+            // axe.currentLevel++;
+            // user.score -= price;
+            if (currentLevel < 8) {
+                user.score -= price;
+                axe.currentLevel++;
+            }
 
             await user.save();
 
