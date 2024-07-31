@@ -1,7 +1,7 @@
 {
   "runes": [
     {
-      "_id": 0,
+      "_id": "66a5dc2b8174fe7397e1dc43",
       "title": "Dagaz",
       "codeName": "D",
       "inactiveImage": [
@@ -13,7 +13,7 @@
       "price": 300000
     },
     {
-      "_id": 1,
+      "_id": "66a5dc838174fe7397e1dc47",
       "title": "Raidho",
       "codeName": "R",
       "inactiveImage": [
@@ -25,7 +25,7 @@
       "price": 500000
     },
     {
-      "_id": 2,
+      "_id": "66a5dc8e8174fe7397e1dc49",
       "title": "Ansuz",
       "codeName": "A",
       "inactiveImage": [
@@ -37,7 +37,7 @@
       "price": 1000000
     },
     {
-      "_id": 3,
+      "_id": "66a5dc998174fe7397e1dc4b",
       "title": "Kaunan",
       "codeName": "K",
       "inactiveImage": [
@@ -49,7 +49,7 @@
       "price": 2000000
     },
     {
-      "_id": 4,
+      "_id": "66a5dca58174fe7397e1dc4d",
       "title": "Othala",
       "codeName": "O",
       "inactiveImage": [
@@ -61,7 +61,7 @@
       "price": 5000000
     },
     {
-      "_id": 5,
+      "_id": "66a5dcb08174fe7397e1dc4f",
       "title": "Naudiz",
       "codeName": "N",
       "inactiveImage": [

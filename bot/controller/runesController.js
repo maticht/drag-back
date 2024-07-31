@@ -1,34 +1,19 @@
 const { User } = require("../../models/user");
 const { Runes } = require("../../models/runes");
-const runesTemplateData = require('../../eggsTemplateData/runesTemplateData.json')
-const {addToBuffer} = require("../../utils/clickHouse/dataBuffer");
-const {decryptData} = require("../../utils/helpers");
+const runesTemplateData = require('../../eggsTemplateData/runesTemplateData.json');
+const { addToBuffer } = require("../../utils/clickHouse/dataBuffer");
+const { decryptData } = require("../../utils/helpers");
 
 class RunesController {
     async getUserRunes(req, res) {
         try {
-            const user = await User.findOne({ chatId: req.params.userId }, 'runes');
+            const user = await User.findOne({ chatId: req.params.userId }, 'runes').populate('runes');
             if (!user) return res.status(400).send({ message: "Invalid queryId" });
-
-            const initialUserRunes = [
-                { title: "Dagaz", codeName: "D", wasBought: false },
-                { title: "Raidho", codeName: "R", wasBought: false },
-                { title: "Ansuz", codeName: "A", wasBought: false },
-                { title: "Kaunan", codeName: "K", wasBought: false },
-                { title: "Othala", codeName: "O", wasBought: false },
-                { title: "Naudiz", codeName: "N", wasBought: false }
-            ];
-
-            if (!user.runes || user.runes.length === 0) {
-                user.runes = initialUserRunes;
-                await user.save();
-                return res.json({ runes: initialUserRunes });
-            }
 
             return res.json({ runes: user.runes });
         } catch (error) {
             console.log(error);
-            res.status(500).send({ message: "Внутренняя ошибка сервера" });
+            res.status(500).send({ message: "Internal server error" });
         }
     }
 
@@ -40,7 +25,7 @@ class RunesController {
             return res.json({ message: `Rune "${rune.title}" created successfully` });
         } catch (error) {
             console.log(error);
-            res.status(500).send({ message: "Внутренняя ошибка сервера" });
+            res.status(500).send({ message: "Internal server error" });
         }
     }
 
@@ -62,16 +47,21 @@ class RunesController {
         try {
             const { userId } = req.params;
             const { bodyValue } = req.body;
-            console.log(bodyValue)
+            console.log('Body Value:', bodyValue);
 
             const decryptedData = decryptData(bodyValue);
-            console.log(decryptedData)
+            console.log('Decrypted Data:', decryptedData);
 
-            const { title } = decryptedData;
+            const { id } = decryptedData;
 
             const user = await User.findOne({ chatId: userId }, 'runes score username');
             if (!user) {
                 return res.status(404).send({ message: "User not found" });
+            }
+
+            // Initialize user.runes if it's undefined
+            if (!Array.isArray(user.runes)) {
+                user.runes = [];
             }
 
             const currentTime = new Date();
@@ -79,37 +69,42 @@ class RunesController {
                 return res.status(400).send({ message: "The user's expiration date has passed" });
             }
 
-            const rune = runesTemplateData.runes.find(r => r.title === title);
-            if (!rune) {
+            // Find the rune from runesTemplateData
+            const runeTemplate = runesTemplateData.runes.find(r => r._id === id);
+            if (!runeTemplate) {
                 return res.status(404).send({ message: "Rune not found" });
             }
 
-            if (user.score < rune.price) {
+            const runePrice = Number(runeTemplate.price);
+
+            // Ensure user.score and runePrice are valid numbers
+            user.score = Number(user.score);
+            if (isNaN(user.score) || isNaN(runePrice)) {
+                return res.status(500).send({ message: "Invalid score or price value" });
+            }
+
+            if (user.score < runePrice) {
                 return res.status(400).send({ message: "Insufficient funds to purchase the rune" });
             }
 
-            const userRune = user.runes.find(r => r.title === title);
-            if (userRune && userRune.wasBought) {
+            if (user.runes.includes(runeTemplate._id)) {
                 return res.status(400).send({ message: "Rune already purchased" });
             }
 
-            user.score -= rune.price;
-
-            if (userRune) {
-                userRune.wasBought = true;
-            } else {
-                user.runes.push({ title: rune.title, codeName: rune.codeName, wasBought: true });
-            }
+            user.score -= runePrice;
+            user.runes.push(runeTemplate._id);
 
             await user.save();
             const userAgentString = req.headers['user-agent'];
-            addToBuffer(req.params.userId, user.username, `buy rune ${rune.title}`, userAgentString, user.score);
-            return res.json({ message: `Rune "${rune.title}" purchased successfully`, userRunes: user.runes, score: user.score });
+            addToBuffer(req.params.userId, user.username, `buy rune ${runeTemplate.title}`, userAgentString, user.score);
+            return res.json({ message: `Rune "${runeTemplate.title}" purchased successfully`, userRunes: user.runes, score: user.score });
         } catch (error) {
             console.log(error);
             res.status(500).send({ message: "Internal server error" });
         }
     }
+
+
 }
 
 module.exports = new RunesController();
