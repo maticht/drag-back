@@ -366,7 +366,8 @@ async function updateRuneAvailability() {
 
         const currentAvailableRuneIndex = runes.findIndex(rune => rune.isAvailable);
 
-        const nextRuneIndex = (currentAvailableRuneIndex + 1) % 4;
+        // const nextRuneIndex = (currentAvailableRuneIndex + 1) % 4;
+        const nextRuneIndex = Math.floor(Math.random() * runes.length);
 
         const bulkOperations = runes.map((rune, index) => {
             const isAvailable = index === nextRuneIndex;
