@@ -371,7 +371,7 @@ async function updateRuneAvailability() {
 
         const bulkOperations = runes.map((rune, index) => {
             const isAvailable = index === nextRuneIndex;
-            const expirationDate = isAvailable ? new Date(Date.now() + 60 * 1000) : rune.expirationDate;
+            const expirationDate = isAvailable ? new Date(Date.now() + 24 * 60 * 60 * 1000) : rune.expirationDate;
 
             return {
                 updateOne: {
@@ -411,10 +411,7 @@ cron.schedule('0 */6 * * *', userNotification, {
 });
 
 //каждый день в 00:30
-// cron.schedule('30 0 * * *', updateRuneAvailability, {
-//     timezone: "Europe/Moscow"
-// });
-cron.schedule('*/1 * * * *', updateRuneAvailability, {
+cron.schedule('30 0 * * *', updateRuneAvailability, {
     timezone: "Europe/Moscow"
 });
 
