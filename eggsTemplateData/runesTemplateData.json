@@ -22,7 +22,7 @@
       "images": [
         "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/RRune.png"
       ],
-      "price": 500000
+      "price": 700000
     },
     {
       "_id": "66a5dc8e8174fe7397e1dc49",
@@ -46,7 +46,7 @@
       "images": [
         "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/KRune.png"
       ],
-      "price": 2000000
+      "price": 3000000
     },
     {
       "_id": "66a5dca58174fe7397e1dc4d",
@@ -58,7 +58,7 @@
       "images": [
         "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/ORune.png"
       ],
-      "price": 5000000
+      "price": 10000000
     },
     {
       "_id": "66a5dcb08174fe7397e1dc4f",
@@ -70,7 +70,7 @@
       "images": [
         "https://eggoquest.fra1.cdn.digitaloceanspaces.com/Runes/NRune.png"
       ],
-      "price": 10000000
+      "price": 20000000
     }
   ]
 }
