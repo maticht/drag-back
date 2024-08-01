@@ -34,12 +34,12 @@ class RunesController {
             const currentDate = new Date();
             const availableRune = await Runes.findOne({ isAvailable: true, expirationDate: { $gt: currentDate } });
             if (!availableRune) {
-                return res.status(404).send({ message: "No available rune found" });
+                return res.status(200).send({ message: "No available rune found", success:false });
             }
-            return res.json({ rune: availableRune });
+            return res.json({ rune: availableRune, success: true });
         } catch (error) {
             console.log(error);
-            res.status(500).send({ message: "Internal server error" });
+            res.status(500).send({ message: "Internal server error", success:false });
         }
     }
 
