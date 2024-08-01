@@ -21,7 +21,7 @@ class AxeController {
 
             const price = storeAxeData.price[currentLevel - 1];
 
-            if (score < price) {
+            if (user.score < price) {
                 return res.status(400).send({ message: "Not enough money" });
             }
 

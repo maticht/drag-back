@@ -38,7 +38,7 @@ async function initializeApp() {
             max: 260,
             handler: (req, res, next) => {
                 const ip = req.ip;
-                const blockDuration = 2 * 60 * 1000;
+                const blockDuration = 30 * 60 * 1000;
                 blockedIPs.set(ip, Date.now() + blockDuration);
                 console.log(`IP ${ip} is blocked for exceeding the request limit.`);
                 res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
@@ -114,7 +114,7 @@ async function initializeApp() {
             next();
         });
 
-        app.use('/api', router);
+        app.use('/api/encrypted/dmeay', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
         app.use("/firstGoblinGameScene", firstGoblinGameScene);
 
