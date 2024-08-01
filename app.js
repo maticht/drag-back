@@ -7,6 +7,7 @@ const rewardsTemplateData = require("./eggsTemplateData/rewardsTemplateData.json
 const cors = require('cors');
 const {handleCallbacks} = require('./bot/callbacksHandlers');
 const {User} = require("./models/user");
+const {Runes} = require("./models/runes");
 const router = require('./bot/routes/index');
 const cron = require('node-cron');
 const app = express();
@@ -15,6 +16,7 @@ const {checkConnection} = require("./clickHouseClient");
 const {insertDataToClickHouse} = require("./utils/clickHouse/insertData");
 const {setUsersLanguages} = require("./utils/localization");
 const locales = require("./eggsTemplateData/locales.json");
+const rateLimit = require('express-rate-limit');
 const mongoose = require("mongoose");
 
 require('dotenv').config();
@@ -26,6 +28,54 @@ async function initializeApp() {
         await connection();
 
         await checkConnection();
+
+        app.set('trust proxy', true);
+
+        const blockedIPs = new Map();
+
+        const requestLimiter = rateLimit({
+            windowMs: 3 * 60 * 1000,
+            max: 260,
+            handler: (req, res, next) => {
+                const ip = req.ip;
+                const blockDuration = 30 * 60 * 1000;
+                blockedIPs.set(ip, Date.now() + blockDuration);
+                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
+                res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+            },
+            keyGenerator: (req) => req.ip,
+            skip: (req) => {
+                const ip = req.ip;
+                if (blockedIPs.has(ip)) {
+                    const blockTime = blockedIPs.get(ip);
+                    if (Date.now() < blockTime) {
+                        return true;
+                    } else {
+                        blockedIPs.delete(ip);
+                    }
+                }
+                return false;
+            }
+        });
+
+        app.use((req, res, next) => {
+            const ip = req.ip;
+            if (blockedIPs.has(ip) && Date.now() < blockedIPs.get(ip)) {
+                const blockEndTime = blockedIPs.get(ip);
+                const remainingTime = blockEndTime - Date.now();
+
+                const remainingMinutes = Math.floor(remainingTime / (1000 * 60));
+                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
+                console.log(`Remaining time: ${remainingMinutes} minutes and ${remainingSeconds} seconds`);
+
+                return res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+            }
+            next();
+        });
+
+        app.use(requestLimiter);
 
         app.use(express.json());
 
@@ -59,9 +109,12 @@ async function initializeApp() {
             app.use(cors());
         }
 
+        app.use((req, res, next) => {
+            console.log('IP адрес клиента:', req.ip);
+            next();
+        });
 
-
-        app.use('/api', router);
+        app.use('/api/encrypted/dmeay', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
         app.use("/firstGoblinGameScene", firstGoblinGameScene);
 
@@ -307,6 +360,41 @@ async function userNotification() {
     );
 }
 
+async function updateRuneAvailability() {
+    try {
+        const runes = await Runes.find();
+
+        const currentAvailableRuneIndex = runes.findIndex(rune => rune.isAvailable);
+
+        const nextRuneIndex = (currentAvailableRuneIndex + 1) % 4;
+
+        const bulkOperations = runes.map((rune, index) => {
+            const isAvailable = index === nextRuneIndex;
+            const expirationDate = isAvailable ? new Date(Date.now() + 24 * 60 * 60 * 1000) : rune.expirationDate;
+
+            return {
+                updateOne: {
+                    filter: { _id: rune._id },
+                    update: {
+                        $set: {
+                            isAvailable: isAvailable,
+                            expirationDate: expirationDate
+                        }
+                    }
+                }
+            };
+        });
+
+        if (bulkOperations.length > 0) {
+            await Runes.bulkWrite(bulkOperations);
+        }
+
+        console.log(`Rune availability updated. Next available rune: ${runes[nextRuneIndex].title}`);
+    } catch (error) {
+        console.error("Error updating rune availability:", error);
+    }
+}
+
 // Планирование задачи на каждое воскресенье в 23:59:59
 cron.schedule('59 59 23 * * 0', performWeeklyTask, {
     timezone: "Europe/Moscow"
@@ -318,6 +406,11 @@ cron.schedule('0 1 * * *', performDailyTask, {
 });
 
 cron.schedule('0 */6 * * *', userNotification, {
+    timezone: "Europe/Moscow"
+});
+
+//каждый день в 00:30
+cron.schedule('30 0 * * *', updateRuneAvailability, {
     timezone: "Europe/Moscow"
 });
 

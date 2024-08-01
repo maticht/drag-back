@@ -26,8 +26,8 @@ class BarrelController {
             if (user.score < price) return res.status(400).send({ message: "not enough money" });
 
             if (currentLevel < 8) {
-                barrel.currentLevel++;
                 user.score -= price;
+                barrel.currentLevel++;
             } else {
                 return res.status(400).send({ message: "Maximum level reached" });
             }

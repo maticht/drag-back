@@ -9,4 +9,5 @@ if(process.env.APP_MODE === "DEV" || process.env.APP_MODE === "TEST_PROD"){
 }
 const bot = new TelegramBot(token, { polling: true });
 
+
 module.exports = bot;

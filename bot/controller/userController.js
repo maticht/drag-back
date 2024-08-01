@@ -165,10 +165,9 @@ class UserController {
             if (userIndex === -1) {
                 const currentUser = {
                     placeInTop: "You are not in top",
-                    allUsersLength: users.length,
                     league: null,
                 };
-                return res.status(200).send({ users: users.slice(0, 1000), currentUser });
+                return res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
             }
 
             const placeInTop = userIndex + 1;

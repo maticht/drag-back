@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
     firstName: {type: String, required: false},
@@ -142,6 +143,7 @@ const userSchema = new mongoose.Schema({
         isTaken: {type: Boolean, default: false},
         isCanceled: {type: Boolean, default: false},
     }],
+    runes: [{type: String, required: false}],
     isNotified: {type: Boolean, default: false},
 }, {toJSON: {virtuals: true}});
 

@@ -20,6 +20,7 @@ module.exports = () => {
         //mongoose.connect(process.env.MONGO_URI_DEV, connectionParams);
         //mongoose.connect(process.env.MONGO_URI_PROD, connectionParams); //PROD
 
+
         console.log("Connected to database successfully");
     } catch (error) {
         console.log(error);

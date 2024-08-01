@@ -56,8 +56,8 @@ class EnergyController {
             energy.value = energyValue;
 
             if (currentLevel < 8) {
-                energy.currentLevel++;
                 user.score -= price;
+                energy.currentLevel++;
             } else {
                 return res.status(400).send({message: "Maximum level reached"});
             }
