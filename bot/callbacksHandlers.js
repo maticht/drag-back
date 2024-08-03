@@ -270,7 +270,7 @@ function handleCallbacks(bot) {
                         caption: caption,
                         reply_markup: {
                             inline_keyboard: [
-                                 [{ "text": "Play 👾", "web_app": { "url": "https://eggo-quest-test-nx3se.ondigitalocean.app/loadingScreen" } }],
+                                 [{ "text": "Play 🥚", "web_app": { "url": "https://eggo-quest-test-nx3se.ondigitalocean.app/loadingScreen" } }],
                                  [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
                             ],
                         }

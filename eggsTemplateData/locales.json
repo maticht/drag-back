@@ -10,11 +10,11 @@
     ],
     "tryYourLuckMessage": "Try your luck, break the egg and see what happens next!",
     "eggPlayInlineKeyboard": [
-      [{ "text": "Play 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
+      [{ "text": "Play \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
     ],
     "playInlineKeyboard": [
-      [{ "text": "Play 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+      [{ "text": "Play \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Join Community 👥", "url": "https://t.me/eggoquest"}]
@@ -38,7 +38,7 @@
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Language has been set to",
-    "barrelEnergyNotification": "The barrel is full and the energy is restored, come back"
+    "barrelEnergyNotification": "The barrel is full, energy is restored. Time to return to adventures!"
   },
   "ru": {
     "startLanguageMessage": "Выберите язык:",
@@ -51,11 +51,11 @@
     ],
     "tryYourLuckMessage": "Испытайте свою удачу, разбейте яйцо и посмотрите, что произойдет дальше!",
     "eggPlayInlineKeyboard": [
-      [{ "text": "Играть 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
+      [{ "text": "Играть \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Присоединиться к сообществу 👥", "url": "https://t.me/eggoquest"}]
     ],
     "playInlineKeyboard": [
-      [{ "text": "Играть 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+      [{ "text": "Играть \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Присоединиться к сообществу 👥", "url": "https://t.me/eggoquest"}]
@@ -79,7 +79,7 @@
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Язык был установлен на",
-    "barrelEnergyNotification": "Бочка полна, а энергия восстановлена. Возвращайтесь!"
+    "barrelEnergyNotification": "Бочка заполнена, энергия восстановлена. Пора возвращаться к приключениям!"
   },
   "ua": {
     "startLanguageMessage": "Виберіть мову:",
@@ -91,11 +91,11 @@
       [{ "text": "Español", "callback_data": "start_language:es" }]
     ],
     "eggPlayInlineKeyboard": [
-      [{ "text": "Грати 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
+      [{ "text": "Грати \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Приєднатися до спільноти 👥", "url": "https://t.me/eggoquest"}]
     ],
     "playInlineKeyboard": [
-      [{ "text": "Грати 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+      [{ "text": "Грати \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Приєднатися до спільноти 👥", "url": "https://t.me/eggoquest"}]
@@ -120,7 +120,7 @@
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "Мову було встановлено на",
-    "barrelEnergyNotification": "Бочка повна, а енергія відновлена. Поверніться!"
+    "barrelEnergyNotification": "Бочка заповнена, енергія відновлена. Пора повертатися до пригод!"
   },
   "pt": {
     "startLanguageMessage": "Por favor, escolha seu idioma:",
@@ -135,11 +135,11 @@
       [{ "text":"Coletar recompensa", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "eggPlayInlineKeyboard": [
-      [{ "text": "Jogar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
+      [{ "text": "Jogar \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Junte-se à Comunidade 👥", "url": "https://t.me/eggoquest"}]
     ],
     "playInlineKeyboard": [
-      [{ "text": "Jogar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+      [{ "text": "Jogar \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Junte-se à Comunidade 👥", "url": "https://t.me/eggoquest"}]
@@ -161,7 +161,7 @@
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "O idioma foi configurado para",
-    "barrelEnergyNotification": "O barril está cheio e a energia foi restaurada. Volte!"
+    "barrelEnergyNotification": "O barril está cheio, a energia foi restaurada. Hora de voltar às aventuras!"
   },
   "es": {
     "startLanguageMessage": "Por favor, selecciona tu idioma:",
@@ -174,11 +174,11 @@
     ],
     "tryYourLuckMessage": "Prueba tu suerte, rompe el huevo y mira qué pasa después!",
     "eggPlayInlineKeyboard": [
-      [{ "text": "Jugar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
+      [{ "text": "Jugar \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }],
       [{ "text": "Únete a la Comunidad 👥", "url": "https://t.me/eggoquest"}]
     ],
     "playInlineKeyboard": [
-      [{ "text": "Jugar 👾", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
+      [{ "text": "Jugar \uD83E\uDD5A", "web_app": { "url": "https://oyster-app-4mimt.ondigitalocean.app/loadingScreen" } }]
     ],
     "joinCommunityInlineKeyboard": [
       [{ "text": "Únete a la Comunidad 👥", "url": "https://t.me/eggoquest"}]
@@ -202,6 +202,6 @@
       [{ "text": "Español", "callback_data": "language:es" }]
     ],
     "languageSet": "El idioma se ha configurado a",
-    "barrelEnergyNotification": "¡El barril está lleno y la energía ha sido restaurada. Vuelve!"
+    "barrelEnergyNotification": "El barril está lleno, la energía ha sido restaurada. ¡Es hora de volver a las aventuras!"
   }
 }
