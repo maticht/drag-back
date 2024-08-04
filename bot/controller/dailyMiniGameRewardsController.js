@@ -27,7 +27,7 @@ class DailyMiniGameRewardsController {
 
             const { userId, rewardId } = decryptedData;
 
-            const user = await User.findOne({chatId: userId}, 'dailyMiniGameRewards score overallScore username');
+            const user = await User.findOne({chatId: userId}, 'dailyMiniGameRewards score overallScore username miniGameKeys');
             console.log(user)
             const currentDailyReward = user.dailyMiniGameRewards.find(reward => reward._id.toString() === rewardId);
             console.log(currentDailyReward)
@@ -52,6 +52,9 @@ class DailyMiniGameRewardsController {
             // Обновляем счет пользователя
             user.score += rewardValue;
             user.overallScore += rewardValue;
+            if(currentDailyReward.keys){
+                user.miniGameKeys += currentDailyReward.keys;
+            }
 
             console.log(user.overallScore);
             console.log(user.score)

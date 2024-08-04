@@ -289,6 +289,7 @@ async function performDailyTask() {
                         placeInTop: placeInTop,
                         rewardValue: reward.rewardValue[profileLevel - 1],// * rewardsTemplateData.RewardCoefficient[profileLevel],
                         specialRewardValue: bestPlayerReward ? bestPlayerReward.rewardValue[profileLevel - 1] : 0, // * rewardsTemplateData.RewardCoefficient[profileLevel] : 0,
+                        keys: reward.keys,
                         rewardIssuedDate: new Date(),
                         rewardClaimedDate: 0,
                         isTaken: false,
@@ -350,7 +351,7 @@ async function userNotification() {
                 inline_keyboard: keyboard
             }
         }).catch(error => {
-            console.error('Error sending photo message:', error);
+            console.error(`Error sending photo message to user with chatId ${user.chatId}:`, error.message);
         });
     }));
 
