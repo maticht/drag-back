@@ -112,6 +112,7 @@ const userSchema = new mongoose.Schema({
         placeInTop: {type: Number, required: false},
         rewardValue: {type: Number, required: false},
         specialRewardValue: {type: Number, required: false},
+        keys: {type: Number, required: false},
         rewardIssuedDate: {type: Date, default: Date.now},
         rewardClaimedDate: {type: Date},
         isTaken: {type: Boolean, default: false},
