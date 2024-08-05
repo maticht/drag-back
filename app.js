@@ -18,6 +18,7 @@ const {setUsersLanguages} = require("./utils/localization");
 const locales = require("./eggsTemplateData/locales.json");
 const rateLimit = require('express-rate-limit');
 const mongoose = require("mongoose");
+const {TournamentReward} = require("./models/tournamentReward");
 
 require('dotenv').config();
 
@@ -259,6 +260,55 @@ async function performWeeklyTask() {
 
 }
 
+
+
+async function setTournamentUsersRewards() {
+    try {
+        const topUsers = await User.find({
+            'miniGame.dailyBestScore': { $ne: 0 },
+            'referrals.referralUsers': { $exists: true, $size: { $gte: 3 } },
+            'profileLevel': { $gte: 3 },
+            'miniGame.completedGamesNumber': { $gte: 10 }
+            // 'walletConnected': true
+        })
+            .sort({ 'miniGame.dailyBestScore': -1 })
+            .limit(10)
+            .select('_id chatId miniGame');
+
+        const tournamentRewards = rewardsTemplateData.tournamentRewards;
+
+        const tournamentRewardPromises = topUsers.map(async (user, index) => {
+            try {
+                const tournamentPlaceInTop = index + 1;
+                const reward = tournamentRewards.find(r => tournamentPlaceInTop >= r.tournamentPlaceInTop[0] && tournamentPlaceInTop <= r.tournamentPlaceInTop[1]);
+
+                if (reward) {
+                    const newTournamentReward = new TournamentReward({
+                        chatId: user.chatId,
+                        miniGameScore: user.miniGame.dailyBestScore,
+                        tournamentPlaceInTop: tournamentPlaceInTop,
+                        auroraTokens: reward.auroraTokens,
+                        rewardIssuedDate: new Date(),
+                        rewardClaimedDate: null,
+                        isTaken: false,
+                    });
+
+                    return await newTournamentReward.save();
+                }
+            } catch (error) {
+                console.error(`Error creating tournament reward for user ${user.chatId}:`, error);
+            }
+        });
+
+        await Promise.all(tournamentRewardPromises);
+
+        console.log('Tournament rewards created for top 10 users');
+    } catch (error) {
+        console.error("Error creating tournament rewards:", error);
+    }
+}
+
+
 async function performDailyTask() {
     try {
         const allUsers = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } })
@@ -404,6 +454,11 @@ cron.schedule('59 59 23 * * 0', performWeeklyTask, {
 
 //каждый день в 01:00
 cron.schedule('0 1 * * *', performDailyTask, {
+    timezone: "Europe/Moscow"
+});
+
+//каждый день в 00:00
+cron.schedule('0 0 * * *', setTournamentUsersRewards, {
     timezone: "Europe/Moscow"
 });
 

@@ -155,19 +155,49 @@ class UserController {
 
             const currentUserId = req.params.userId;
 
-            const users = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } }, 'miniGame.dailyBestScore username chatId')
+            const users = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } }, 'miniGame.dailyBestScore username chatId profileLevel referrals.referralUsers miniGame.completedGamesNumber')
                 .sort({ "miniGame.dailyBestScore": -1 });
+
+            let filteredUsers = users.filter(user =>
+                user.referrals.referralUsers.length >= 3 &&
+                user.profileLevel >= 3 &&
+                user.miniGame.completedGamesNumber >= 10
+                // && user.walletConnected
+            )
+
+            const tournamentTopMap = new Map();
+            filteredUsers.forEach((user, index) => {
+                tournamentTopMap.set(user.chatId.toString(), index + 1);
+            });
+
+            users.forEach(user => {
+                if (tournamentTopMap.has(user.chatId.toString())) {
+                    user.tournamentPlaceInTop = tournamentTopMap.get(user.chatId.toString());
+                }
+            });
+
+            const sanitizedUsers = users.map(user => {
+                return {
+                    miniGame: {
+                        dailyBestScore: user.miniGame.dailyBestScore
+                    },
+                    username: user.username,
+                    chatId: user.chatId,
+                    tournamentPlaceInTop: user.tournamentPlaceInTop
+                };
+            });
 
             const miniGameRewards = rewardsTemplateData.dailyGameRewards;
 
-            const userIndex = users.findIndex(user => user.chatId.toString() === currentUserId);
+            const userIndex = sanitizedUsers.findIndex(user => user.chatId.toString() === currentUserId);
 
             if (userIndex === -1) {
                 const currentUser = {
                     placeInTop: "You are not in top",
                     league: null,
+                    tournamentPlaceInTop: "You are not participating in the tournament"
                 };
-                return res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
+                return res.status(200).send({ users: sanitizedUsers.slice(0, 1000), currentUser, allUsersLength: sanitizedUsers.length });
             }
 
             const placeInTop = userIndex + 1;
@@ -176,10 +206,11 @@ class UserController {
 
             const currentUser = {
                 placeInTop: placeInTop,
-                league: userLeague ? userLeague.league : 'Unranked',
+                league: userLeague ? userLeague.league : null,
+                tournamentPlaceInTop: tournamentTopMap.get(currentUserId.toString()) || "You are not participating in the tournament"
             };
 
-            res.status(200).send({ users: users.slice(0, 1000), currentUser, allUsersLength: users.length });
+            res.status(200).send({ users: sanitizedUsers.slice(0, 1000), currentUser, allUsersLength: sanitizedUsers.length });
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: "Internal Server Error" });
@@ -270,7 +301,6 @@ class UserController {
             console.log(bodyValue)
 
             const decryptedData = decryptData(bodyValue);
-            console.log(decryptedData)
 
             // // Схема валидации
             // const schema = Joi.object({

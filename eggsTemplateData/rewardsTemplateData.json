@@ -126,6 +126,24 @@
       "league": "Stone"
     }
   ],
+  "tournamentRewards": [
+    {
+      "placeInTop": [1, 1],
+      "auroraTokens": 70
+    },
+    {
+      "placeInTop": [2, 2],
+      "auroraTokens": 50
+    },
+    {
+      "placeInTop": [3, 3],
+      "auroraTokens": 30
+    },
+    {
+      "placeInTop": [4, 10],
+      "auroraTokens": 10
+    }
+  ],
   "bestPlayersReward": [
     {
       "placeInTop": 1,
