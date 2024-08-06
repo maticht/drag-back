@@ -19,6 +19,7 @@ const locales = require("./eggsTemplateData/locales.json");
 const rateLimit = require('express-rate-limit');
 const mongoose = require("mongoose");
 const {TournamentReward} = require("./models/tournamentReward");
+const { withdraw } = require('./web3/withdraw');
 
 require('dotenv').config();
 
@@ -114,7 +115,14 @@ async function initializeApp() {
             console.log('IP адрес клиента:', req.ip);
             next();
         });
-
+        app.post('/withdraw', async (req, res) => {
+            try {
+                const hash = await withdraw(req.body)
+                res.json({ hash })
+            } catch (err) {
+                res.status(500).json({ error: err.message })
+            }
+        })
         app.use('/api/encrypted/dmeay', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
         app.use("/firstGoblinGameScene", firstGoblinGameScene);
