@@ -266,10 +266,13 @@ async function setTournamentUsersRewards() {
     try {
         const topUsers = await User.find({
             'miniGame.dailyBestScore': { $ne: 0 },
-            'referrals.referralUsers': { $exists: true, $size: { $gte: 3 } },
             'profileLevel': { $gte: 3 },
-            'miniGame.completedGamesNumber': { $gte: 10 }
-            // 'walletConnected': true
+            'miniGame.completedGamesNumber': { $gte: 10 },
+            // 'walletConnected': true,
+            $expr: {
+                $gte: [{ $size: "$referrals.referralUsers" }, 3]
+            }
+
         })
             .sort({ 'miniGame.dailyBestScore': -1 })
             .limit(10)
@@ -318,8 +321,6 @@ async function performDailyTask() {
 
         const miniGameRewards = rewardsTemplateData.dailyGameRewards;
         const bestPlayersReward = rewardsTemplateData.bestPlayersGameReward;
-
-        // const topUsers = allUsers.slice(0, 1000);
 
         const bulkOperations = allUsers.map((user, index) => {
             const placeInTop = index + 1;

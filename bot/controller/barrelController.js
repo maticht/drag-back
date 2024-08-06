@@ -13,24 +13,41 @@ class BarrelController {
             const storeBarrelData = storeData.barrel
             const currentLevel = barrel.currentLevel;
 
-
-            const waitingTime = storeBarrelData.waitingTime[currentLevel];
-            barrel.lastEntrance = new Date();
-
-            const collectionTime = new Date();
-            collectionTime.setTime(collectionTime.getTime() + waitingTime * 60 * 60 * 1000);
-            barrel.collectionTime = collectionTime;
-
             const price = storeBarrelData.price[currentLevel - 1];
+            console.log(price);
 
             if (user.score < price) return res.status(400).send({ message: "not enough money" });
 
-            if (currentLevel < 8) {
-                user.score -= price;
-                barrel.currentLevel++;
-            } else {
-                return res.status(400).send({ message: "Maximum level reached" });
-            }
+            const nextLevel = currentLevel + 1;
+
+            if (nextLevel > 8) return res.status(400).send({ message: "Maximum level reached" });
+
+            // Текущее время
+            const now = new Date();
+
+            // Вычислить оставшееся время до сбора в миллисекундах
+            const remainingTimeMs = Math.max(0, barrel.collectionTime - now);
+            console.log("remainingTimeMs ", remainingTimeMs)
+            // Вычислить новое время ожидания для следующего уровня (если доступен)
+
+            // Получить время ожидания для текущего уровня и следующего уровня в миллисекундах
+            const currentWaitingTimeMs = storeBarrelData.waitingTime[currentLevel - 1] * 60 * 60 * 1000;
+            const nextWaitingTimeMs = storeBarrelData.waitingTime[currentLevel] * 60 * 60 * 1000;
+
+            // Рассчитать проработанное время на текущем уровне
+            const workedTimeMs = currentWaitingTimeMs - remainingTimeMs;
+
+            // Новое время сбора - новое время ожидания минус проработанное время
+            const newCollectionTimeMs = nextWaitingTimeMs - workedTimeMs;
+            console.log("newCollectionTimeMs ", newCollectionTimeMs)
+            const newCollectionTime = new Date(now.getTime() + newCollectionTimeMs);
+            console.log("newCollectionTime ", newCollectionTime)
+
+            barrel.collectionTime = newCollectionTime;
+
+
+            user.score -= price;
+            barrel.currentLevel++;
 
             await user.save();
 
