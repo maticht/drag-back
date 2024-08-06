@@ -57,7 +57,7 @@ class TournamentRewardController {
     async checkRewards(req, res, next) {
         try {
             const userId = req.params.userId;
-            const currentTournamentReward = await TournamentReward.find({chatId: userId});
+            const currentTournamentReward = await TournamentReward.findOne({chatId: userId});
 
             if (!currentTournamentReward) {
                 return res.status(404).send({ message: "Reward not found" });
