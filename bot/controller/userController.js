@@ -332,7 +332,7 @@ class UserController {
                 'score': score,
                 'overallScore': overallScore,
                 'eggs.0.score': eggScore,
-                ...(eggScore >= 88 ? { 'eggs.0.isOpen': true } : {})
+                ...(eggScore >= 8 ? { 'eggs.0.isOpen': true } : {})
             };
 
             const result = await User.updateOne(

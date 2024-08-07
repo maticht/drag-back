@@ -11,7 +11,7 @@ class ScoreController {
             user.score = req.body.score;
             user.overallScore = req.body.overallScore;
             if (user.eggs.length > 0) {
-                if (user.eggs[0].score === 88 && user.eggs[0].isOpen === false) {
+                if (user.eggs[0].score >= 8 && user.eggs[0].isOpen === false) {
                     user.eggs[0].isOpen = true;
                 }
                 user.eggs[0].score = req.body.eggScore;

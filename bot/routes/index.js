@@ -18,6 +18,7 @@ const achievementRouter = require("./achievementRouter");
 const miniGameRouter = require("./miniGameRouter");
 const alphaTesterRouter = require('./alphaTesterRouter');
 const runesRouter = require('./runesRouter');
+const web3Router = require('./web3Router');
 
 router.use('/score', scoreRouter);
 router.use('/axe', axeRouter);
@@ -40,5 +41,6 @@ router.use('/task', taskRouter);
 router.use('/achievement', achievementRouter);
 router.use('/miniGame', miniGameRouter);
 router.use('/runes', runesRouter);
+router.use('/web3', web3Router);
 
 module.exports = router

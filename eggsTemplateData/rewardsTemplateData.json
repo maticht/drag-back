@@ -129,19 +129,38 @@
   "tournamentRewards": [
     {
       "tournamentPlaceInTop": [1, 1],
-      "auroraTokens": 70
+      "usd": 15,
+      "auroraTokens": 120
     },
     {
       "tournamentPlaceInTop": [2, 2],
-      "auroraTokens": 50
+      "usd": 10,
+      "auroraTokens": 80
     },
     {
       "tournamentPlaceInTop": [3, 3],
-      "auroraTokens": 30
+      "usd": 7,
+      "auroraTokens": 55
     },
     {
-      "tournamentPlaceInTop": [4, 10],
-      "auroraTokens": 10
+      "tournamentPlaceInTop": [4, 4],
+      "usd": 5,
+      "auroraTokens": 40
+    },
+    {
+      "tournamentPlaceInTop": [5, 5],
+      "usd": 4,
+      "auroraTokens": 32
+    },
+    {
+      "tournamentPlaceInTop": [6, 20],
+      "usd": 3,
+      "auroraTokens": 24
+    },
+    {
+      "tournamentPlaceInTop": [21, 30],
+      "usd": 2,
+      "auroraTokens": 16
     }
   ],
   "bestPlayersReward": [

@@ -29,18 +29,29 @@ class TournamentRewardController {
 
             const { userId, rewardId } = decryptedData;
 
-            const user = await User.findOne({chatId: userId}, 'chatId username score');
+            const user = await User.findOne({chatId: userId}, 'chatId username realMoneyReward');
+            if(!user) {
+                return res.status(404).send({message: "User not found"});
+            }
 
-            const currentTournamentReward = await TournamentReward.find({chatId: userId});
+            const currentTournamentReward = await TournamentReward.findOne({chatId: userId, isTaken: false});
             console.log(currentTournamentReward)
             if (!currentTournamentReward) {
-                return res.status(404).send({ message: "Reward not found" });
+                return res.status(200).send({ message: "Reward not found" });
+            }
+            if (currentTournamentReward.isAvailable === false) {
+                return res.status(200).send({ message: "Reward unavailable" });
+            }
+            if (currentTournamentReward.isTaken === true) {
+                return res.status(200).send({ message: "Reward already taken" });
             }
 
             const rewardClaimedDate = Date.now();
 
             currentTournamentReward.isTaken = true;
             currentTournamentReward.rewardClaimedDate = rewardClaimedDate;
+            user.realMoneyReward.usd += currentTournamentReward.usd;
+            user.realMoneyReward.auroraTokens += currentTournamentReward.auroraTokens;
 
             const savedTournamentReward = await currentTournamentReward.save();
             const savedUser = await user.save();
@@ -48,7 +59,7 @@ class TournamentRewardController {
             const userAgentString = req.headers['user-agent'];
             addToBuffer(userId, user.username, `collect tournament reward`, userAgentString, user.score);
 
-            return res.status(201).send({message: "Tournament reward claimed successfully", success: true, reward: currentTournamentReward});
+            return res.status(201).send({message: "Tournament reward claimed successfully", success: true, user: savedUser, reward: currentTournamentReward});
         } catch (error) {
             console.log(error);
             res.status(500).send({message: "Внутренняя ошибка сервера", success: false});

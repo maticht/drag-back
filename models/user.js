@@ -146,6 +146,10 @@ const userSchema = new mongoose.Schema({
     }],
     runes: [{type: String, required: false}],
     isNotified: {type: Boolean, default: false},
+    realMoneyReward: {
+        usd: {type: Number, required: false, default: 0},
+        auroraTokens: {type: Number, required: false, default: 0},
+    }
 }, {toJSON: {virtuals: true}});
 
 const User = mongoose.model("User", userSchema);

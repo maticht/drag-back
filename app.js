@@ -19,7 +19,6 @@ const locales = require("./eggsTemplateData/locales.json");
 const rateLimit = require('express-rate-limit');
 const mongoose = require("mongoose");
 const {TournamentReward} = require("./models/tournamentReward");
-const { withdraw } = require('./web3/withdraw');
 
 require('dotenv').config();
 
@@ -115,14 +114,7 @@ async function initializeApp() {
             console.log('IP адрес клиента:', req.ip);
             next();
         });
-        app.post('/withdraw', async (req, res) => {
-            try {
-                const hash = await withdraw(req.body)
-                res.json({ hash })
-            } catch (err) {
-                res.status(500).json({ error: err.message })
-            }
-        })
+
         app.use('/api/encrypted/dmeay', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
         app.use("/firstGoblinGameScene", firstGoblinGameScene);
@@ -283,7 +275,7 @@ async function setTournamentUsersRewards() {
 
         })
             .sort({ 'miniGame.dailyBestScore': -1 })
-            .limit(10)
+            .limit(30)
             .select('_id chatId miniGame');
 
         const tournamentRewards = rewardsTemplateData.tournamentRewards;
@@ -298,6 +290,7 @@ async function setTournamentUsersRewards() {
                         chatId: user.chatId,
                         miniGameScore: user.miniGame.dailyBestScore,
                         tournamentPlaceInTop: tournamentPlaceInTop,
+                        usd: reward.usd,
                         auroraTokens: reward.auroraTokens,
                         rewardIssuedDate: new Date(),
                         rewardClaimedDate: null,
@@ -322,6 +315,11 @@ async function setTournamentUsersRewards() {
 
 async function performDailyTask() {
     try {
+        try {
+            await setTournamentUsersRewards();
+        }catch (e){
+            console.log(e.message)
+        }
         const allUsers = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } })
             .sort({ 'miniGame.dailyBestScore': -1 })
             .select('_id dailyMiniGameRewards miniGame profileLevel');
@@ -457,33 +455,33 @@ async function updateRuneAvailability() {
 }
 
 // Планирование задачи на каждое воскресенье в 23:59:59
-cron.schedule('59 59 23 * * 0', performWeeklyTask, {
-    timezone: "Europe/Moscow"
-});
-
-//каждый день в 01:00
-cron.schedule('0 1 * * *', performDailyTask, {
-    timezone: "Europe/Moscow"
+cron.schedule('00 50 23 * * 0', performWeeklyTask, {
+    timezone: "UTC"
 });
 
 //каждый день в 00:00
-cron.schedule('0 0 * * *', setTournamentUsersRewards, {
-    timezone: "Europe/Moscow"
+cron.schedule('0 0 * * *', performDailyTask, {
+    timezone: "UTC"
 });
 
+// //каждый день в 00:00
+// cron.schedule('0 0 * * *', setTournamentUsersRewards, {
+//     timezone: "UTC"
+// });
+
 cron.schedule('0 */6 * * *', userNotification, {
-    timezone: "Europe/Moscow"
+    timezone: "UTC"
 });
 
 //каждый день в 00:30
 cron.schedule('30 0 * * *', updateRuneAvailability, {
-    timezone: "Europe/Moscow"
+    timezone: "UTC"
 });
 
 if(process.env.APP_MODE === "PROD"){
     console.log("Click house timer begin")
     cron.schedule('*/10 * * * *', insertDataToClickHouse, {
-        timezone: "Europe/Moscow"
+        timezone: "UTC"
     });
 }
 
