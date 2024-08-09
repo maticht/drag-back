@@ -35,6 +35,42 @@ module.exports = {
             env: {
                 NODE_ROLE: "SLAVE_3"
             }
+        },
+        {
+            name: "app-slave-4",
+            script: "./app.js",
+            instances: 1,
+            exec_mode: "cluster",
+            env: {
+                NODE_ROLE: "SLAVE_4"
+            }
+        },
+        {
+            name: "app-slave-5",
+            script: "./app.js",
+            instances: 1,
+            exec_mode: "cluster",
+            env: {
+                NODE_ROLE: "SLAVE_5"
+            }
+        },
+        {
+            name: "app-slave-6",
+            script: "./app.js",
+            instances: 1,
+            exec_mode: "cluster",
+            env: {
+                NODE_ROLE: "SLAVE_6"
+            }
+        },
+        {
+            name: "app-slave-7",
+            script: "./app.js",
+            instances: 1,
+            exec_mode: "cluster",
+            env: {
+                NODE_ROLE: "SLAVE_7"
+            }
         }
     ]
 };
