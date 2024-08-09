@@ -2,12 +2,15 @@ const {User} = require("../models/user");
 
 const languageMap = new Map(); // ключ: айди чата, значение: texts[выбранный язык]
 const setUsersLanguages = async () => {
-    const users = await User.find();
-    users.map((user) => {
-        languageMap.set(user.chatId, user.language);
-        console.log(`Для пользователя ${user.firstName} установлен язык ${user.language}`)
-    })
-    console.log(languageMap)
+    try {
+        const users = await User.find();
+        users.forEach((user) => {
+            languageMap.set(user.chatId, user.language);
+        });
+        console.log("Языки успешно утсановлены")
+    }catch (e){
+        console.log(e.message)
+    }
 }
 
 module.exports = {

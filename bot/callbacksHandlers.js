@@ -212,20 +212,22 @@ function handleCallbacks(bot) {
 
                             await maternalReferralUser.save();
 
-                            try {
-                                const userLanguage = languageMap.get(maternalReferralUser.chatId.toString()) || 'en';
-                                const text = locales[userLanguage].congratulationsMessage.replace('{username}', msg.from.username ? msg.from.username : msg.from.first_name);
-                                const reward = rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
-                                const message = text.replace('{reward}', reward);
-                                const inlineKeyboard = locales[userLanguage].newReferralRewardInlineKeyboard;
-                                await bot.sendMessage(maternalReferralUser.chatId, message, {
-                                    parse_mode: 'HTML',
-                                    reply_markup: {
-                                        inline_keyboard: inlineKeyboard
-                                    }
-                                });
-                            } catch (e) {
-                                console.log(e.message);
+                            if(maternalReferralUser.chatId !== "6968534011" && maternalReferralUser.chatId !== "7115118465") {
+                                try {
+                                    const userLanguage = languageMap.get(maternalReferralUser.chatId.toString()) || 'en';
+                                    const text = locales[userLanguage].congratulationsMessage.replace('{username}', msg.from.username ? msg.from.username : msg.from.first_name);
+                                    const reward = rewardTemplateData.referralReward[maternalReferralUser.profileLevel - 1];
+                                    const message = text.replace('{reward}', reward);
+                                    const inlineKeyboard = locales[userLanguage].newReferralRewardInlineKeyboard;
+                                    await bot.sendMessage(maternalReferralUser.chatId, message, {
+                                        parse_mode: 'HTML',
+                                        reply_markup: {
+                                            inline_keyboard: inlineKeyboard
+                                        }
+                                    });
+                                } catch (e) {
+                                    console.log(e.message);
+                                }
                             }
 
                             addToRefBuffer(maternalReferralUser.chatId, user.chatId);

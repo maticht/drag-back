@@ -72,5 +72,32 @@ module.exports = {
                 NODE_ROLE: "SLAVE_7"
             }
         }
+        // {
+        //     name: "app-slave-8",
+        //     script: "./app.js",
+        //     instances: 1,
+        //     exec_mode: "cluster",
+        //     env: {
+        //         NODE_ROLE: "SLAVE_8"
+        //     }
+        // },
+        // {
+        //     name: "app-slave-9",
+        //     script: "./app.js",
+        //     instances: 1,
+        //     exec_mode: "cluster",
+        //     env: {
+        //         NODE_ROLE: "SLAVE_9"
+        //     }
+        // },
+        // {
+        //     name: "app-slave-10",
+        //     script: "./app.js",
+        //     instances: 1,
+        //     exec_mode: "cluster",
+        //     env: {
+        //         NODE_ROLE: "SLAVE_10"
+        //     }
+        // }
     ]
 };
