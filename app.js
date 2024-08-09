@@ -32,51 +32,51 @@ async function initializeApp() {
 
         app.set('trust proxy', true);
 
-        const blockedIPs = new Map();
-
-        const requestLimiter = rateLimit({
-            windowMs: 3 * 60 * 1000,
-            max: 260,
-            handler: (req, res, next) => {
-                const ip = req.ip;
-                const blockDuration = 30 * 60 * 1000;
-                blockedIPs.set(ip, Date.now() + blockDuration);
-                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
-                res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
-            },
-            keyGenerator: (req) => req.ip,
-            skip: (req) => {
-                const ip = req.ip;
-                if (blockedIPs.has(ip)) {
-                    const blockTime = blockedIPs.get(ip);
-                    if (Date.now() < blockTime) {
-                        return true;
-                    } else {
-                        blockedIPs.delete(ip);
-                    }
-                }
-                return false;
-            }
-        });
-
-        app.use((req, res, next) => {
-            const ip = req.ip;
-            if (blockedIPs.has(ip) && Date.now() < blockedIPs.get(ip)) {
-                const blockEndTime = blockedIPs.get(ip);
-                const remainingTime = blockEndTime - Date.now();
-
-                const remainingMinutes = Math.floor(remainingTime / (1000 * 60));
-                const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-                console.log(`IP ${ip} is blocked for exceeding the request limit.`);
-                console.log(`Remaining time: ${remainingMinutes} minutes and ${remainingSeconds} seconds`);
-
-                return res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
-            }
-            next();
-        });
-
-        app.use(requestLimiter);
+        // const blockedIPs = new Map();
+        //
+        // const requestLimiter = rateLimit({
+        //     windowMs: 3 * 60 * 1000,
+        //     max: 260,
+        //     handler: (req, res, next) => {
+        //         const ip = req.ip;
+        //         const blockDuration = 30 * 60 * 1000;
+        //         blockedIPs.set(ip, Date.now() + blockDuration);
+        //         console.log(`IP ${ip} is blocked for exceeding the request limit.`);
+        //         res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+        //     },
+        //     keyGenerator: (req) => req.ip,
+        //     skip: (req) => {
+        //         const ip = req.ip;
+        //         if (blockedIPs.has(ip)) {
+        //             const blockTime = blockedIPs.get(ip);
+        //             if (Date.now() < blockTime) {
+        //                 return true;
+        //             } else {
+        //                 blockedIPs.delete(ip);
+        //             }
+        //         }
+        //         return false;
+        //     }
+        // });
+        //
+        // app.use((req, res, next) => {
+        //     const ip = req.ip;
+        //     if (blockedIPs.has(ip) && Date.now() < blockedIPs.get(ip)) {
+        //         const blockEndTime = blockedIPs.get(ip);
+        //         const remainingTime = blockEndTime - Date.now();
+        //
+        //         const remainingMinutes = Math.floor(remainingTime / (1000 * 60));
+        //         const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+        //
+        //         console.log(`IP ${ip} is blocked for exceeding the request limit.`);
+        //         console.log(`Remaining time: ${remainingMinutes} minutes and ${remainingSeconds} seconds`);
+        //
+        //         return res.status(429).json({ message: 'You are blocked due to suspicious activity.' });
+        //     }
+        //     next();
+        // });
+        //
+        // app.use(requestLimiter);
 
         app.use(express.json());
 
@@ -110,10 +110,10 @@ async function initializeApp() {
             app.use(cors());
         }
 
-        app.use((req, res, next) => {
-            console.log('IP адрес клиента:', req.ip);
-            next();
-        });
+        // app.use((req, res, next) => {
+        //     console.log('IP адрес клиента:', req.ip);
+        //     next();
+        // });
 
         app.use('/api/encrypted/dmeay', router);
         app.use("/faultAppearanceScene", faultAppearanceScene);
@@ -131,8 +131,10 @@ async function initializeApp() {
 }
 
 async function startBot() {
-    await setUsersLanguages();
-    handleCallbacks(bot);
+    if(process.env.NODE_ROLE === "MASTER") {
+        await setUsersLanguages();
+        handleCallbacks(bot);
+    }
 }
 
 initializeApp();
@@ -260,8 +262,6 @@ async function performWeeklyTask() {
 
 }
 
-
-
 async function setTournamentUsersRewards() {
     try {
         const topUsers = await User.find({
@@ -270,7 +270,7 @@ async function setTournamentUsersRewards() {
             'miniGame.completedGamesNumber': { $gte: 10 },
             // 'walletConnected': true,
             $expr: {
-                $gte: [{ $size: "$referrals.referralUsers" }, 3]
+                $gte: [{ $size: "$referrals.referralUsers" }, 5]
             }
 
         })
@@ -312,14 +312,13 @@ async function setTournamentUsersRewards() {
     }
 }
 
-
 async function performDailyTask() {
     try {
-        try {
-            await setTournamentUsersRewards();
-        }catch (e){
-            console.log(e.message)
-        }
+        // try {
+        //     await setTournamentUsersRewards();
+        // }catch (e){
+        //     console.log(e.message)
+        // }
         const allUsers = await User.find({ 'miniGame.dailyBestScore': { $ne: 0 } })
             .sort({ 'miniGame.dailyBestScore': -1 })
             .select('_id dailyMiniGameRewards miniGame profileLevel');
@@ -454,29 +453,28 @@ async function updateRuneAvailability() {
     }
 }
 
-// Планирование задачи на каждое воскресенье в 23:59:59
-cron.schedule('00 50 23 * * 0', performWeeklyTask, {
-    timezone: "UTC"
-});
 
-//каждый день в 00:00
-cron.schedule('0 0 * * *', performDailyTask, {
-    timezone: "UTC"
-});
+if(process.env.NODE_ROLE === "MASTER"){
+    console.log("Расписание поставлено");
+    // Планирование задачи на каждое воскресенье в 23:59:59
+    cron.schedule('00 50 23 * * 0', performWeeklyTask, {
+        timezone: "UTC"
+    });
 
-// //каждый день в 00:00
-// cron.schedule('0 0 * * *', setTournamentUsersRewards, {
-//     timezone: "UTC"
-// });
+    //каждый день в 00:00
+    cron.schedule('0 0 * * *', performDailyTask, {
+        timezone: "UTC"
+    });
 
-cron.schedule('0 */6 * * *', userNotification, {
-    timezone: "UTC"
-});
+    cron.schedule('0 */6 * * *', userNotification, {
+        timezone: "UTC"
+    });
 
 //каждый день в 00:30
-cron.schedule('30 0 * * *', updateRuneAvailability, {
-    timezone: "UTC"
-});
+    cron.schedule('30 0 * * *', updateRuneAvailability, {
+        timezone: "UTC"
+    });
+}
 
 if(process.env.APP_MODE === "PROD"){
     console.log("Click house timer begin")

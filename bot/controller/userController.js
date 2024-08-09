@@ -298,7 +298,6 @@ class UserController {
         try {
 
             const { bodyValue } = req.body;
-            console.log(bodyValue)
 
             const decryptedData = decryptData(bodyValue);
 
@@ -323,9 +322,6 @@ class UserController {
 
             const { userId, energyRestoreTime, value, score, overallScore, eggScore } = decryptedData;
 
-            console.log('Encrypted Value:', bodyValue);
-            console.log('Decrypted Data:', decryptData(bodyValue));
-
             const updateFields = {
                 'energy.energyFullRecoveryDate': energyRestoreTime,
                 'energy.value': value,
@@ -335,6 +331,8 @@ class UserController {
                 ...(eggScore >= 8 ? { 'eggs.0.isOpen': true } : {})
             };
 
+
+            console.log(`user with chatId ${userId} set score: ${score}, energy value: ${value}`)
             const result = await User.updateOne(
                 {
                     chatId: userId,
